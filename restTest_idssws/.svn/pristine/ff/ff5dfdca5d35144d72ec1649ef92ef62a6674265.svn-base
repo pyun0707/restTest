@@ -1,0 +1,4343 @@
+/*
+ * IDMS(Integrated DataBase Management System) version 1.0
+ *
+ *  Copyright ⓒ 2016 kt cort. All rights reserved.
+ *
+ *  This is a proprietary software of kt corp, and you may not use this file except in
+ *  compliance with license agreement with kt corp. Any redistribution or use of this
+ *  software, with or without modification shall be strictly prohibited without prior written
+ *  approval of kt corp, and the copyright notice above does not evidence any actualor
+ *  intended publication of such software.
+*/
+
+package kt.idss.ktws.cdm;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>IoCCsm1200QS complex type�� ���� Java Ŭ�����Դϴ�.
+ *
+ * <p>���� ��Ű�� ������ �� Ŭ������ ���ԵǴ� �ʿ��� �������� �����մϴ�.
+ *
+ * <pre>
+ * &lt;complexType name="IoCCsm1200QS">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="CustId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="CustClCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="CustName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="CusidTypeCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="CustIdfyNo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="CustIfprvAgreeYn" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="CustIfprvAgreeYnUpFlag" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="CoorpCoYn" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="CustEngName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="CntryCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="CntryName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="ReadLimitYn" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="CustMemoId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="CustNoType" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="CustNo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="OldPayRespnNo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="ChckBitVal" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="CustSttusCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="CustSttusAvlBeginDay" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="SexCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="BdayDay" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="BdayNepoTypeCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="MarryYn" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="MarryCmrtnDay" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="ReligCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="HobyCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="AcarrCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="JobCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="FamlyCnt" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="MaleKidsCnt" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="FmaleKidsCnt" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="JbclsClCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="OfposCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="NameCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="SohoYn" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="RevenAmt" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="CarOwnYn" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="DwelTypeCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="TpindTypeCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="TpindText" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="BizcdText" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="RepBizcdCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="RepBizcdName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="RepTpindCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="RepTpindName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="SubBizcdCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="SubBizcdName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="SubTpindCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="SubTpindName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="CreatDay" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="MainBizAreaCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="DetlMainBizAreaName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="DcsmkFitngTypeCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="BizSttusCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="BizSttusCdUpFlag" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="MainBizText" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="HandlItemText" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="CoTypeCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="KtBcomYn" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="ProvCoWplceYn" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="ProvCoConectnCustYn" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="UnlawRegCoYn" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="WplceExistYn" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="TaxTypeCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="EndDay" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="EndWhyCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="MainPdName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="BrandName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="RpsntName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="RpsntCustSexCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="RpsntCustBday" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="RpsntNameUpFlag" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="SellAmtYy" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="MonthAvgCommCost" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="MonthAvgCommCostUpFlag" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="YearSellAmt" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="YearSellAmtUpFlag" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="LifeLevelCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="WkplcName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="WkplcNameUpFlag" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="DeptName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="ChrgJobText" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="AptmDay" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="ProofDay" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="MembershipId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="DcsmkChldYn" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="SndryHobyCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="AgentCustId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="AgentCusidTypeCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="AgentCustIdfyNo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="AgentCustName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="FrgnrRegEndDay" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="FrgnrRegNoDetlClCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="SojnCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="IsoCntryCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="ProofTypeCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="IndvFlag" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="IndvCustId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="IndvCustClCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="IndvCustName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="IndvCustSexCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="IndvCustBday" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="IndvCusidTypeCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="IndvCustIdfyNo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="IndvHpTelNoFlag" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="IndvHpTelNo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="IndvProofDay" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="SubIndvFlag" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="SubIndvCustId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="SubIndvCustName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="GrpFlag" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="GrpCustId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="IdfyNo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="RpsntFlag" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="RpsntCustId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="RpsntCustClCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="RpsntCustName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="RpsntCusidTypeCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="RpsntCustIdfyNo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="RpsntHpTelNoFlag" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="RpsntHpTelNo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="RpsntProofDay" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="BaseYm" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="CoScaleCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="GenlEmpCnt" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="ItUsgPosblEmpCnt" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="ApctName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="ApctCustNo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="CustReltnCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="ContTelNo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="SndryContTelNo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="CclNowValDetlGrade" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="AuthzYn" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="AvailYn" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="IsuanDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="CoName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="TaxRepreName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="VipName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="GrpCustDtltpCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="WplceSeq" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="rowCnt" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="sub" type="{http://bizhub.kt.com}IoCCsm0520TS" minOccurs="0"/>
+ *         &lt;element name="rowCnt1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="sub1" type="{http://bizhub.kt.com}IoCCsm0502TS" minOccurs="0"/>
+ *         &lt;element name="rowCnt2" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="sub2" type="{http://bizhub.kt.com}IoCCsm0503TS" minOccurs="0"/>
+ *         &lt;element name="rowCnt3" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="sub3" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="rowCnt4" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="sub4" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="rowCnt5" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="sub5" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="rowCnt6" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="sub6" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ *
+ *
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "IoCCsm1200QS", propOrder = {
+    "custId",
+    "custClCd",
+    "custName",
+    "cusidTypeCd",
+    "custIdfyNo",
+    "custIfprvAgreeYn",
+    "custIfprvAgreeYnUpFlag",
+    "coorpCoYn",
+    "custEngName",
+    "cntryCd",
+    "cntryName",
+    "readLimitYn",
+    "custMemoId",
+    "custNoType",
+    "custNo",
+    "oldPayRespnNo",
+    "chckBitVal",
+    "custSttusCd",
+    "custSttusAvlBeginDay",
+    "sexCd",
+    "bdayDay",
+    "bdayNepoTypeCd",
+    "marryYn",
+    "marryCmrtnDay",
+    "religCd",
+    "hobyCd",
+    "acarrCd",
+    "jobCd",
+    "famlyCnt",
+    "maleKidsCnt",
+    "fmaleKidsCnt",
+    "jbclsClCd",
+    "ofposCd",
+    "nameCd",
+    "sohoYn",
+    "revenAmt",
+    "carOwnYn",
+    "dwelTypeCd",
+    "tpindTypeCd",
+    "tpindText",
+    "bizcdText",
+    "repBizcdCd",
+    "repBizcdName",
+    "repTpindCd",
+    "repTpindName",
+    "subBizcdCd",
+    "subBizcdName",
+    "subTpindCd",
+    "subTpindName",
+    "creatDay",
+    "mainBizAreaCd",
+    "detlMainBizAreaName",
+    "dcsmkFitngTypeCd",
+    "bizSttusCd",
+    "bizSttusCdUpFlag",
+    "mainBizText",
+    "handlItemText",
+    "coTypeCd",
+    "ktBcomYn",
+    "provCoWplceYn",
+    "provCoConectnCustYn",
+    "unlawRegCoYn",
+    "wplceExistYn",
+    "taxTypeCd",
+    "endDay",
+    "endWhyCd",
+    "mainPdName",
+    "brandName",
+    "rpsntName",
+    "rpsntCustSexCd",
+    "rpsntCustBday",
+    "rpsntNameUpFlag",
+    "sellAmtYy",
+    "monthAvgCommCost",
+    "monthAvgCommCostUpFlag",
+    "yearSellAmt",
+    "yearSellAmtUpFlag",
+    "lifeLevelCd",
+    "wkplcName",
+    "wkplcNameUpFlag",
+    "deptName",
+    "chrgJobText",
+    "aptmDay",
+    "proofDay",
+    "membershipId",
+    "dcsmkChldYn",
+    "sndryHobyCd",
+    "agentCustId",
+    "agentCusidTypeCd",
+    "agentCustIdfyNo",
+    "agentCustName",
+    "frgnrRegEndDay",
+    "frgnrRegNoDetlClCd",
+    "sojnCd",
+    "isoCntryCd",
+    "proofTypeCd",
+    "indvFlag",
+    "indvCustId",
+    "indvCustClCd",
+    "indvCustName",
+    "indvCustSexCd",
+    "indvCustBday",
+    "indvCusidTypeCd",
+    "indvCustIdfyNo",
+    "indvHpTelNoFlag",
+    "indvHpTelNo",
+    "indvProofDay",
+    "subIndvFlag",
+    "subIndvCustId",
+    "subIndvCustName",
+    "grpFlag",
+    "grpCustId",
+    "idfyNo",
+    "rpsntFlag",
+    "rpsntCustId",
+    "rpsntCustClCd",
+    "rpsntCustName",
+    "rpsntCusidTypeCd",
+    "rpsntCustIdfyNo",
+    "rpsntHpTelNoFlag",
+    "rpsntHpTelNo",
+    "rpsntProofDay",
+    "baseYm",
+    "coScaleCd",
+    "genlEmpCnt",
+    "itUsgPosblEmpCnt",
+    "apctName",
+    "apctCustNo",
+    "custReltnCd",
+    "contTelNo",
+    "sndryContTelNo",
+    "cclNowValDetlGrade",
+    "authzYn",
+    "availYn",
+    "isuanDate",
+    "coName",
+    "taxRepreName",
+    "vipName",
+    "grpCustDtltpCd",
+    "wplceSeq",
+    "rowCnt",
+    "sub",
+    "rowCnt1",
+    "sub1",
+    "rowCnt2",
+    "sub2",
+    "rowCnt3",
+    "sub3",
+    "rowCnt4",
+    "sub4",
+    "rowCnt5",
+    "sub5",
+    "rowCnt6",
+    "sub6"
+})
+public class IoCCsm1200QS {
+
+    @XmlElement(name = "CustId")
+    protected String custId;
+    @XmlElement(name = "CustClCd")
+    protected String custClCd;
+    @XmlElement(name = "CustName")
+    protected String custName;
+    @XmlElement(name = "CusidTypeCd")
+    protected String cusidTypeCd;
+    @XmlElement(name = "CustIdfyNo")
+    protected String custIdfyNo;
+    @XmlElement(name = "CustIfprvAgreeYn")
+    protected String custIfprvAgreeYn;
+    @XmlElement(name = "CustIfprvAgreeYnUpFlag")
+    protected String custIfprvAgreeYnUpFlag;
+    @XmlElement(name = "CoorpCoYn")
+    protected String coorpCoYn;
+    @XmlElement(name = "CustEngName")
+    protected String custEngName;
+    @XmlElement(name = "CntryCd")
+    protected String cntryCd;
+    @XmlElement(name = "CntryName")
+    protected String cntryName;
+    @XmlElement(name = "ReadLimitYn")
+    protected String readLimitYn;
+    @XmlElement(name = "CustMemoId")
+    protected String custMemoId;
+    @XmlElement(name = "CustNoType")
+    protected String custNoType;
+    @XmlElement(name = "CustNo")
+    protected String custNo;
+    @XmlElement(name = "OldPayRespnNo")
+    protected String oldPayRespnNo;
+    @XmlElement(name = "ChckBitVal")
+    protected String chckBitVal;
+    @XmlElement(name = "CustSttusCd")
+    protected String custSttusCd;
+    @XmlElement(name = "CustSttusAvlBeginDay")
+    protected String custSttusAvlBeginDay;
+    @XmlElement(name = "SexCd")
+    protected String sexCd;
+    @XmlElement(name = "BdayDay")
+    protected String bdayDay;
+    @XmlElement(name = "BdayNepoTypeCd")
+    protected String bdayNepoTypeCd;
+    @XmlElement(name = "MarryYn")
+    protected String marryYn;
+    @XmlElement(name = "MarryCmrtnDay")
+    protected String marryCmrtnDay;
+    @XmlElement(name = "ReligCd")
+    protected String religCd;
+    @XmlElement(name = "HobyCd")
+    protected String hobyCd;
+    @XmlElement(name = "AcarrCd")
+    protected String acarrCd;
+    @XmlElement(name = "JobCd")
+    protected String jobCd;
+    @XmlElement(name = "FamlyCnt")
+    protected String famlyCnt;
+    @XmlElement(name = "MaleKidsCnt")
+    protected String maleKidsCnt;
+    @XmlElement(name = "FmaleKidsCnt")
+    protected String fmaleKidsCnt;
+    @XmlElement(name = "JbclsClCd")
+    protected String jbclsClCd;
+    @XmlElement(name = "OfposCd")
+    protected String ofposCd;
+    @XmlElement(name = "NameCd")
+    protected String nameCd;
+    @XmlElement(name = "SohoYn")
+    protected String sohoYn;
+    @XmlElement(name = "RevenAmt")
+    protected String revenAmt;
+    @XmlElement(name = "CarOwnYn")
+    protected String carOwnYn;
+    @XmlElement(name = "DwelTypeCd")
+    protected String dwelTypeCd;
+    @XmlElement(name = "TpindTypeCd")
+    protected String tpindTypeCd;
+    @XmlElement(name = "TpindText")
+    protected String tpindText;
+    @XmlElement(name = "BizcdText")
+    protected String bizcdText;
+    @XmlElement(name = "RepBizcdCd")
+    protected String repBizcdCd;
+    @XmlElement(name = "RepBizcdName")
+    protected String repBizcdName;
+    @XmlElement(name = "RepTpindCd")
+    protected String repTpindCd;
+    @XmlElement(name = "RepTpindName")
+    protected String repTpindName;
+    @XmlElement(name = "SubBizcdCd")
+    protected String subBizcdCd;
+    @XmlElement(name = "SubBizcdName")
+    protected String subBizcdName;
+    @XmlElement(name = "SubTpindCd")
+    protected String subTpindCd;
+    @XmlElement(name = "SubTpindName")
+    protected String subTpindName;
+    @XmlElement(name = "CreatDay")
+    protected String creatDay;
+    @XmlElement(name = "MainBizAreaCd")
+    protected String mainBizAreaCd;
+    @XmlElement(name = "DetlMainBizAreaName")
+    protected String detlMainBizAreaName;
+    @XmlElement(name = "DcsmkFitngTypeCd")
+    protected String dcsmkFitngTypeCd;
+    @XmlElement(name = "BizSttusCd")
+    protected String bizSttusCd;
+    @XmlElement(name = "BizSttusCdUpFlag")
+    protected String bizSttusCdUpFlag;
+    @XmlElement(name = "MainBizText")
+    protected String mainBizText;
+    @XmlElement(name = "HandlItemText")
+    protected String handlItemText;
+    @XmlElement(name = "CoTypeCd")
+    protected String coTypeCd;
+    @XmlElement(name = "KtBcomYn")
+    protected String ktBcomYn;
+    @XmlElement(name = "ProvCoWplceYn")
+    protected String provCoWplceYn;
+    @XmlElement(name = "ProvCoConectnCustYn")
+    protected String provCoConectnCustYn;
+    @XmlElement(name = "UnlawRegCoYn")
+    protected String unlawRegCoYn;
+    @XmlElement(name = "WplceExistYn")
+    protected String wplceExistYn;
+    @XmlElement(name = "TaxTypeCd")
+    protected String taxTypeCd;
+    @XmlElement(name = "EndDay")
+    protected String endDay;
+    @XmlElement(name = "EndWhyCd")
+    protected String endWhyCd;
+    @XmlElement(name = "MainPdName")
+    protected String mainPdName;
+    @XmlElement(name = "BrandName")
+    protected String brandName;
+    @XmlElement(name = "RpsntName")
+    protected String rpsntName;
+    @XmlElement(name = "RpsntCustSexCd")
+    protected String rpsntCustSexCd;
+    @XmlElement(name = "RpsntCustBday")
+    protected String rpsntCustBday;
+    @XmlElement(name = "RpsntNameUpFlag")
+    protected String rpsntNameUpFlag;
+    @XmlElement(name = "SellAmtYy")
+    protected String sellAmtYy;
+    @XmlElement(name = "MonthAvgCommCost")
+    protected String monthAvgCommCost;
+    @XmlElement(name = "MonthAvgCommCostUpFlag")
+    protected String monthAvgCommCostUpFlag;
+    @XmlElement(name = "YearSellAmt")
+    protected String yearSellAmt;
+    @XmlElement(name = "YearSellAmtUpFlag")
+    protected String yearSellAmtUpFlag;
+    @XmlElement(name = "LifeLevelCd")
+    protected String lifeLevelCd;
+    @XmlElement(name = "WkplcName")
+    protected String wkplcName;
+    @XmlElement(name = "WkplcNameUpFlag")
+    protected String wkplcNameUpFlag;
+    @XmlElement(name = "DeptName")
+    protected String deptName;
+    @XmlElement(name = "ChrgJobText")
+    protected String chrgJobText;
+    @XmlElement(name = "AptmDay")
+    protected String aptmDay;
+    @XmlElement(name = "ProofDay")
+    protected String proofDay;
+    @XmlElement(name = "MembershipId")
+    protected String membershipId;
+    @XmlElement(name = "DcsmkChldYn")
+    protected String dcsmkChldYn;
+    @XmlElement(name = "SndryHobyCd")
+    protected String sndryHobyCd;
+    @XmlElement(name = "AgentCustId")
+    protected String agentCustId;
+    @XmlElement(name = "AgentCusidTypeCd")
+    protected String agentCusidTypeCd;
+    @XmlElement(name = "AgentCustIdfyNo")
+    protected String agentCustIdfyNo;
+    @XmlElement(name = "AgentCustName")
+    protected String agentCustName;
+    @XmlElement(name = "FrgnrRegEndDay")
+    protected String frgnrRegEndDay;
+    @XmlElement(name = "FrgnrRegNoDetlClCd")
+    protected String frgnrRegNoDetlClCd;
+    @XmlElement(name = "SojnCd")
+    protected String sojnCd;
+    @XmlElement(name = "IsoCntryCd")
+    protected String isoCntryCd;
+    @XmlElement(name = "ProofTypeCd")
+    protected String proofTypeCd;
+    @XmlElement(name = "IndvFlag")
+    protected String indvFlag;
+    @XmlElement(name = "IndvCustId")
+    protected String indvCustId;
+    @XmlElement(name = "IndvCustClCd")
+    protected String indvCustClCd;
+    @XmlElement(name = "IndvCustName")
+    protected String indvCustName;
+    @XmlElement(name = "IndvCustSexCd")
+    protected String indvCustSexCd;
+    @XmlElement(name = "IndvCustBday")
+    protected String indvCustBday;
+    @XmlElement(name = "IndvCusidTypeCd")
+    protected String indvCusidTypeCd;
+    @XmlElement(name = "IndvCustIdfyNo")
+    protected String indvCustIdfyNo;
+    @XmlElement(name = "IndvHpTelNoFlag")
+    protected String indvHpTelNoFlag;
+    @XmlElement(name = "IndvHpTelNo")
+    protected String indvHpTelNo;
+    @XmlElement(name = "IndvProofDay")
+    protected String indvProofDay;
+    @XmlElement(name = "SubIndvFlag")
+    protected String subIndvFlag;
+    @XmlElement(name = "SubIndvCustId")
+    protected String subIndvCustId;
+    @XmlElement(name = "SubIndvCustName")
+    protected String subIndvCustName;
+    @XmlElement(name = "GrpFlag")
+    protected String grpFlag;
+    @XmlElement(name = "GrpCustId")
+    protected String grpCustId;
+    @XmlElement(name = "IdfyNo")
+    protected String idfyNo;
+    @XmlElement(name = "RpsntFlag")
+    protected String rpsntFlag;
+    @XmlElement(name = "RpsntCustId")
+    protected String rpsntCustId;
+    @XmlElement(name = "RpsntCustClCd")
+    protected String rpsntCustClCd;
+    @XmlElement(name = "RpsntCustName")
+    protected String rpsntCustName;
+    @XmlElement(name = "RpsntCusidTypeCd")
+    protected String rpsntCusidTypeCd;
+    @XmlElement(name = "RpsntCustIdfyNo")
+    protected String rpsntCustIdfyNo;
+    @XmlElement(name = "RpsntHpTelNoFlag")
+    protected String rpsntHpTelNoFlag;
+    @XmlElement(name = "RpsntHpTelNo")
+    protected String rpsntHpTelNo;
+    @XmlElement(name = "RpsntProofDay")
+    protected String rpsntProofDay;
+    @XmlElement(name = "BaseYm")
+    protected String baseYm;
+    @XmlElement(name = "CoScaleCd")
+    protected String coScaleCd;
+    @XmlElement(name = "GenlEmpCnt")
+    protected String genlEmpCnt;
+    @XmlElement(name = "ItUsgPosblEmpCnt")
+    protected String itUsgPosblEmpCnt;
+    @XmlElement(name = "ApctName")
+    protected String apctName;
+    @XmlElement(name = "ApctCustNo")
+    protected String apctCustNo;
+    @XmlElement(name = "CustReltnCd")
+    protected String custReltnCd;
+    @XmlElement(name = "ContTelNo")
+    protected String contTelNo;
+    @XmlElement(name = "SndryContTelNo")
+    protected String sndryContTelNo;
+    @XmlElement(name = "CclNowValDetlGrade")
+    protected String cclNowValDetlGrade;
+    @XmlElement(name = "AuthzYn")
+    protected String authzYn;
+    @XmlElement(name = "AvailYn")
+    protected String availYn;
+    @XmlElement(name = "IsuanDate")
+    protected String isuanDate;
+    @XmlElement(name = "CoName")
+    protected String coName;
+    @XmlElement(name = "TaxRepreName")
+    protected String taxRepreName;
+    @XmlElement(name = "VipName")
+    protected String vipName;
+    @XmlElement(name = "GrpCustDtltpCd")
+    protected String grpCustDtltpCd;
+    @XmlElement(name = "WplceSeq")
+    protected String wplceSeq;
+    protected String rowCnt;
+    protected IoCCsm0520TS sub;
+    protected String rowCnt1;
+    protected IoCCsm0502TS sub1;
+    protected String rowCnt2;
+    protected IoCCsm0503TS sub2;
+    protected String rowCnt3;
+    protected String sub3;
+    protected String rowCnt4;
+    protected String sub4;
+    protected String rowCnt5;
+    protected String sub5;
+    protected String rowCnt6;
+    protected String sub6;
+
+    /**
+     * custId �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCustId() {
+        return custId;
+    }
+
+    /**
+     * custId �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCustId(String value) {
+        this.custId = value;
+    }
+
+    /**
+     * custClCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCustClCd() {
+        return custClCd;
+    }
+
+    /**
+     * custClCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCustClCd(String value) {
+        this.custClCd = value;
+    }
+
+    /**
+     * custName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCustName() {
+        return custName;
+    }
+
+    /**
+     * custName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCustName(String value) {
+        this.custName = value;
+    }
+
+    /**
+     * cusidTypeCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCusidTypeCd() {
+        return cusidTypeCd;
+    }
+
+    /**
+     * cusidTypeCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCusidTypeCd(String value) {
+        this.cusidTypeCd = value;
+    }
+
+    /**
+     * custIdfyNo �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCustIdfyNo() {
+        return custIdfyNo;
+    }
+
+    /**
+     * custIdfyNo �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCustIdfyNo(String value) {
+        this.custIdfyNo = value;
+    }
+
+    /**
+     * custIfprvAgreeYn �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCustIfprvAgreeYn() {
+        return custIfprvAgreeYn;
+    }
+
+    /**
+     * custIfprvAgreeYn �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCustIfprvAgreeYn(String value) {
+        this.custIfprvAgreeYn = value;
+    }
+
+    /**
+     * custIfprvAgreeYnUpFlag �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCustIfprvAgreeYnUpFlag() {
+        return custIfprvAgreeYnUpFlag;
+    }
+
+    /**
+     * custIfprvAgreeYnUpFlag �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCustIfprvAgreeYnUpFlag(String value) {
+        this.custIfprvAgreeYnUpFlag = value;
+    }
+
+    /**
+     * coorpCoYn �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCoorpCoYn() {
+        return coorpCoYn;
+    }
+
+    /**
+     * coorpCoYn �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCoorpCoYn(String value) {
+        this.coorpCoYn = value;
+    }
+
+    /**
+     * custEngName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCustEngName() {
+        return custEngName;
+    }
+
+    /**
+     * custEngName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCustEngName(String value) {
+        this.custEngName = value;
+    }
+
+    /**
+     * cntryCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCntryCd() {
+        return cntryCd;
+    }
+
+    /**
+     * cntryCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCntryCd(String value) {
+        this.cntryCd = value;
+    }
+
+    /**
+     * cntryName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCntryName() {
+        return cntryName;
+    }
+
+    /**
+     * cntryName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCntryName(String value) {
+        this.cntryName = value;
+    }
+
+    /**
+     * readLimitYn �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getReadLimitYn() {
+        return readLimitYn;
+    }
+
+    /**
+     * readLimitYn �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setReadLimitYn(String value) {
+        this.readLimitYn = value;
+    }
+
+    /**
+     * custMemoId �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCustMemoId() {
+        return custMemoId;
+    }
+
+    /**
+     * custMemoId �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCustMemoId(String value) {
+        this.custMemoId = value;
+    }
+
+    /**
+     * custNoType �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCustNoType() {
+        return custNoType;
+    }
+
+    /**
+     * custNoType �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCustNoType(String value) {
+        this.custNoType = value;
+    }
+
+    /**
+     * custNo �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCustNo() {
+        return custNo;
+    }
+
+    /**
+     * custNo �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCustNo(String value) {
+        this.custNo = value;
+    }
+
+    /**
+     * oldPayRespnNo �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getOldPayRespnNo() {
+        return oldPayRespnNo;
+    }
+
+    /**
+     * oldPayRespnNo �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setOldPayRespnNo(String value) {
+        this.oldPayRespnNo = value;
+    }
+
+    /**
+     * chckBitVal �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getChckBitVal() {
+        return chckBitVal;
+    }
+
+    /**
+     * chckBitVal �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setChckBitVal(String value) {
+        this.chckBitVal = value;
+    }
+
+    /**
+     * custSttusCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCustSttusCd() {
+        return custSttusCd;
+    }
+
+    /**
+     * custSttusCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCustSttusCd(String value) {
+        this.custSttusCd = value;
+    }
+
+    /**
+     * custSttusAvlBeginDay �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCustSttusAvlBeginDay() {
+        return custSttusAvlBeginDay;
+    }
+
+    /**
+     * custSttusAvlBeginDay �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCustSttusAvlBeginDay(String value) {
+        this.custSttusAvlBeginDay = value;
+    }
+
+    /**
+     * sexCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getSexCd() {
+        return sexCd;
+    }
+
+    /**
+     * sexCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setSexCd(String value) {
+        this.sexCd = value;
+    }
+
+    /**
+     * bdayDay �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getBdayDay() {
+        return bdayDay;
+    }
+
+    /**
+     * bdayDay �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setBdayDay(String value) {
+        this.bdayDay = value;
+    }
+
+    /**
+     * bdayNepoTypeCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getBdayNepoTypeCd() {
+        return bdayNepoTypeCd;
+    }
+
+    /**
+     * bdayNepoTypeCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setBdayNepoTypeCd(String value) {
+        this.bdayNepoTypeCd = value;
+    }
+
+    /**
+     * marryYn �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getMarryYn() {
+        return marryYn;
+    }
+
+    /**
+     * marryYn �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setMarryYn(String value) {
+        this.marryYn = value;
+    }
+
+    /**
+     * marryCmrtnDay �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getMarryCmrtnDay() {
+        return marryCmrtnDay;
+    }
+
+    /**
+     * marryCmrtnDay �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setMarryCmrtnDay(String value) {
+        this.marryCmrtnDay = value;
+    }
+
+    /**
+     * religCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getReligCd() {
+        return religCd;
+    }
+
+    /**
+     * religCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setReligCd(String value) {
+        this.religCd = value;
+    }
+
+    /**
+     * hobyCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getHobyCd() {
+        return hobyCd;
+    }
+
+    /**
+     * hobyCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setHobyCd(String value) {
+        this.hobyCd = value;
+    }
+
+    /**
+     * acarrCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getAcarrCd() {
+        return acarrCd;
+    }
+
+    /**
+     * acarrCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setAcarrCd(String value) {
+        this.acarrCd = value;
+    }
+
+    /**
+     * jobCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getJobCd() {
+        return jobCd;
+    }
+
+    /**
+     * jobCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setJobCd(String value) {
+        this.jobCd = value;
+    }
+
+    /**
+     * famlyCnt �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getFamlyCnt() {
+        return famlyCnt;
+    }
+
+    /**
+     * famlyCnt �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setFamlyCnt(String value) {
+        this.famlyCnt = value;
+    }
+
+    /**
+     * maleKidsCnt �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getMaleKidsCnt() {
+        return maleKidsCnt;
+    }
+
+    /**
+     * maleKidsCnt �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setMaleKidsCnt(String value) {
+        this.maleKidsCnt = value;
+    }
+
+    /**
+     * fmaleKidsCnt �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getFmaleKidsCnt() {
+        return fmaleKidsCnt;
+    }
+
+    /**
+     * fmaleKidsCnt �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setFmaleKidsCnt(String value) {
+        this.fmaleKidsCnt = value;
+    }
+
+    /**
+     * jbclsClCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getJbclsClCd() {
+        return jbclsClCd;
+    }
+
+    /**
+     * jbclsClCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setJbclsClCd(String value) {
+        this.jbclsClCd = value;
+    }
+
+    /**
+     * ofposCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getOfposCd() {
+        return ofposCd;
+    }
+
+    /**
+     * ofposCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setOfposCd(String value) {
+        this.ofposCd = value;
+    }
+
+    /**
+     * nameCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getNameCd() {
+        return nameCd;
+    }
+
+    /**
+     * nameCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setNameCd(String value) {
+        this.nameCd = value;
+    }
+
+    /**
+     * sohoYn �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getSohoYn() {
+        return sohoYn;
+    }
+
+    /**
+     * sohoYn �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setSohoYn(String value) {
+        this.sohoYn = value;
+    }
+
+    /**
+     * revenAmt �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getRevenAmt() {
+        return revenAmt;
+    }
+
+    /**
+     * revenAmt �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setRevenAmt(String value) {
+        this.revenAmt = value;
+    }
+
+    /**
+     * carOwnYn �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCarOwnYn() {
+        return carOwnYn;
+    }
+
+    /**
+     * carOwnYn �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCarOwnYn(String value) {
+        this.carOwnYn = value;
+    }
+
+    /**
+     * dwelTypeCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getDwelTypeCd() {
+        return dwelTypeCd;
+    }
+
+    /**
+     * dwelTypeCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setDwelTypeCd(String value) {
+        this.dwelTypeCd = value;
+    }
+
+    /**
+     * tpindTypeCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getTpindTypeCd() {
+        return tpindTypeCd;
+    }
+
+    /**
+     * tpindTypeCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setTpindTypeCd(String value) {
+        this.tpindTypeCd = value;
+    }
+
+    /**
+     * tpindText �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getTpindText() {
+        return tpindText;
+    }
+
+    /**
+     * tpindText �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setTpindText(String value) {
+        this.tpindText = value;
+    }
+
+    /**
+     * bizcdText �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getBizcdText() {
+        return bizcdText;
+    }
+
+    /**
+     * bizcdText �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setBizcdText(String value) {
+        this.bizcdText = value;
+    }
+
+    /**
+     * repBizcdCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getRepBizcdCd() {
+        return repBizcdCd;
+    }
+
+    /**
+     * repBizcdCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setRepBizcdCd(String value) {
+        this.repBizcdCd = value;
+    }
+
+    /**
+     * repBizcdName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getRepBizcdName() {
+        return repBizcdName;
+    }
+
+    /**
+     * repBizcdName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setRepBizcdName(String value) {
+        this.repBizcdName = value;
+    }
+
+    /**
+     * repTpindCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getRepTpindCd() {
+        return repTpindCd;
+    }
+
+    /**
+     * repTpindCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setRepTpindCd(String value) {
+        this.repTpindCd = value;
+    }
+
+    /**
+     * repTpindName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getRepTpindName() {
+        return repTpindName;
+    }
+
+    /**
+     * repTpindName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setRepTpindName(String value) {
+        this.repTpindName = value;
+    }
+
+    /**
+     * subBizcdCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getSubBizcdCd() {
+        return subBizcdCd;
+    }
+
+    /**
+     * subBizcdCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setSubBizcdCd(String value) {
+        this.subBizcdCd = value;
+    }
+
+    /**
+     * subBizcdName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getSubBizcdName() {
+        return subBizcdName;
+    }
+
+    /**
+     * subBizcdName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setSubBizcdName(String value) {
+        this.subBizcdName = value;
+    }
+
+    /**
+     * subTpindCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getSubTpindCd() {
+        return subTpindCd;
+    }
+
+    /**
+     * subTpindCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setSubTpindCd(String value) {
+        this.subTpindCd = value;
+    }
+
+    /**
+     * subTpindName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getSubTpindName() {
+        return subTpindName;
+    }
+
+    /**
+     * subTpindName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setSubTpindName(String value) {
+        this.subTpindName = value;
+    }
+
+    /**
+     * creatDay �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCreatDay() {
+        return creatDay;
+    }
+
+    /**
+     * creatDay �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCreatDay(String value) {
+        this.creatDay = value;
+    }
+
+    /**
+     * mainBizAreaCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getMainBizAreaCd() {
+        return mainBizAreaCd;
+    }
+
+    /**
+     * mainBizAreaCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setMainBizAreaCd(String value) {
+        this.mainBizAreaCd = value;
+    }
+
+    /**
+     * detlMainBizAreaName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getDetlMainBizAreaName() {
+        return detlMainBizAreaName;
+    }
+
+    /**
+     * detlMainBizAreaName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setDetlMainBizAreaName(String value) {
+        this.detlMainBizAreaName = value;
+    }
+
+    /**
+     * dcsmkFitngTypeCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getDcsmkFitngTypeCd() {
+        return dcsmkFitngTypeCd;
+    }
+
+    /**
+     * dcsmkFitngTypeCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setDcsmkFitngTypeCd(String value) {
+        this.dcsmkFitngTypeCd = value;
+    }
+
+    /**
+     * bizSttusCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getBizSttusCd() {
+        return bizSttusCd;
+    }
+
+    /**
+     * bizSttusCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setBizSttusCd(String value) {
+        this.bizSttusCd = value;
+    }
+
+    /**
+     * bizSttusCdUpFlag �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getBizSttusCdUpFlag() {
+        return bizSttusCdUpFlag;
+    }
+
+    /**
+     * bizSttusCdUpFlag �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setBizSttusCdUpFlag(String value) {
+        this.bizSttusCdUpFlag = value;
+    }
+
+    /**
+     * mainBizText �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getMainBizText() {
+        return mainBizText;
+    }
+
+    /**
+     * mainBizText �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setMainBizText(String value) {
+        this.mainBizText = value;
+    }
+
+    /**
+     * handlItemText �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getHandlItemText() {
+        return handlItemText;
+    }
+
+    /**
+     * handlItemText �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setHandlItemText(String value) {
+        this.handlItemText = value;
+    }
+
+    /**
+     * coTypeCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCoTypeCd() {
+        return coTypeCd;
+    }
+
+    /**
+     * coTypeCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCoTypeCd(String value) {
+        this.coTypeCd = value;
+    }
+
+    /**
+     * ktBcomYn �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getKtBcomYn() {
+        return ktBcomYn;
+    }
+
+    /**
+     * ktBcomYn �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setKtBcomYn(String value) {
+        this.ktBcomYn = value;
+    }
+
+    /**
+     * provCoWplceYn �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getProvCoWplceYn() {
+        return provCoWplceYn;
+    }
+
+    /**
+     * provCoWplceYn �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setProvCoWplceYn(String value) {
+        this.provCoWplceYn = value;
+    }
+
+    /**
+     * provCoConectnCustYn �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getProvCoConectnCustYn() {
+        return provCoConectnCustYn;
+    }
+
+    /**
+     * provCoConectnCustYn �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setProvCoConectnCustYn(String value) {
+        this.provCoConectnCustYn = value;
+    }
+
+    /**
+     * unlawRegCoYn �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getUnlawRegCoYn() {
+        return unlawRegCoYn;
+    }
+
+    /**
+     * unlawRegCoYn �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setUnlawRegCoYn(String value) {
+        this.unlawRegCoYn = value;
+    }
+
+    /**
+     * wplceExistYn �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getWplceExistYn() {
+        return wplceExistYn;
+    }
+
+    /**
+     * wplceExistYn �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setWplceExistYn(String value) {
+        this.wplceExistYn = value;
+    }
+
+    /**
+     * taxTypeCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getTaxTypeCd() {
+        return taxTypeCd;
+    }
+
+    /**
+     * taxTypeCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setTaxTypeCd(String value) {
+        this.taxTypeCd = value;
+    }
+
+    /**
+     * endDay �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getEndDay() {
+        return endDay;
+    }
+
+    /**
+     * endDay �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setEndDay(String value) {
+        this.endDay = value;
+    }
+
+    /**
+     * endWhyCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getEndWhyCd() {
+        return endWhyCd;
+    }
+
+    /**
+     * endWhyCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setEndWhyCd(String value) {
+        this.endWhyCd = value;
+    }
+
+    /**
+     * mainPdName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getMainPdName() {
+        return mainPdName;
+    }
+
+    /**
+     * mainPdName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setMainPdName(String value) {
+        this.mainPdName = value;
+    }
+
+    /**
+     * brandName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getBrandName() {
+        return brandName;
+    }
+
+    /**
+     * brandName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setBrandName(String value) {
+        this.brandName = value;
+    }
+
+    /**
+     * rpsntName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getRpsntName() {
+        return rpsntName;
+    }
+
+    /**
+     * rpsntName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setRpsntName(String value) {
+        this.rpsntName = value;
+    }
+
+    /**
+     * rpsntCustSexCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getRpsntCustSexCd() {
+        return rpsntCustSexCd;
+    }
+
+    /**
+     * rpsntCustSexCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setRpsntCustSexCd(String value) {
+        this.rpsntCustSexCd = value;
+    }
+
+    /**
+     * rpsntCustBday �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getRpsntCustBday() {
+        return rpsntCustBday;
+    }
+
+    /**
+     * rpsntCustBday �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setRpsntCustBday(String value) {
+        this.rpsntCustBday = value;
+    }
+
+    /**
+     * rpsntNameUpFlag �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getRpsntNameUpFlag() {
+        return rpsntNameUpFlag;
+    }
+
+    /**
+     * rpsntNameUpFlag �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setRpsntNameUpFlag(String value) {
+        this.rpsntNameUpFlag = value;
+    }
+
+    /**
+     * sellAmtYy �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getSellAmtYy() {
+        return sellAmtYy;
+    }
+
+    /**
+     * sellAmtYy �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setSellAmtYy(String value) {
+        this.sellAmtYy = value;
+    }
+
+    /**
+     * monthAvgCommCost �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getMonthAvgCommCost() {
+        return monthAvgCommCost;
+    }
+
+    /**
+     * monthAvgCommCost �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setMonthAvgCommCost(String value) {
+        this.monthAvgCommCost = value;
+    }
+
+    /**
+     * monthAvgCommCostUpFlag �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getMonthAvgCommCostUpFlag() {
+        return monthAvgCommCostUpFlag;
+    }
+
+    /**
+     * monthAvgCommCostUpFlag �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setMonthAvgCommCostUpFlag(String value) {
+        this.monthAvgCommCostUpFlag = value;
+    }
+
+    /**
+     * yearSellAmt �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getYearSellAmt() {
+        return yearSellAmt;
+    }
+
+    /**
+     * yearSellAmt �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setYearSellAmt(String value) {
+        this.yearSellAmt = value;
+    }
+
+    /**
+     * yearSellAmtUpFlag �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getYearSellAmtUpFlag() {
+        return yearSellAmtUpFlag;
+    }
+
+    /**
+     * yearSellAmtUpFlag �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setYearSellAmtUpFlag(String value) {
+        this.yearSellAmtUpFlag = value;
+    }
+
+    /**
+     * lifeLevelCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getLifeLevelCd() {
+        return lifeLevelCd;
+    }
+
+    /**
+     * lifeLevelCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setLifeLevelCd(String value) {
+        this.lifeLevelCd = value;
+    }
+
+    /**
+     * wkplcName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getWkplcName() {
+        return wkplcName;
+    }
+
+    /**
+     * wkplcName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setWkplcName(String value) {
+        this.wkplcName = value;
+    }
+
+    /**
+     * wkplcNameUpFlag �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getWkplcNameUpFlag() {
+        return wkplcNameUpFlag;
+    }
+
+    /**
+     * wkplcNameUpFlag �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setWkplcNameUpFlag(String value) {
+        this.wkplcNameUpFlag = value;
+    }
+
+    /**
+     * deptName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getDeptName() {
+        return deptName;
+    }
+
+    /**
+     * deptName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setDeptName(String value) {
+        this.deptName = value;
+    }
+
+    /**
+     * chrgJobText �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getChrgJobText() {
+        return chrgJobText;
+    }
+
+    /**
+     * chrgJobText �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setChrgJobText(String value) {
+        this.chrgJobText = value;
+    }
+
+    /**
+     * aptmDay �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getAptmDay() {
+        return aptmDay;
+    }
+
+    /**
+     * aptmDay �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setAptmDay(String value) {
+        this.aptmDay = value;
+    }
+
+    /**
+     * proofDay �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getProofDay() {
+        return proofDay;
+    }
+
+    /**
+     * proofDay �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setProofDay(String value) {
+        this.proofDay = value;
+    }
+
+    /**
+     * membershipId �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getMembershipId() {
+        return membershipId;
+    }
+
+    /**
+     * membershipId �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setMembershipId(String value) {
+        this.membershipId = value;
+    }
+
+    /**
+     * dcsmkChldYn �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getDcsmkChldYn() {
+        return dcsmkChldYn;
+    }
+
+    /**
+     * dcsmkChldYn �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setDcsmkChldYn(String value) {
+        this.dcsmkChldYn = value;
+    }
+
+    /**
+     * sndryHobyCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getSndryHobyCd() {
+        return sndryHobyCd;
+    }
+
+    /**
+     * sndryHobyCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setSndryHobyCd(String value) {
+        this.sndryHobyCd = value;
+    }
+
+    /**
+     * agentCustId �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getAgentCustId() {
+        return agentCustId;
+    }
+
+    /**
+     * agentCustId �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setAgentCustId(String value) {
+        this.agentCustId = value;
+    }
+
+    /**
+     * agentCusidTypeCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getAgentCusidTypeCd() {
+        return agentCusidTypeCd;
+    }
+
+    /**
+     * agentCusidTypeCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setAgentCusidTypeCd(String value) {
+        this.agentCusidTypeCd = value;
+    }
+
+    /**
+     * agentCustIdfyNo �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getAgentCustIdfyNo() {
+        return agentCustIdfyNo;
+    }
+
+    /**
+     * agentCustIdfyNo �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setAgentCustIdfyNo(String value) {
+        this.agentCustIdfyNo = value;
+    }
+
+    /**
+     * agentCustName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getAgentCustName() {
+        return agentCustName;
+    }
+
+    /**
+     * agentCustName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setAgentCustName(String value) {
+        this.agentCustName = value;
+    }
+
+    /**
+     * frgnrRegEndDay �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getFrgnrRegEndDay() {
+        return frgnrRegEndDay;
+    }
+
+    /**
+     * frgnrRegEndDay �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setFrgnrRegEndDay(String value) {
+        this.frgnrRegEndDay = value;
+    }
+
+    /**
+     * frgnrRegNoDetlClCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getFrgnrRegNoDetlClCd() {
+        return frgnrRegNoDetlClCd;
+    }
+
+    /**
+     * frgnrRegNoDetlClCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setFrgnrRegNoDetlClCd(String value) {
+        this.frgnrRegNoDetlClCd = value;
+    }
+
+    /**
+     * sojnCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getSojnCd() {
+        return sojnCd;
+    }
+
+    /**
+     * sojnCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setSojnCd(String value) {
+        this.sojnCd = value;
+    }
+
+    /**
+     * isoCntryCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getIsoCntryCd() {
+        return isoCntryCd;
+    }
+
+    /**
+     * isoCntryCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setIsoCntryCd(String value) {
+        this.isoCntryCd = value;
+    }
+
+    /**
+     * proofTypeCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getProofTypeCd() {
+        return proofTypeCd;
+    }
+
+    /**
+     * proofTypeCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setProofTypeCd(String value) {
+        this.proofTypeCd = value;
+    }
+
+    /**
+     * indvFlag �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getIndvFlag() {
+        return indvFlag;
+    }
+
+    /**
+     * indvFlag �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setIndvFlag(String value) {
+        this.indvFlag = value;
+    }
+
+    /**
+     * indvCustId �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getIndvCustId() {
+        return indvCustId;
+    }
+
+    /**
+     * indvCustId �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setIndvCustId(String value) {
+        this.indvCustId = value;
+    }
+
+    /**
+     * indvCustClCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getIndvCustClCd() {
+        return indvCustClCd;
+    }
+
+    /**
+     * indvCustClCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setIndvCustClCd(String value) {
+        this.indvCustClCd = value;
+    }
+
+    /**
+     * indvCustName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getIndvCustName() {
+        return indvCustName;
+    }
+
+    /**
+     * indvCustName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setIndvCustName(String value) {
+        this.indvCustName = value;
+    }
+
+    /**
+     * indvCustSexCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getIndvCustSexCd() {
+        return indvCustSexCd;
+    }
+
+    /**
+     * indvCustSexCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setIndvCustSexCd(String value) {
+        this.indvCustSexCd = value;
+    }
+
+    /**
+     * indvCustBday �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getIndvCustBday() {
+        return indvCustBday;
+    }
+
+    /**
+     * indvCustBday �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setIndvCustBday(String value) {
+        this.indvCustBday = value;
+    }
+
+    /**
+     * indvCusidTypeCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getIndvCusidTypeCd() {
+        return indvCusidTypeCd;
+    }
+
+    /**
+     * indvCusidTypeCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setIndvCusidTypeCd(String value) {
+        this.indvCusidTypeCd = value;
+    }
+
+    /**
+     * indvCustIdfyNo �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getIndvCustIdfyNo() {
+        return indvCustIdfyNo;
+    }
+
+    /**
+     * indvCustIdfyNo �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setIndvCustIdfyNo(String value) {
+        this.indvCustIdfyNo = value;
+    }
+
+    /**
+     * indvHpTelNoFlag �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getIndvHpTelNoFlag() {
+        return indvHpTelNoFlag;
+    }
+
+    /**
+     * indvHpTelNoFlag �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setIndvHpTelNoFlag(String value) {
+        this.indvHpTelNoFlag = value;
+    }
+
+    /**
+     * indvHpTelNo �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getIndvHpTelNo() {
+        return indvHpTelNo;
+    }
+
+    /**
+     * indvHpTelNo �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setIndvHpTelNo(String value) {
+        this.indvHpTelNo = value;
+    }
+
+    /**
+     * indvProofDay �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getIndvProofDay() {
+        return indvProofDay;
+    }
+
+    /**
+     * indvProofDay �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setIndvProofDay(String value) {
+        this.indvProofDay = value;
+    }
+
+    /**
+     * subIndvFlag �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getSubIndvFlag() {
+        return subIndvFlag;
+    }
+
+    /**
+     * subIndvFlag �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setSubIndvFlag(String value) {
+        this.subIndvFlag = value;
+    }
+
+    /**
+     * subIndvCustId �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getSubIndvCustId() {
+        return subIndvCustId;
+    }
+
+    /**
+     * subIndvCustId �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setSubIndvCustId(String value) {
+        this.subIndvCustId = value;
+    }
+
+    /**
+     * subIndvCustName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getSubIndvCustName() {
+        return subIndvCustName;
+    }
+
+    /**
+     * subIndvCustName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setSubIndvCustName(String value) {
+        this.subIndvCustName = value;
+    }
+
+    /**
+     * grpFlag �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getGrpFlag() {
+        return grpFlag;
+    }
+
+    /**
+     * grpFlag �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setGrpFlag(String value) {
+        this.grpFlag = value;
+    }
+
+    /**
+     * grpCustId �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getGrpCustId() {
+        return grpCustId;
+    }
+
+    /**
+     * grpCustId �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setGrpCustId(String value) {
+        this.grpCustId = value;
+    }
+
+    /**
+     * idfyNo �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getIdfyNo() {
+        return idfyNo;
+    }
+
+    /**
+     * idfyNo �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setIdfyNo(String value) {
+        this.idfyNo = value;
+    }
+
+    /**
+     * rpsntFlag �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getRpsntFlag() {
+        return rpsntFlag;
+    }
+
+    /**
+     * rpsntFlag �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setRpsntFlag(String value) {
+        this.rpsntFlag = value;
+    }
+
+    /**
+     * rpsntCustId �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getRpsntCustId() {
+        return rpsntCustId;
+    }
+
+    /**
+     * rpsntCustId �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setRpsntCustId(String value) {
+        this.rpsntCustId = value;
+    }
+
+    /**
+     * rpsntCustClCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getRpsntCustClCd() {
+        return rpsntCustClCd;
+    }
+
+    /**
+     * rpsntCustClCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setRpsntCustClCd(String value) {
+        this.rpsntCustClCd = value;
+    }
+
+    /**
+     * rpsntCustName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getRpsntCustName() {
+        return rpsntCustName;
+    }
+
+    /**
+     * rpsntCustName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setRpsntCustName(String value) {
+        this.rpsntCustName = value;
+    }
+
+    /**
+     * rpsntCusidTypeCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getRpsntCusidTypeCd() {
+        return rpsntCusidTypeCd;
+    }
+
+    /**
+     * rpsntCusidTypeCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setRpsntCusidTypeCd(String value) {
+        this.rpsntCusidTypeCd = value;
+    }
+
+    /**
+     * rpsntCustIdfyNo �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getRpsntCustIdfyNo() {
+        return rpsntCustIdfyNo;
+    }
+
+    /**
+     * rpsntCustIdfyNo �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setRpsntCustIdfyNo(String value) {
+        this.rpsntCustIdfyNo = value;
+    }
+
+    /**
+     * rpsntHpTelNoFlag �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getRpsntHpTelNoFlag() {
+        return rpsntHpTelNoFlag;
+    }
+
+    /**
+     * rpsntHpTelNoFlag �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setRpsntHpTelNoFlag(String value) {
+        this.rpsntHpTelNoFlag = value;
+    }
+
+    /**
+     * rpsntHpTelNo �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getRpsntHpTelNo() {
+        return rpsntHpTelNo;
+    }
+
+    /**
+     * rpsntHpTelNo �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setRpsntHpTelNo(String value) {
+        this.rpsntHpTelNo = value;
+    }
+
+    /**
+     * rpsntProofDay �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getRpsntProofDay() {
+        return rpsntProofDay;
+    }
+
+    /**
+     * rpsntProofDay �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setRpsntProofDay(String value) {
+        this.rpsntProofDay = value;
+    }
+
+    /**
+     * baseYm �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getBaseYm() {
+        return baseYm;
+    }
+
+    /**
+     * baseYm �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setBaseYm(String value) {
+        this.baseYm = value;
+    }
+
+    /**
+     * coScaleCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCoScaleCd() {
+        return coScaleCd;
+    }
+
+    /**
+     * coScaleCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCoScaleCd(String value) {
+        this.coScaleCd = value;
+    }
+
+    /**
+     * genlEmpCnt �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getGenlEmpCnt() {
+        return genlEmpCnt;
+    }
+
+    /**
+     * genlEmpCnt �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setGenlEmpCnt(String value) {
+        this.genlEmpCnt = value;
+    }
+
+    /**
+     * itUsgPosblEmpCnt �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getItUsgPosblEmpCnt() {
+        return itUsgPosblEmpCnt;
+    }
+
+    /**
+     * itUsgPosblEmpCnt �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setItUsgPosblEmpCnt(String value) {
+        this.itUsgPosblEmpCnt = value;
+    }
+
+    /**
+     * apctName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getApctName() {
+        return apctName;
+    }
+
+    /**
+     * apctName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setApctName(String value) {
+        this.apctName = value;
+    }
+
+    /**
+     * apctCustNo �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getApctCustNo() {
+        return apctCustNo;
+    }
+
+    /**
+     * apctCustNo �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setApctCustNo(String value) {
+        this.apctCustNo = value;
+    }
+
+    /**
+     * custReltnCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCustReltnCd() {
+        return custReltnCd;
+    }
+
+    /**
+     * custReltnCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCustReltnCd(String value) {
+        this.custReltnCd = value;
+    }
+
+    /**
+     * contTelNo �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getContTelNo() {
+        return contTelNo;
+    }
+
+    /**
+     * contTelNo �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setContTelNo(String value) {
+        this.contTelNo = value;
+    }
+
+    /**
+     * sndryContTelNo �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getSndryContTelNo() {
+        return sndryContTelNo;
+    }
+
+    /**
+     * sndryContTelNo �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setSndryContTelNo(String value) {
+        this.sndryContTelNo = value;
+    }
+
+    /**
+     * cclNowValDetlGrade �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCclNowValDetlGrade() {
+        return cclNowValDetlGrade;
+    }
+
+    /**
+     * cclNowValDetlGrade �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCclNowValDetlGrade(String value) {
+        this.cclNowValDetlGrade = value;
+    }
+
+    /**
+     * authzYn �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getAuthzYn() {
+        return authzYn;
+    }
+
+    /**
+     * authzYn �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setAuthzYn(String value) {
+        this.authzYn = value;
+    }
+
+    /**
+     * availYn �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getAvailYn() {
+        return availYn;
+    }
+
+    /**
+     * availYn �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setAvailYn(String value) {
+        this.availYn = value;
+    }
+
+    /**
+     * isuanDate �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getIsuanDate() {
+        return isuanDate;
+    }
+
+    /**
+     * isuanDate �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setIsuanDate(String value) {
+        this.isuanDate = value;
+    }
+
+    /**
+     * coName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCoName() {
+        return coName;
+    }
+
+    /**
+     * coName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCoName(String value) {
+        this.coName = value;
+    }
+
+    /**
+     * taxRepreName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getTaxRepreName() {
+        return taxRepreName;
+    }
+
+    /**
+     * taxRepreName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setTaxRepreName(String value) {
+        this.taxRepreName = value;
+    }
+
+    /**
+     * vipName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getVipName() {
+        return vipName;
+    }
+
+    /**
+     * vipName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setVipName(String value) {
+        this.vipName = value;
+    }
+
+    /**
+     * grpCustDtltpCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getGrpCustDtltpCd() {
+        return grpCustDtltpCd;
+    }
+
+    /**
+     * grpCustDtltpCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setGrpCustDtltpCd(String value) {
+        this.grpCustDtltpCd = value;
+    }
+
+    /**
+     * wplceSeq �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getWplceSeq() {
+        return wplceSeq;
+    }
+
+    /**
+     * wplceSeq �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setWplceSeq(String value) {
+        this.wplceSeq = value;
+    }
+
+    /**
+     * rowCnt �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getRowCnt() {
+        return rowCnt;
+    }
+
+    /**
+     * rowCnt �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setRowCnt(String value) {
+        this.rowCnt = value;
+    }
+
+    /**
+     * sub �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link IoCCsm0520TS }
+     *
+     */
+    public IoCCsm0520TS getSub() {
+        return sub;
+    }
+
+    /**
+     * sub �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link IoCCsm0520TS }
+     *
+     */
+    public void setSub(IoCCsm0520TS value) {
+        this.sub = value;
+    }
+
+    /**
+     * rowCnt1 �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getRowCnt1() {
+        return rowCnt1;
+    }
+
+    /**
+     * rowCnt1 �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setRowCnt1(String value) {
+        this.rowCnt1 = value;
+    }
+
+    /**
+     * sub1 �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link IoCCsm0502TS }
+     *
+     */
+    public IoCCsm0502TS getSub1() {
+        return sub1;
+    }
+
+    /**
+     * sub1 �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link IoCCsm0502TS }
+     *
+     */
+    public void setSub1(IoCCsm0502TS value) {
+        this.sub1 = value;
+    }
+
+    /**
+     * rowCnt2 �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getRowCnt2() {
+        return rowCnt2;
+    }
+
+    /**
+     * rowCnt2 �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setRowCnt2(String value) {
+        this.rowCnt2 = value;
+    }
+
+    /**
+     * sub2 �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link IoCCsm0503TS }
+     *
+     */
+    public IoCCsm0503TS getSub2() {
+        return sub2;
+    }
+
+    /**
+     * sub2 �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link IoCCsm0503TS }
+     *
+     */
+    public void setSub2(IoCCsm0503TS value) {
+        this.sub2 = value;
+    }
+
+    /**
+     * rowCnt3 �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getRowCnt3() {
+        return rowCnt3;
+    }
+
+    /**
+     * rowCnt3 �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setRowCnt3(String value) {
+        this.rowCnt3 = value;
+    }
+
+    /**
+     * sub3 �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getSub3() {
+        return sub3;
+    }
+
+    /**
+     * sub3 �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setSub3(String value) {
+        this.sub3 = value;
+    }
+
+    /**
+     * rowCnt4 �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getRowCnt4() {
+        return rowCnt4;
+    }
+
+    /**
+     * rowCnt4 �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setRowCnt4(String value) {
+        this.rowCnt4 = value;
+    }
+
+    /**
+     * sub4 �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getSub4() {
+        return sub4;
+    }
+
+    /**
+     * sub4 �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setSub4(String value) {
+        this.sub4 = value;
+    }
+
+    /**
+     * rowCnt5 �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getRowCnt5() {
+        return rowCnt5;
+    }
+
+    /**
+     * rowCnt5 �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setRowCnt5(String value) {
+        this.rowCnt5 = value;
+    }
+
+    /**
+     * sub5 �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getSub5() {
+        return sub5;
+    }
+
+    /**
+     * sub5 �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setSub5(String value) {
+        this.sub5 = value;
+    }
+
+    /**
+     * rowCnt6 �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getRowCnt6() {
+        return rowCnt6;
+    }
+
+    /**
+     * rowCnt6 �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setRowCnt6(String value) {
+        this.rowCnt6 = value;
+    }
+
+    /**
+     * sub6 �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getSub6() {
+        return sub6;
+    }
+
+    /**
+     * sub6 �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setSub6(String value) {
+        this.sub6 = value;
+    }
+
+}

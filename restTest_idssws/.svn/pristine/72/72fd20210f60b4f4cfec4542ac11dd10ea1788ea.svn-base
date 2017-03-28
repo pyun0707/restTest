@@ -1,0 +1,63 @@
+package kt.idss.ktws.enums;
+
+public enum ProductCategory {
+     INTERNET_WIRE          ("010","인터넷유선")
+    ,INTERNET_SUB_WIRE      ("011","인터넷유선부가")
+    ,INTERNET_WIRELESS      ("013","인터넷무선(Solo)")
+    ,INTERNET_SUB_WIRELESS  ("014","인터넷무선부가")
+    ,FAMILY_ID              ("015","가족ID")
+    ,WIFI                   ("020","WIFI")
+    ,WIFI_SUB               ("021","WIFI부가")
+    ,WIFI_EVENT_ID          ("022","WIFI이벤트")
+    ,WIFI_ROAMING           ("025","WIFI로밍")
+    ,DIAL_UP                ("040","D/U")
+    ,WIBRO                  ("050","WIBRO")
+    ,WIBRO_BIZ              ("060","WIBRO BIZ")
+    ,NETIZEN                ("080","프리메일ID")
+    ,OLLEH_ID               ("090","올레ID")
+    ,OLLEH_SLAVE_ID         ("091","올레SLAVE ID")
+    ,QOOK_ID                ("095","쿡ID")
+    ,QOOK_SLAVE_ID          ("096","쿡 SLAVE ID")
+    ,SHOW_ID                ("097","쇼ID")
+    ;
+
+    private final String value;
+    private final String name ;
+
+
+    ProductCategory(String value,String name){
+        this.value = value;
+        this.name  = name;
+    }
+    public String strValue(){
+        return this.value;
+    }
+    public String strName(){
+        return this.name;
+    }
+
+    public static ProductCategory strValueOf(String value){
+        if      ("010".equals(value)) return INTERNET_WIRE          ;
+        else if ("011".equals(value)) return INTERNET_SUB_WIRE      ;
+        else if ("013".equals(value)) return INTERNET_WIRELESS      ;
+        else if ("014".equals(value)) return INTERNET_SUB_WIRELESS  ;
+        else if ("015".equals(value)) return FAMILY_ID              ;
+        else if ("020".equals(value)) return WIFI                   ;
+        else if ("021".equals(value)) return WIFI_SUB               ;
+        else if ("022".equals(value)) return WIFI_EVENT_ID          ;
+        else if ("025".equals(value)) return WIFI_ROAMING           ;
+        else if ("040".equals(value)) return DIAL_UP                ;
+        else if ("050".equals(value)) return WIBRO                  ;
+        else if ("060".equals(value)) return WIBRO_BIZ              ;
+        else if ("080".equals(value)) return NETIZEN                ;
+        else if ("090".equals(value)) return OLLEH_ID               ;
+        else if ("091".equals(value)) return OLLEH_SLAVE_ID         ;
+        else if ("095".equals(value)) return QOOK_ID                ;
+        else if ("096".equals(value)) return QOOK_SLAVE_ID          ;
+        else if ("097".equals(value)) return SHOW_ID                ;
+        else{
+            throw new AssertionError("Unknown value : "+value);
+        }
+    }
+
+}

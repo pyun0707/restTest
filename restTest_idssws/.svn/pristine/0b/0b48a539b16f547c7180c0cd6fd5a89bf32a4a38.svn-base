@@ -1,0 +1,157 @@
+package kt.idss.ktws.product.dao;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import kt.idss.ktws.enums.ProductCategory;
+import kt.idss.ktws.vo.Customer;
+import kt.idss.ktws.vo.Product;
+import kt.idss.ktws.vo.ProductOrderInfo;
+
+@Repository("du")
+public class DuDaoImple implements ProductOrderDao{
+
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    @Autowired
+    public void setDataSource(DataSource dataSource) {
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+    }
+
+    private RowMapper<Product> mapper = new RowMapper<Product>() {
+        public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Product product     = new Product();
+            Customer customer   = new Customer();
+            product.setCustomer(customer);
+
+            // set product
+            product.setProd_type       (rs.getString("prod_type"));
+            product.setSa_id           (rs.getString("sa_id"));
+            product.setP_sa_id         (rs.getString("p_sa_id"));
+            product.setProd_code       (rs.getString("prod_code"));
+            product.setLoginid         (rs.getString("logname"));
+
+            // set customer
+            customer.setCust_type_cd   (rs.getString("cust_type_cd"));
+            customer.setCust_num       (rs.getString("cust_num"));
+            customer.setIpin_ci        (rs.getString("ipin_ci"));
+
+            customer.setCust_idfy_type (rs.getString("cust_idfy_no_type"));
+            customer.setCust_idfy_name (rs.getString("cust_idfy_name"));
+            customer.setCust_idfy_no   (rs.getString("cust_idfy_no"));
+            customer.setCust_id        (rs.getString("cust_id"));
+
+            return product;
+         }
+    };
+
+    public int createRcvbasic(ProductOrderInfo vo) {
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        StringBuffer sql        = new StringBuffer();
+        sql.append("\n insert into tb_rcvbasic ");
+        sql.append("\n (                       ");
+        sql.append("\n      sa_id      , intf_code   , wo_no        , ins_date     , prod_code  ");
+        sql.append("\n    , chg_code   , cust_id     , cust_kname   , cust_ename   , cust_type  ");
+        sql.append("\n    , cust_num   , usertype    , addr_dong    , addr_type    , addr_bungi ");
+        sql.append("\n    , addr_ho    , addr_desc   , tel_ddd      , tel_office   , tel_num    ");
+        sql.append("\n    , flag       , post_num    , cust_idfy_no_type  , cust_idfy_no  , cust_idfy_name ");
+        sql.append("\n )                                                                        ");
+        sql.append("\n select du.sa_id   , '4202'                 , :wo_no         , to_date(:ins_date, 'yyyymmddhh24miss')  , du.prod_code ");
+        sql.append("\n      , '01'       , cust.cust_id           , cust_kname     , cust_ename                      , wa.icis_id as cust_type ");
+        sql.append("\n      , :cust_num  , wb.icis_id as usetype  , addr_dong      , wc.icis_id  as addr_type        , addr_bungi ");
+        sql.append("\n      , addr_ho    , addr_desc              , cust.tel_ddd   , cust.tel_office                 , cust.tel_num ");
+        sql.append("\n      , 'KORNET'     , post_num               , wd.icis_id     , :cust_idfy_no                   , cust_idfy_name ");
+        sql.append("\n   from tb_custbasic cust        ");
+        sql.append("\n      , tb_ducust    du          ");
+        sql.append("\n      , tb_wibrocode wa          ");
+        sql.append("\n      , tb_wibrocode wb          ");
+        sql.append("\n      , tb_wibrocode wc          ");
+        sql.append("\n      , tb_wibrocode wd          ");
+        sql.append("\n  where du.sa_id       = :sa_id  ");
+        sql.append("\n    and cust.cust_id   = du.cust_id ");
+        sql.append("\n    and cust.cust_type = wa.code_id(+) and wa.group_id(+) = '9000' and wa.product_id(+) = '9100' and wa.work_id(+) = '1300' ");
+        sql.append("\n    and du.usetype     = wb.code_id(+) and wb.group_id(+) = '9000' and wb.product_id(+) = '9100' and wb.work_id(+) = '4500' ");
+        sql.append("\n    and cust.addr_type = wc.code_id(+) and wc.group_id(+) = '9000' and wc.product_id(+) = '9100' and wc.work_id(+) = '1700' ");
+        sql.append("\n    and cust.cust_idfy_no_type = wd.code_id(+) and wd.group_id(+) = '9000' and wd.product_id(+) = '9100' and wd.work_id(+) = '1300' ");
+
+        namedParameters.addValue("wo_no"    , vo.getWono());
+        namedParameters.addValue("ins_date" , vo.getInsdate());
+        namedParameters.addValue("cust_num", vo.getCust_num());
+        namedParameters.addValue("cust_idfy_no", vo.getCust_idfy_no());
+        namedParameters.addValue("sa_id"   , vo.getSa_id());
+
+        return namedParameterJdbcTemplate.update( sql.toString(),namedParameters);
+
+    }
+
+
+    public int createRcv(ProductOrderInfo vo) {
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        StringBuffer sql        = new StringBuffer();
+        sql.append("\ninsert into tb_rcvdu                                                                                                                    ");
+        sql.append("\n(                                                                                                                                       ");
+        sql.append("\n     sa_id         , wo_no     , ins_date      , acpt_date     , reqt_date                                                              ");
+        sql.append("\n   , cust_id       , svc_type  , logname       , password      , contact_pnt                                                            ");
+        sql.append("\n   , office_name   , pppserver , multiidno     , disk_space    , pc_packageno                                                           ");
+        sql.append("\n   , internetpc    , wibro_sa_id                                                                                                        ");
+        sql.append("\n)                                                                                                                                       ");
+        sql.append("\nselect du.sa_id       , :wo_no        , to_date(:ins_date, 'yyyymmddhh24miss')   , to_char(sysdate,'yyyymmdd') , to_char(sysdate,'yyyymmddhh24')");
+        sql.append("\n     , du.cust_id     , cd2.icis_id   , :logname      , ''                , du.contact_pnt                                              ");
+        sql.append("\n     , du.office_name , du.pppserver  , du.multiidno  , du.disk_space     , du.pc_packageno                                             ");
+        sql.append("\n     , du.internetpc  , du.wibro_sa_id                                                                                                  ");
+        sql.append("\n  from tb_ducust du                                                                                                                     ");
+        sql.append("\n     , tb_codedata cd2                                                                                                                  ");
+        sql.append("\n where du.sa_id    = :sa_id                                                                                                             ");
+        sql.append("\n   and du.svc_type = cd2.code_id(+)                                                                                                     ");
+
+        namedParameters.addValue("wo_no"    , vo.getWono());
+        namedParameters.addValue("ins_date" , vo.getInsdate());
+        namedParameters.addValue("logname" , vo.getLogname());
+        namedParameters.addValue("sa_id"   , vo.getSa_id());
+
+        return namedParameterJdbcTemplate.update( sql.toString(),namedParameters);
+
+
+    }
+
+    public Product readProductInfoBySaid(ProductOrderInfo vo) {
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        StringBuffer sql = new StringBuffer();
+        sql.append("\n select '"+ProductCategory.DIAL_UP.strValue()+"'       as prod_type  ");
+        sql.append("\n      ,a.sa_id     as sa_id                               ");
+        sql.append("\n      ,a.sa_id     as p_sa_id                             ");
+        sql.append("\n      ,a.prod_code as prod_code                           ");
+        sql.append("\n      ,a.logname   as logname                             ");
+        sql.append("\n      ,b.cust_type as cust_type_cd                        ");
+        sql.append("\n      ,b.cust_num  as cust_num                            ");
+        sql.append("\n      ,b.ipin_ci   as ipin_ci                             ");
+        sql.append("\n      ,b.cust_idfy_no_type  as cust_idfy_no_type          ");
+        sql.append("\n      ,b.cust_idfy_name  as cust_idfy_name                ");
+        sql.append("\n      ,b.cust_idfy_no    as cust_idfy_no                  ");
+        sql.append("\n      ,b.cust_id         as cust_id                       ");
+        sql.append("\n      ,''                as g_cust_id                     ");
+        sql.append("\n from  tb_ducust a                                        ");
+        sql.append("\n      ,tb_custbasic b                                     ");
+        sql.append("\n where a.sa_id   = :sa_id                                 ");
+        sql.append("\n   and a.cust_id = b.cust_id                              ");
+
+        namedParameters.addValue("sa_id"          , vo.getSa_id());
+
+        return this.namedParameterJdbcTemplate.queryForObject( sql.toString(), namedParameters ,mapper);
+    }
+
+
+    @Override
+    public int createRcvLogname(ProductOrderInfo vo) {
+        return 1;
+    }
+
+}

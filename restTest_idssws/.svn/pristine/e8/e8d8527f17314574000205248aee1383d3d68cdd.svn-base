@@ -1,0 +1,188 @@
+package kt.idss.ktws.product.dao;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import kt.idss.ktws.enums.ProductCategory;
+import kt.idss.ktws.vo.Customer;
+import kt.idss.ktws.vo.Product;
+import kt.idss.ktws.vo.ProductOrderInfo;
+
+@Repository("internetSub")
+public class InternetSubDaoImple implements ProductOrderDao{
+
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    @Autowired
+    public void setDataSource(DataSource dataSource) {
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+    }
+
+    private RowMapper<Product> mapper = new RowMapper<Product>() {
+        public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Product product     = new Product();
+            Customer customer   = new Customer();
+            product.setCustomer(customer);
+
+            // set product
+            product.setProd_type       (rs.getString("prod_type"));
+            product.setSa_id           (rs.getString("sa_id"));
+            product.setP_sa_id         (rs.getString("p_sa_id"));
+            product.setProd_code       (rs.getString("prod_code"));
+            product.setLoginid         (rs.getString("logname"));
+
+            // set customer
+            customer.setCust_type_cd   (rs.getString("cust_type_cd"));
+            customer.setCust_num       (rs.getString("cust_num"));
+            customer.setIpin_ci        (rs.getString("ipin_ci"));
+            customer.setCust_idfy_type (rs.getString("cust_idfy_no_type"));
+            customer.setCust_idfy_name (rs.getString("cust_idfy_name"));
+            customer.setCust_idfy_no   (rs.getString("cust_idfy_no"));
+            customer.setCust_id        (rs.getString("cust_id"));
+            return product;
+         }
+    };
+
+    public int createRcvbasic(ProductOrderInfo vo) {
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        StringBuffer sql        = new StringBuffer();
+        sql.append("\n     insert into tb_rcvbasic                                                                                                    ");
+        sql.append("\n     (                                                                                                                          ");
+        sql.append("\n          sa_id      , intf_code   , wo_no        , ins_date     , prod_code                                                    ");
+        sql.append("\n        , chg_code   , cust_id     , cust_kname   , cust_ename   , cust_type                                                    ");
+        sql.append("\n        , cust_num   , usertype    , addr_dong    , addr_type    , addr_bungi                                                   ");
+        sql.append("\n        , addr_ho    , addr_desc   , tel_ddd      , tel_office   , tel_num                                                      ");
+        sql.append("\n        , flag       , post_num    , cust_idfy_no_type  , cust_idfy_no  , cust_idfy_name                                        ");
+        sql.append("\n     )                                                                                                                          ");
+        sql.append("\n     select adsl.sa_id    , '4202'                 , :wo_no         , to_date(:ins_date, 'yyyymmddhh24miss')  , adsl.prod_code  ");
+        sql.append("\n          , '35'          , cust.cust_id           , cust_kname     , cust_ename                      , wa.icis_id as cust_type ");
+        sql.append("\n          , :cust_num     , wb.icis_id as usetype  , addr_dong      , wc.icis_id  as addr_type        , addr_bungi              ");
+        sql.append("\n          , addr_ho       , addr_desc              , cust.tel_ddd   , cust.tel_office                 , cust.tel_num            ");
+        sql.append("\n          , 'KORNET'        , post_num               , wd.icis_id     , :cust_idfy_no                   , cust_idfy_name          ");
+        sql.append("\n       from tb_custbasic cust                                                                                                   ");
+        sql.append("\n          , tb_adslcust  adsl                                                                                                   ");
+        sql.append("\n          , tb_wibrocode wa                                                                                                     ");
+        sql.append("\n          , tb_wibrocode wb                                                                                                     ");
+        sql.append("\n          , tb_wibrocode wc                                                                                                     ");
+        sql.append("\n          , tb_wibrocode wd                                                                                                     ");
+        sql.append("\n      where adsl.sa_id     = :p_sa_id                                                                                           ");
+        sql.append("\n        and cust.cust_id   = adsl.cust_id                                                                                       ");
+        sql.append("\n        and cust.cust_type = wa.code_id(+) and wa.group_id(+) = '9000' and wa.product_id(+) = '9100' and wa.work_id(+) = '1300' ");
+        sql.append("\n        and adsl.usetype   = wb.code_id(+) and wb.group_id(+) = '9000' and wb.product_id(+) = '9100' and wb.work_id(+) = '4500' ");
+        sql.append("\n        and cust.addr_type = wc.code_id(+) and wc.group_id(+) = '9000' and wc.product_id(+) = '9100' and wc.work_id(+) = '1700' ");
+        sql.append("\n        and cust.cust_idfy_no_type = wd.code_id(+) and wd.group_id(+) = '9000' and wd.product_id(+) = '9100' and wd.work_id(+) = '1300' ");
+
+        namedParameters.addValue("wo_no"    , vo.getWono());
+        namedParameters.addValue("ins_date" , vo.getInsdate());
+        namedParameters.addValue("cust_num" , vo.getCust_num());
+        namedParameters.addValue("cust_idfy_no"   , vo.getCust_idfy_no());
+        namedParameters.addValue("p_sa_id"  , vo.getP_sa_id());
+
+        return namedParameterJdbcTemplate.update( sql.toString(),namedParameters);
+
+    }
+
+
+    public int createRcv(ProductOrderInfo vo) {
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        StringBuffer sql        = new StringBuffer();
+        sql.append("\n     insert into tb_rcvadsl                                                                                                           ");
+        sql.append("\n     (                                                                                                                                ");
+        sql.append("\n          sa_id             , wo_no         , ins_date        , cust_id      , svc_type                                               ");
+        sql.append("\n        , logname           , password      , office          , acpt_date    , reqt_date                                              ");
+        sql.append("\n        , instaddr_dong     , instaddr_type , instaddr_bungi  , instaddr_ho  , instaddr_desc                                          ");
+        sql.append("\n        , tel_ddd           , tel_office    , tel_num         , pppserver    , multiidno                                              ");
+        sql.append("\n        , clean             , wireless      , maxsession      , voipflag     , billtype                                               ");
+        sql.append("\n        , timecodi_password , hds_sa_id     , hds_flag        , ipm_sa_id    , ipm_flag                                               ");
+        sql.append("\n        , addsvctype        , genesisyn                                                                                               ");
+        sql.append("\n     )                                                                                                                                ");
+        sql.append("\n     select sa_id , :wo_no  , to_date(:ins_date, 'yyyymmddhh24miss') , cust_id   , code.icis_id as svc_type                           ");
+        sql.append("\n          , adsl.logname    , ''    , office  , to_char(sysdate,'yyyymmdd') , to_char(sysdate,'yyyymmddhh24')                         ");
+        sql.append("\n          , instaddr_dong   , w.icis_id                                                                                               ");
+//        sql.append("\n          , case w.icis_id when '1' then '2'                                                                                          ");
+//        sql.append("\n                           when '2' then '1'                                                                                          ");
+//        sql.append("\n                           else w.icis_id end as instaddr_type                                                                        "); //201309 bug
+        sql.append("\n          , instaddr_bungi     , instaddr_ho           , instaddr_desc                                                                ");
+        sql.append("\n          , tel_ddd            , tel_office            , tel_num                  , pppserver    , multiidno                          ");
+        sql.append("\n          , clean              , nvl2(wireless,'1','') , maxsession               , voipflag     , '04'                               ");
+        sql.append("\n          , timecodi_password  , hds_sa_id             , nvl2(hds_sa_id,'1','0')  , ipm_sa_id    , nvl2(ipm_sa_id,'1','0')            ");
+        sql.append("\n          , addsvctype         , genesis_yn                                                                                           ");
+        sql.append("\n       from tb_adslcust  adsl                                                                                                         ");
+        sql.append("\n          , tb_codedata  code                                                                                                         ");
+        sql.append("\n          , tb_wibrocode w                                                                                                            ");
+        sql.append("\n      where sa_id = :p_sa_id                                                                                                          ");
+        sql.append("\n        and adsl.svc_type      = code.code_id(+) and code.citem_cd(+) = '02'   and citem_id(+)     = '01'                             ");
+        sql.append("\n        and adsl.instaddr_type = w.code_id(+)    and w.group_id(+)    = '9000' and w.product_id(+) = '9100' and w.work_id(+) = '1700' ");
+
+        namedParameters.addValue("wo_no"    , vo.getWono());
+        namedParameters.addValue("ins_date" , vo.getInsdate());
+        namedParameters.addValue("p_sa_id"  , vo.getP_sa_id());
+
+        return namedParameterJdbcTemplate.update( sql.toString(),namedParameters);
+
+    }
+
+
+    public int createRcvLogname(ProductOrderInfo vo) {
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        StringBuffer sql        = new StringBuffer();
+        sql.append("\n     insert into tb_rcvlogname                                                                       ");
+        sql.append("\n     (                                                                                               ");
+        sql.append("\n          sa_id      , wo_no       , ins_date    , p_sa_id   , cust_id                               ");
+        sql.append("\n        , chg_code   , prod_code   , logname     , password  , billtype                              ");
+        sql.append("\n        , maxsession , nescamcode  , wibro_sa_id                                                     ");
+        sql.append("\n     )                                                                                               ");
+        sql.append("\n     select sa_id       , :wo_no        , to_date(:ins_date, 'yyyymmddhh24miss') , p_sa_id        , cust_id ");
+        sql.append("\n          , '35'       , prod_code      , :logname                               , ''             , billtype ");
+        sql.append("\n          , maxsession , decode(nescamcode,'1','N',null) as nescamcode   , wibro_sa_id               ");
+        sql.append("\n       from tb_logname                                                                               ");
+        sql.append("\n      where sa_id = :sa_id                                                                           ");
+
+        namedParameters.addValue("wo_no"    , vo.getWono());
+        namedParameters.addValue("ins_date" , vo.getInsdate());
+        namedParameters.addValue("logname"  , vo.getLogname());
+        namedParameters.addValue("sa_id"    , vo.getSa_id());
+
+        return namedParameterJdbcTemplate.update( sql.toString(),namedParameters);
+
+
+    }
+
+    public Product readProductInfoBySaid(ProductOrderInfo vo) {
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        StringBuffer sql = new StringBuffer();
+        sql.append("\n select '"+ProductCategory.INTERNET_SUB_WIRE.strValue()+"' as prod_type ");
+        sql.append("\n      ,a.sa_id     as sa_id                                ");
+        sql.append("\n      ,a.p_sa_id   as p_sa_id                              ");
+        sql.append("\n      ,a.prod_code as prod_code                            ");
+        sql.append("\n      ,a.logname   as logname                              ");
+        sql.append("\n      ,c.cust_type as cust_type_cd                         ");
+        sql.append("\n      ,c.cust_num  as cust_num                             ");
+        sql.append("\n      ,c.ipin_ci   as ipin_ci                              ");
+        sql.append("\n      ,c.cust_idfy_no_type  as cust_idfy_no_type           ");
+        sql.append("\n      ,c.cust_idfy_name  as cust_idfy_name                 ");
+        sql.append("\n      ,c.cust_idfy_no    as cust_idfy_no                   ");
+        sql.append("\n      ,c.cust_id         as cust_id                        ");
+        sql.append("\n      ,''                as g_cust_id                      ");
+        sql.append("\n from  tb_logname a                                        ");
+        sql.append("\n      ,tb_adslcust b                                       ");
+        sql.append("\n      ,tb_custbasic c                                      ");
+        sql.append("\n where a.sa_id = :sa_id                                    ");
+        sql.append("\n   and a.p_sa_id = b.sa_id                                 ");
+        sql.append("\n   and (b.genesis_yn <> 'Y' or b.genesis_yn is null)       ");
+        sql.append("\n   and b.cust_id = c.cust_id                               ");
+
+        namedParameters.addValue("sa_id"          , vo.getSa_id());
+
+        return this.namedParameterJdbcTemplate.queryForObject( sql.toString(), namedParameters ,mapper);
+    }
+
+}

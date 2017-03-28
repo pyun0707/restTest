@@ -1,0 +1,165 @@
+package kt.idss.ktws.vo;
+
+public class CustBasForm {
+    private String cust_id                ;
+    private String cust_idfy_no           ;
+    private String cust_idfy_no_type_cd   ;
+    private String cust_nm                ;
+    private String cust_type_cd           ;
+    private String rnm_athn_yn            ;
+    private String rnm_athn_dt            ;
+    private String nflr_idfy_no           ;
+    private String nflr_idfy_no_type_cd   ;
+    private String nflr_nm                ;
+    private String job_type_cd            ;
+    private String sex_cd                 ;
+    private String bthday_date            ;
+    private String bthday_type_cd         ;
+    private String marry_yn               ;
+    private String marry_cmrtn_date       ;
+    private String nstep_cust_id          ;
+    private String icis_cust_id           ;
+    private String citiz_cd               ;
+    private String ipinci_val             ;
+    private String cret_dt                ;
+    private String amd_dt                 ;
+    private String ipin_di                ;
+    public String getCust_id() {
+        return cust_id;
+    }
+    public void setCust_id(String cust_id) {
+        this.cust_id = cust_id;
+    }
+    public String getCust_idfy_no() {
+        return cust_idfy_no;
+    }
+    public void setCust_idfy_no(String cust_idfy_no) {
+        this.cust_idfy_no = cust_idfy_no;
+    }
+    public String getCust_idfy_no_type_cd() {
+        return cust_idfy_no_type_cd;
+    }
+    public void setCust_idfy_no_type_cd(String cust_idfy_no_type_cd) {
+        this.cust_idfy_no_type_cd = cust_idfy_no_type_cd;
+    }
+    public String getCust_nm() {
+        return cust_nm;
+    }
+    public void setCust_nm(String cust_nm) {
+        this.cust_nm = cust_nm;
+    }
+    public String getCust_type_cd() {
+        return cust_type_cd;
+    }
+    public void setCust_type_cd(String cust_type_cd) {
+        this.cust_type_cd = cust_type_cd;
+    }
+    public String getRnm_athn_yn() {
+        return rnm_athn_yn;
+    }
+    public void setRnm_athn_yn(String rnm_athn_yn) {
+        this.rnm_athn_yn = rnm_athn_yn;
+    }
+    public String getRnm_athn_dt() {
+        return rnm_athn_dt;
+    }
+    public void setRnm_athn_dt(String rnm_athn_dt) {
+        this.rnm_athn_dt = rnm_athn_dt;
+    }
+    public String getNflr_idfy_no() {
+        return nflr_idfy_no;
+    }
+    public void setNflr_idfy_no(String nflr_idfy_no) {
+        this.nflr_idfy_no = nflr_idfy_no;
+    }
+    public String getNflr_idfy_no_type_cd() {
+        return nflr_idfy_no_type_cd;
+    }
+    public void setNflr_idfy_no_type_cd(String nflr_idfy_no_type_cd) {
+        this.nflr_idfy_no_type_cd = nflr_idfy_no_type_cd;
+    }
+    public String getNflr_nm() {
+        return nflr_nm;
+    }
+    public void setNflr_nm(String nflr_nm) {
+        this.nflr_nm = nflr_nm;
+    }
+    public String getJob_type_cd() {
+        return job_type_cd;
+    }
+    public void setJob_type_cd(String job_type_cd) {
+        this.job_type_cd = job_type_cd;
+    }
+    public String getSex_cd() {
+        return sex_cd;
+    }
+    public void setSex_cd(String sex_cd) {
+        this.sex_cd = sex_cd;
+    }
+    public String getBthday_date() {
+        return bthday_date;
+    }
+    public void setBthday_date(String bthday_date) {
+        this.bthday_date = bthday_date;
+    }
+    public String getBthday_type_cd() {
+        return bthday_type_cd;
+    }
+    public void setBthday_type_cd(String bthday_type_cd) {
+        this.bthday_type_cd = bthday_type_cd;
+    }
+    public String getMarry_yn() {
+        return marry_yn;
+    }
+    public void setMarry_yn(String marry_yn) {
+        this.marry_yn = marry_yn;
+    }
+    public String getMarry_cmrtn_date() {
+        return marry_cmrtn_date;
+    }
+    public void setMarry_cmrtn_date(String marry_cmrtn_date) {
+        this.marry_cmrtn_date = marry_cmrtn_date;
+    }
+    public String getNstep_cust_id() {
+        return nstep_cust_id;
+    }
+    public void setNstep_cust_id(String nstep_cust_id) {
+        this.nstep_cust_id = nstep_cust_id;
+    }
+    public String getIcis_cust_id() {
+        return icis_cust_id;
+    }
+    public void setIcis_cust_id(String icis_cust_id) {
+        this.icis_cust_id = icis_cust_id;
+    }
+    public String getCitiz_cd() {
+        return citiz_cd;
+    }
+    public void setCitiz_cd(String citiz_cd) {
+        this.citiz_cd = citiz_cd;
+    }
+    public String getIpinci_val() {
+        return ipinci_val;
+    }
+    public void setIpinci_val(String ipinci_val) {
+        this.ipinci_val = ipinci_val;
+    }
+    public String getCret_dt() {
+        return cret_dt;
+    }
+    public void setCret_dt(String cret_dt) {
+        this.cret_dt = cret_dt;
+    }
+    public String getAmd_dt() {
+        return amd_dt;
+    }
+    public void setAmd_dt(String amd_dt) {
+        this.amd_dt = amd_dt;
+    }
+    public String getIpin_di() {
+        return ipin_di;
+    }
+    public void setIpin_di(String ipin_di) {
+        this.ipin_di = ipin_di;
+    }
+}

@@ -1,0 +1,973 @@
+/*
+ * IDMS(Integrated DataBase Management System) version 1.0
+ *
+ *  Copyright ⓒ 2016 kt cort. All rights reserved.
+ *
+ *  This is a proprietary software of kt corp, and you may not use this file except in
+ *  compliance with license agreement with kt corp. Any redistribution or use of this
+ *  software, with or without modification shall be strictly prohibited without prior written
+ *  approval of kt corp, and the copyright notice above does not evidence any actualor
+ *  intended publication of such software.
+*/
+
+package kt.idss.ktws.cdm;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>commonHeader complex type�� ���� Java Ŭ�����Դϴ�.
+ *
+ * <p>���� ��Ű�� ������ �� Ŭ������ ���ԵǴ� �ʿ��� �������� �����մϴ�.
+ *
+ * <pre>
+ * &lt;complexType name="commonHeader">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;all>
+ *         &lt;element ref="{http://bizhub.kt.com}appName"/>
+ *         &lt;element ref="{http://bizhub.kt.com}svcName"/>
+ *         &lt;element ref="{http://bizhub.kt.com}fnName"/>
+ *         &lt;element ref="{http://bizhub.kt.com}fnCd" minOccurs="0"/>
+ *         &lt;element ref="{http://bizhub.kt.com}globalNo"/>
+ *         &lt;element ref="{http://bizhub.kt.com}chnlType"/>
+ *         &lt;element ref="{http://bizhub.kt.com}envrFlag" minOccurs="0"/>
+ *         &lt;element ref="{http://bizhub.kt.com}trFlag"/>
+ *         &lt;element ref="{http://bizhub.kt.com}trDate"/>
+ *         &lt;element ref="{http://bizhub.kt.com}trTime"/>
+ *         &lt;element ref="{http://bizhub.kt.com}clntIp"/>
+ *         &lt;element ref="{http://bizhub.kt.com}responseType"/>
+ *         &lt;element ref="{http://bizhub.kt.com}responseCode" minOccurs="0"/>
+ *         &lt;element ref="{http://bizhub.kt.com}responseLogcd" minOccurs="0"/>
+ *         &lt;element ref="{http://bizhub.kt.com}responseTitle" minOccurs="0"/>
+ *         &lt;element ref="{http://bizhub.kt.com}responseBasc" minOccurs="0"/>
+ *         &lt;element ref="{http://bizhub.kt.com}responseDtal" minOccurs="0"/>
+ *         &lt;element ref="{http://bizhub.kt.com}responseSystem" minOccurs="0"/>
+ *         &lt;element ref="{http://bizhub.kt.com}userId"/>
+ *         &lt;element ref="{http://bizhub.kt.com}realUserId" minOccurs="0"/>
+ *         &lt;element ref="{http://bizhub.kt.com}filler"/>
+ *         &lt;element ref="{http://bizhub.kt.com}langCode"/>
+ *         &lt;element ref="{http://bizhub.kt.com}orgId"/>
+ *         &lt;element ref="{http://bizhub.kt.com}srcId"/>
+ *         &lt;element ref="{http://bizhub.kt.com}curHostId" minOccurs="0"/>
+ *         &lt;element ref="{http://bizhub.kt.com}lgDateTime"/>
+ *         &lt;element ref="{http://bizhub.kt.com}tokenId" minOccurs="0"/>
+ *         &lt;element ref="{http://bizhub.kt.com}cmpnCd" minOccurs="0"/>
+ *         &lt;element ref="{http://bizhub.kt.com}lockType" minOccurs="0"/>
+ *         &lt;element ref="{http://bizhub.kt.com}lockId" minOccurs="0"/>
+ *         &lt;element ref="{http://bizhub.kt.com}lockTimeSt" minOccurs="0"/>
+ *         &lt;element ref="{http://bizhub.kt.com}businessKey" minOccurs="0"/>
+ *         &lt;element ref="{http://bizhub.kt.com}arbitraryKey" minOccurs="0"/>
+ *         &lt;element ref="{http://bizhub.kt.com}resendFlag"/>
+ *         &lt;element ref="{http://bizhub.kt.com}phase" minOccurs="0"/>
+ *       &lt;/all>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ *
+ *
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "commonHeader", propOrder = {
+
+})
+public class CommonHeader {
+
+    @XmlElement(required = true)
+    protected String appName;
+    @XmlElement(required = true)
+    protected String svcName;
+    @XmlElement(required = true)
+    protected String fnName;
+    protected String fnCd;
+    @XmlElement(required = true)
+    protected String globalNo;
+    @XmlElement(required = true)
+    protected String chnlType;
+    protected String envrFlag;
+    @XmlElement(required = true)
+    protected String trFlag;
+    @XmlElement(required = true)
+    protected String trDate;
+    @XmlElement(required = true)
+    protected String trTime;
+    @XmlElement(required = true)
+    protected String clntIp;
+    @XmlElement(required = true)
+    protected String responseType;
+    protected String responseCode;
+    protected String responseLogcd;
+    protected String responseTitle;
+    protected String responseBasc;
+    protected String responseDtal;
+    protected String responseSystem;
+    @XmlElement(required = true)
+    protected String userId;
+    protected String realUserId;
+    @XmlElement(required = true)
+    protected String filler;
+    @XmlElement(required = true)
+    protected String langCode;
+    @XmlElement(required = true)
+    protected String orgId;
+    @XmlElement(required = true)
+    protected String srcId;
+    protected String curHostId;
+    @XmlElement(required = true)
+    protected String lgDateTime;
+    protected String tokenId;
+    protected String cmpnCd;
+    protected String lockType;
+    protected String lockId;
+    protected String lockTimeSt;
+    protected String businessKey;
+    protected String arbitraryKey;
+    @XmlElement(required = true)
+    protected String resendFlag;
+    protected String phase;
+
+    /**
+     * appName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getAppName() {
+        return appName;
+    }
+
+    /**
+     * appName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setAppName(String value) {
+        this.appName = value;
+    }
+
+    /**
+     * svcName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getSvcName() {
+        return svcName;
+    }
+
+    /**
+     * svcName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setSvcName(String value) {
+        this.svcName = value;
+    }
+
+    /**
+     * fnName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getFnName() {
+        return fnName;
+    }
+
+    /**
+     * fnName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setFnName(String value) {
+        this.fnName = value;
+    }
+
+    /**
+     * fnCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getFnCd() {
+        return fnCd;
+    }
+
+    /**
+     * fnCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setFnCd(String value) {
+        this.fnCd = value;
+    }
+
+    /**
+     * globalNo �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getGlobalNo() {
+        return globalNo;
+    }
+
+    /**
+     * globalNo �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setGlobalNo(String value) {
+        this.globalNo = value;
+    }
+
+    /**
+     * chnlType �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getChnlType() {
+        return chnlType;
+    }
+
+    /**
+     * chnlType �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setChnlType(String value) {
+        this.chnlType = value;
+    }
+
+    /**
+     * envrFlag �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getEnvrFlag() {
+        return envrFlag;
+    }
+
+    /**
+     * envrFlag �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setEnvrFlag(String value) {
+        this.envrFlag = value;
+    }
+
+    /**
+     * trFlag �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getTrFlag() {
+        return trFlag;
+    }
+
+    /**
+     * trFlag �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setTrFlag(String value) {
+        this.trFlag = value;
+    }
+
+    /**
+     * trDate �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getTrDate() {
+        return trDate;
+    }
+
+    /**
+     * trDate �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setTrDate(String value) {
+        this.trDate = value;
+    }
+
+    /**
+     * trTime �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getTrTime() {
+        return trTime;
+    }
+
+    /**
+     * trTime �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setTrTime(String value) {
+        this.trTime = value;
+    }
+
+    /**
+     * clntIp �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getClntIp() {
+        return clntIp;
+    }
+
+    /**
+     * clntIp �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setClntIp(String value) {
+        this.clntIp = value;
+    }
+
+    /**
+     * responseType �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getResponseType() {
+        return responseType;
+    }
+
+    /**
+     * responseType �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setResponseType(String value) {
+        this.responseType = value;
+    }
+
+    /**
+     * responseCode �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getResponseCode() {
+        return responseCode;
+    }
+
+    /**
+     * responseCode �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setResponseCode(String value) {
+        this.responseCode = value;
+    }
+
+    /**
+     * responseLogcd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getResponseLogcd() {
+        return responseLogcd;
+    }
+
+    /**
+     * responseLogcd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setResponseLogcd(String value) {
+        this.responseLogcd = value;
+    }
+
+    /**
+     * responseTitle �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getResponseTitle() {
+        return responseTitle;
+    }
+
+    /**
+     * responseTitle �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setResponseTitle(String value) {
+        this.responseTitle = value;
+    }
+
+    /**
+     * responseBasc �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getResponseBasc() {
+        return responseBasc;
+    }
+
+    /**
+     * responseBasc �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setResponseBasc(String value) {
+        this.responseBasc = value;
+    }
+
+    /**
+     * responseDtal �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getResponseDtal() {
+        return responseDtal;
+    }
+
+    /**
+     * responseDtal �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setResponseDtal(String value) {
+        this.responseDtal = value;
+    }
+
+    /**
+     * responseSystem �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getResponseSystem() {
+        return responseSystem;
+    }
+
+    /**
+     * responseSystem �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setResponseSystem(String value) {
+        this.responseSystem = value;
+    }
+
+    /**
+     * userId �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getUserId() {
+        return userId;
+    }
+
+    /**
+     * userId �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setUserId(String value) {
+        this.userId = value;
+    }
+
+    /**
+     * realUserId �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getRealUserId() {
+        return realUserId;
+    }
+
+    /**
+     * realUserId �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setRealUserId(String value) {
+        this.realUserId = value;
+    }
+
+    /**
+     * filler �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getFiller() {
+        return filler;
+    }
+
+    /**
+     * filler �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setFiller(String value) {
+        this.filler = value;
+    }
+
+    /**
+     * langCode �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getLangCode() {
+        return langCode;
+    }
+
+    /**
+     * langCode �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setLangCode(String value) {
+        this.langCode = value;
+    }
+
+    /**
+     * orgId �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getOrgId() {
+        return orgId;
+    }
+
+    /**
+     * orgId �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setOrgId(String value) {
+        this.orgId = value;
+    }
+
+    /**
+     * srcId �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getSrcId() {
+        return srcId;
+    }
+
+    /**
+     * srcId �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setSrcId(String value) {
+        this.srcId = value;
+    }
+
+    /**
+     * curHostId �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCurHostId() {
+        return curHostId;
+    }
+
+    /**
+     * curHostId �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCurHostId(String value) {
+        this.curHostId = value;
+    }
+
+    /**
+     * lgDateTime �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getLgDateTime() {
+        return lgDateTime;
+    }
+
+    /**
+     * lgDateTime �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setLgDateTime(String value) {
+        this.lgDateTime = value;
+    }
+
+    /**
+     * tokenId �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getTokenId() {
+        return tokenId;
+    }
+
+    /**
+     * tokenId �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setTokenId(String value) {
+        this.tokenId = value;
+    }
+
+    /**
+     * cmpnCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCmpnCd() {
+        return cmpnCd;
+    }
+
+    /**
+     * cmpnCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCmpnCd(String value) {
+        this.cmpnCd = value;
+    }
+
+    /**
+     * lockType �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getLockType() {
+        return lockType;
+    }
+
+    /**
+     * lockType �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setLockType(String value) {
+        this.lockType = value;
+    }
+
+    /**
+     * lockId �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getLockId() {
+        return lockId;
+    }
+
+    /**
+     * lockId �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setLockId(String value) {
+        this.lockId = value;
+    }
+
+    /**
+     * lockTimeSt �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getLockTimeSt() {
+        return lockTimeSt;
+    }
+
+    /**
+     * lockTimeSt �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setLockTimeSt(String value) {
+        this.lockTimeSt = value;
+    }
+
+    /**
+     * businessKey �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getBusinessKey() {
+        return businessKey;
+    }
+
+    /**
+     * businessKey �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setBusinessKey(String value) {
+        this.businessKey = value;
+    }
+
+    /**
+     * arbitraryKey �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getArbitraryKey() {
+        return arbitraryKey;
+    }
+
+    /**
+     * arbitraryKey �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setArbitraryKey(String value) {
+        this.arbitraryKey = value;
+    }
+
+    /**
+     * resendFlag �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getResendFlag() {
+        return resendFlag;
+    }
+
+    /**
+     * resendFlag �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setResendFlag(String value) {
+        this.resendFlag = value;
+    }
+
+    /**
+     * phase �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPhase() {
+        return phase;
+    }
+
+    /**
+     * phase �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPhase(String value) {
+        this.phase = value;
+    }
+
+}

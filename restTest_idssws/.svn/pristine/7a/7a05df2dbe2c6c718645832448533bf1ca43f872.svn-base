@@ -1,0 +1,16 @@
+package kt.idss.ktid.service;
+
+
+import kt.idss.ktid.ws.spec.RetnHeaderForm;
+import kt.idss.ktws.vo.Product;
+
+public interface IdChangeService {
+    public RetnHeaderForm createReservation(Product product);
+    public void createNewId( String logname
+                            ,String cust_id
+                            ,String sa_id
+                            ,String p_sa_id
+                            ,String prod_code
+                            );
+    public RetnHeaderForm createVerifyOwner(Product product);
+}

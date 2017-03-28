@@ -1,0 +1,10 @@
+package kt.idss.ktws.ws.com;
+
+public interface ExecuteStrategy<T> {
+    public void   logParameter  ();
+    public void   validation    ();
+    public T      execute       ();
+    public void   logging       (int code, String message);
+
+
+}

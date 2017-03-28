@@ -1,0 +1,167 @@
+package kt.idss.ktid.validation;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import kt.idss.ktid.ws.spec.RecvChangeIdForm;
+import kt.idss.ktws.enums.ProductCategory;
+import kt.idss.ktws.enums.ResponseSpec;
+import kt.idss.ktws.exception.ServiceException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.Validator;
+
+
+@Component
+public class ChangeIdValidator implements Validator{
+
+    private static final Logger logger = LoggerFactory.getLogger(ChangeIdValidator.class);
+
+    public boolean supports(Class<?> clazz) {
+        return RecvChangeIdForm.class.equals(clazz);
+    }
+
+    public void validate(Object target, Errors errors) {
+        RecvChangeIdForm recv = (RecvChangeIdForm) target;
+        checkDupChangeId(recv, errors);
+
+    }
+    private void checkDupChangeId(Object target, Errors errors){
+
+        RecvChangeIdForm form = (RecvChangeIdForm) target;
+
+        String[] arr_prd_code = {
+                                 ProductCategory.INTERNET_WIRE.strValue()
+                                ,ProductCategory.INTERNET_SUB_WIRE.strValue()
+                                ,ProductCategory.INTERNET_WIRELESS.strValue()
+                                ,ProductCategory.INTERNET_SUB_WIRELESS.strValue()
+                                ,ProductCategory.WIFI.strValue()
+                                ,ProductCategory.WIFI_SUB.strValue()
+                                ,ProductCategory.DIAL_UP.strValue()
+                                ,ProductCategory.WIBRO.strValue()
+                                ,ProductCategory.WIBRO_BIZ.strValue()
+                               };
+
+        if(form.getLogname() == null || form.getLogname().isEmpty()==true){
+            errors.rejectValue("logname",""+ResponseSpec.BAD_REQUEST.intValue(),"logname must be");
+        }
+        if (isBlank(form.getLogname()) == false && form.getLogname().length() > 15){
+            errors.rejectValue("logname",ResponseSpec.BAD_REQUEST.intValue(), "logname too long (max 15)");
+        }
+
+        if (checkIdValid(form.getLogname()) == false){
+            errors.rejectValue("logname",ResponseSpec.BAD_REQUEST.intValue(), "첫글자는 영문이며 영문대소문자, 숫자0~9까지만 사용이 가능하고 ID 길이는 6~15까지 허용합니다.");
+        }
+
+        if (checkEnableId(form.getLogname()) == false){
+            errors.rejectValue("logname",ResponseSpec.BAD_REQUEST.intValue(), "사용할수 없는 ID 입니다.");
+        }
+
+        if (isBlank(form.getCust_id()) == false && form.getCust_id().length() > 11){
+            errors.rejectValue("cust_id",ResponseSpec.BAD_REQUEST.intValue(), "cust_id too long (max 11)");
+        }
+
+        if(form.getSa_id() == null || form.getSa_id().isEmpty()==true){
+            errors.rejectValue("sa_id",""+ResponseSpec.BAD_REQUEST.intValue(),"sa_id must be");
+        }
+        if (isBlank(form.getSa_id()) == false && form.getSa_id().length() > 11){
+            errors.rejectValue("sa_id",ResponseSpec.BAD_REQUEST.intValue(), "sa_id too long (max 11)");
+        }
+
+        if (isBlank(form.getP_sa_id()) == false && form.getP_sa_id().length() > 11){
+            errors.rejectValue("p_sa_id",ResponseSpec.BAD_REQUEST.intValue(), "p_sa_id too long (max 11)");
+        }
+
+        if(form.getProd_code() == null || form.getProd_code().isEmpty()==true){
+            errors.rejectValue("prod_code",""+ResponseSpec.BAD_REQUEST.intValue(),"prod_code must be");
+        }else{
+
+            if (form.getProd_code().length() > 4){
+                errors.rejectValue("prod_code",ResponseSpec.BAD_REQUEST.intValue(), "prod_code too long (max 4)");
+             }
+
+            boolean isProd_type = false;
+            for (String arr : arr_prd_code) {
+                if(arr.equals(form.getProd_code())){
+                    isProd_type = true;
+                }
+            }
+            if(isProd_type == false) {
+                errors.rejectValue("prod_code",""+ResponseSpec.BAD_REQUEST.intValue(),"prod_code undefined type");
+            }
+        }
+    }
+
+    public void validate(RecvChangeIdForm form, String object_name){
+
+        BeanPropertyBindingResult    errors  = null;
+        try{
+            errors     = new BeanPropertyBindingResult(form, object_name);
+            validate(form, errors);
+            if(errors.hasErrors()){
+                logger.info("error count : {} " ,errors.getErrorCount());
+                List<ObjectError> allObjectErrors = errors.getAllErrors();
+                String firstErrMessage = null;
+                for (ObjectError objectError : allObjectErrors){
+                    if (objectError instanceof FieldError){
+                        FieldError fieldError = (FieldError)objectError;
+                        logger.info("Field name is {}", fieldError.getField());
+                    }
+                    logger.info("Codes            : {}" , Arrays.asList(objectError.getCodes()).toString());
+                    logger.info("Error Code is    : {}" , objectError.getCode());
+                    logger.info("Default message  : {}" , objectError.getDefaultMessage());
+                    if(firstErrMessage ==null){
+                        firstErrMessage = objectError.getDefaultMessage() == null ? "":objectError.getDefaultMessage() ;
+                    }
+                }
+                throw new ServiceException( ResponseSpec.BAD_REQUEST.intCode()
+                                           ,ResponseSpec.BAD_REQUEST.intValue()+"["+firstErrMessage+"]");
+            }
+        }catch(ServiceException se){
+            //se.printStackTrace();
+            throw se;
+        }catch(Exception e){
+            //e.printStackTrace();
+            throw new ServiceException(  ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                        ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+        }
+    }
+    private static boolean isBlank(String s){
+        return (s == null) || (s.trim().length() == 0);
+    }
+
+    public boolean checkIdValid(String value) {
+        String USER_ID_Pattern = "^[a-z][a-zA-Z0-9]{5,14}";
+        Pattern p = Pattern.compile( USER_ID_Pattern );
+        Matcher m = p.matcher(value);
+        return m.matches();
+    }
+
+    public static boolean checkEnableId(String value) {
+
+        boolean enableFlag = true;
+        String[] arrDisableId = {
+                                 "admin"
+                                ,"master"
+                                ,"webadmin"
+                                ,"webmaster"
+                                ,"helpme"
+                                };
+        for (int i = 0; i < arrDisableId.length; i++) {
+
+            if(arrDisableId[i].equalsIgnoreCase(value)){
+                enableFlag = false;
+            }
+        }
+
+        return enableFlag;
+    }
+}

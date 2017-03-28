@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions targetNamespace="http://bizhub.kt.com" xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:bizhub="http://bizhub.kt.com" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+    xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <types>
+        <xsd:schema targetNamespace="http://bizhub.kt.com" elementFormDefault="qualified">
+            <xsd:include schemaLocation="./NbssHeader.xsd"/>
+            <xsd:element name="commonHeader" type="bizhub:commonHeader"/>
+            <xsd:element name="retrieveCustInfoRequest" type="bizhub:retrieveCustInforequestType"/>
+            <xsd:element name="retrieveCustInfoResponse" type="bizhub:retrieveCustInforesponseType"/>
+            <xsd:element name="retrieveSDPCustIdfyNoRequest" type="bizhub:retrieveSDPCustIdfyNorequestType"/>
+            <xsd:element name="retrieveSDPCustIdfyNoResponse" type="bizhub:retrieveSDPCustIdfyNoresponseType"/>
+
+            <xsd:element name="retrieveIDMSCustIdfyNoRequest" type="bizhub:retrieveIDMSCustIdfyNorequestType"/>
+            <xsd:element name="retrieveIDMSCustIdfyNoResponse" type="bizhub:retrieveIDMSCustIdfyNoresponseType"/>
+
+            <xsd:complexType name="retrieveCustInforequestType">
+                <xsd:all>
+                    <xsd:element name="bizHeader" type="bizhub:bizHeader" minOccurs="1" maxOccurs="1"/>
+                    <xsd:element name="IoCCsm1200QS" type="bizhub:IoCCsm1200QS" minOccurs="1" maxOccurs="1" />
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="retrieveCustInforesponseType">
+                <xsd:all>
+                    <xsd:element name="bizHeader" type="bizhub:bizHeader" minOccurs="1" maxOccurs="1"/>
+                    <xsd:element name="IoCCsm1200QS" type="bizhub:IoCCsm1200QS" minOccurs="1" maxOccurs="1" />
+                </xsd:all>
+            </xsd:complexType>
+
+            <xsd:complexType name="retrieveSDPCustIdfyNorequestType">
+                <xsd:all>
+                    <xsd:element name="bizHeader" type="bizhub:bizHeader" minOccurs="1" maxOccurs="1"/>
+                    <xsd:element name="CustIdDTO" type="bizhub:CustIdDTO" minOccurs="1" maxOccurs="1" />
+                    </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="retrieveSDPCustIdfyNoresponseType">
+                <xsd:all>
+                    <xsd:element name="bizHeader" type="bizhub:bizHeader" minOccurs="1" maxOccurs="1"/>
+                    <xsd:element name="CustBasInfoDTO" type="bizhub:CustBasInfoDTO" minOccurs="1" maxOccurs="1" />
+                </xsd:all>
+            </xsd:complexType>
+
+            <xsd:complexType name="retrieveIDMSCustIdfyNorequestType">
+                <xsd:all>
+                    <xsd:element name="bizHeader" type="bizhub:bizHeader" minOccurs="1" maxOccurs="1"/>
+                    <xsd:element name="CustIdDTO" type="bizhub:CustIdDTO" minOccurs="1" maxOccurs="1" />
+                    </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="retrieveIDMSCustIdfyNoresponseType">
+                <xsd:all>
+                    <xsd:element name="bizHeader" type="bizhub:bizHeader" minOccurs="1" maxOccurs="1"/>
+                    <xsd:element name="CustBasInfoDTO" type="bizhub:IDMSCustBasInfoDTO" minOccurs="1" maxOccurs="1" />
+                </xsd:all>
+            </xsd:complexType>
+
+
+            <xsd:complexType name="IoCCsm0520TS">
+                <xsd:sequence>
+                    <xsd:element name="pFlag" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pCustId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pCplceTypeCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pAvlBeginDate" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pAvlEndDate" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pArnoId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pCplceText" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pExtNo" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pCplceErrtyCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pFavorCplceYn" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pFavorMediaCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pProhibitMediaCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pCustName" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pAddrTypeCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pDongCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pAddrBldgId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pAddrBldtpCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pAddrBldngNo" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pAddrBldgName" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pAddrBldgNo" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pAddrBldgHoNo" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pAddrBjtyCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pAddrBjNo" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pAddrHoNo" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pZipNo" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pAddrText" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pAddrInTypeCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pAddrTrnsCfmTypeCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pRbldgId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pRbldgNameId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pRaddrBldgTypeCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pRaddrBldgName" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pRaddrBldgNo" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pRaddrBldgRoomNo" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pRaddrDetlText" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pRaddrText" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pAddrTextMask" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="pRaddrTextMask" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="IoCCsm0502TS">
+                <xsd:sequence>
+                    <xsd:element name="Flag" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="CustId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="RneTargCustTypeCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="IoCCsm0503TS">
+                <xsd:sequence>
+                    <xsd:element name="CustId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="CeqpTargTypeCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="IoCCsm1200QS">
+                <xsd:sequence>
+                    <xsd:element name="CustId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="CustClCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="CustName" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="CusidTypeCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="CustIdfyNo" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="CustIfprvAgreeYn" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="CustIfprvAgreeYnUpFlag" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="CoorpCoYn" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="CustEngName" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="CntryCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="CntryName" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="ReadLimitYn" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="CustMemoId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="CustNoType" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="CustNo" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="OldPayRespnNo" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="ChckBitVal" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="CustSttusCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="CustSttusAvlBeginDay" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="SexCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="BdayDay" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="BdayNepoTypeCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="MarryYn" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="MarryCmrtnDay" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="ReligCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="HobyCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="AcarrCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="JobCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="FamlyCnt" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="MaleKidsCnt" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="FmaleKidsCnt" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="JbclsClCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="OfposCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="NameCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="SohoYn" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="RevenAmt" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="CarOwnYn" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="DwelTypeCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="TpindTypeCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="TpindText" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="BizcdText" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="RepBizcdCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="RepBizcdName" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="RepTpindCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="RepTpindName" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="SubBizcdCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="SubBizcdName" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="SubTpindCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="SubTpindName" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="CreatDay" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="MainBizAreaCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="DetlMainBizAreaName" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="DcsmkFitngTypeCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="BizSttusCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="BizSttusCdUpFlag" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="MainBizText" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="HandlItemText" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="CoTypeCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="KtBcomYn" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="ProvCoWplceYn" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="ProvCoConectnCustYn" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="UnlawRegCoYn" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="WplceExistYn" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="TaxTypeCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="EndDay" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="EndWhyCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="MainPdName" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="BrandName" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="RpsntName" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="RpsntCustSexCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="RpsntCustBday" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="RpsntNameUpFlag" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="SellAmtYy" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="MonthAvgCommCost" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="MonthAvgCommCostUpFlag" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="YearSellAmt" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="YearSellAmtUpFlag" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="LifeLevelCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="WkplcName" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="WkplcNameUpFlag" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="DeptName" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="ChrgJobText" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="AptmDay" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="ProofDay" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="MembershipId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="DcsmkChldYn" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="SndryHobyCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="AgentCustId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="AgentCusidTypeCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="AgentCustIdfyNo" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="AgentCustName" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="FrgnrRegEndDay" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="FrgnrRegNoDetlClCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="SojnCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="IsoCntryCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="ProofTypeCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="IndvFlag" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="IndvCustId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="IndvCustClCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="IndvCustName" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="IndvCustSexCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="IndvCustBday" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="IndvCusidTypeCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="IndvCustIdfyNo" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="IndvHpTelNoFlag" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="IndvHpTelNo" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="IndvProofDay" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="SubIndvFlag" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="SubIndvCustId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="SubIndvCustName" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="GrpFlag" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="GrpCustId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="IdfyNo" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="RpsntFlag" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="RpsntCustId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="RpsntCustClCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="RpsntCustName" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="RpsntCusidTypeCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="RpsntCustIdfyNo" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="RpsntHpTelNoFlag" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="RpsntHpTelNo" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="RpsntProofDay" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="BaseYm" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="CoScaleCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="GenlEmpCnt" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="ItUsgPosblEmpCnt" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="ApctName" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="ApctCustNo" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="CustReltnCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="ContTelNo" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="SndryContTelNo" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="CclNowValDetlGrade" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="AuthzYn" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="AvailYn" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="IsuanDate" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="CoName" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="TaxRepreName" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="VipName" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="GrpCustDtltpCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="WplceSeq" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="rowCnt" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="sub" type="bizhub:IoCCsm0520TS" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="rowCnt1" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="sub1" type="bizhub:IoCCsm0502TS" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="rowCnt2" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="sub2" type="bizhub:IoCCsm0503TS" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="rowCnt3" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="sub3" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="rowCnt4" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="sub4" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="rowCnt5" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="sub5" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="rowCnt6" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="sub6" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="CustIdDTO">
+                <xsd:sequence>
+                    <xsd:element name="custId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="custDivCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="CustBasInfoDTO">
+                <xsd:sequence>
+                    <xsd:element name="custId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="custDivCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="confResltCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="icisCustId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="nstepCustId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="custNm" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="custIdfyNoDivCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="custTypeCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="custIdfyNo" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="interNm" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="apdCustIdfyNoDivCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="apdCustIdfyNo" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="rnmAthnYn" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="rnmAthnDt" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="ipinCi" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="ipinDi" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="personSexDivCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="jobCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="bthdayDate" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="slrclnLcalDivCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="marryYn" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="marryCmrtnDate" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="custDtlTypeCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="IDMSCustBasInfoDTO">
+                <xsd:sequence>
+                    <xsd:element name="custId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="custDivCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="confResltCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="icisCustId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="nstepCustId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="custNm" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="custIdfyNoDivCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="custTypeCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="custIdfyNo" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="interNm" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="apdCustIdfyNoDivCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="apdCustIdfyNo" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="rnmAthnYn" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="rnmAthnDt" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="ipinCi" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="ipinDi" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="personSexDivCd" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="bthdayDate" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                </xsd:sequence>
+            </xsd:complexType>
+
+        </xsd:schema>
+    </types>
+
+    <message name="requestMessage">
+        <part name="commonHeader" element="bizhub:commonHeader"/>
+        <part name="retrieveCustInforequest" element="bizhub:retrieveCustInfoRequest"/>
+        <part name="retrieveSDPCustIdfyNorequest" element="bizhub:retrieveSDPCustIdfyNoRequest"/>
+    </message>
+    <message name="responseMessage">
+        <part name="commonHeader" element="bizhub:commonHeader"/>
+        <part name="retrieveCustInforesponse" element="bizhub:retrieveCustInfoResponse"/>
+        <part name="retrieveSDPCustIdfyNoresponse" element="bizhub:retrieveSDPCustIdfyNoResponse"/>
+    </message>
+
+    <message name="requestIDMSMessage">
+<part name="commonHeader" element="bizhub:commonHeader"/>
+<part name="retrieveIDMSCustIdfyNorequest" element="bizhub:retrieveIDMSCustIdfyNoRequest"/>
+</message>
+<message name="responseIDMSMessage">
+<part name="commonHeader" element="bizhub:commonHeader"/>
+<part name="retrieveIDMSCustIdfyNoresponse" element="bizhub:retrieveIDMSCustIdfyNoResponse"/>
+</message>
+
+
+    <portType name="PL_CustInfoRetvWebSvcPort">
+    <operation name="retrieveCustInfo">
+        <input message="bizhub:requestMessage"/>
+        <output message="bizhub:responseMessage"/>
+    </operation>
+    <operation name="retrieveSDPCustIdfyNo">
+        <input message="bizhub:requestMessage"/>
+        <output message="bizhub:responseMessage"/>
+    </operation>
+    <operation name="retrieveIDMSCustIdfyNo">
+        <input message="bizhub:requestIDMSMessage"/>
+        <output message="bizhub:responseIDMSMessage"/>
+    </operation>
+
+    </portType>
+
+    <binding name="PL_CustInfoRetvWebSvc" type="bizhub:PL_CustInfoRetvWebSvcPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="retrieveCustInfo">
+            <soap:operation style="document" soapAction="http://bizhub.kt.com/retrieveCustInfo"/>
+            <input>
+                <soap:header message="bizhub:requestMessage" part="commonHeader" use="literal"/>
+                <soap:body use="literal" parts="retrieveCustInforequest"/>
+            </input>
+            <output>
+                <soap:header message="bizhub:responseMessage" part="commonHeader" use="literal"/>
+                <soap:body use="literal" parts="retrieveCustInforesponse"/>
+            </output>
+        </operation>
+
+        <operation name="retrieveSDPCustIdfyNo">
+            <soap:operation style="document" soapAction="http://bizhub.kt.com/retrieveSDPCustIdfyNo"/>
+            <input>
+                <soap:header message="bizhub:requestMessage" part="commonHeader" use="literal"/>
+                <soap:body use="literal" parts="retrieveSDPCustIdfyNorequest"/>
+            </input>
+            <output>
+                <soap:header message="bizhub:responseMessage" part="commonHeader" use="literal"/>
+                <soap:body use="literal" parts="retrieveSDPCustIdfyNoresponse"/>
+            </output>
+        </operation>
+        <operation name="retrieveIDMSCustIdfyNo">
+            <soap:operation style="document" soapAction="http://bizhub.kt.com/retrieveIDMSCustIdfyNo"/>
+            <input>
+                <soap:header message="bizhub:requestIDMSMessage" part="commonHeader" use="literal"/>
+                <soap:body use="literal" parts="retrieveIDMSCustIdfyNorequest"/>
+            </input>
+            <output>
+                <soap:header message="bizhub:responseIDMSMessage" part="commonHeader" use="literal"/>
+                <soap:body use="literal" parts="retrieveIDMSCustIdfyNoresponse"/>
+            </output>
+        </operation>
+
+
+    </binding>
+
+    <service name="CustInfoRetvWebSvcService">
+        <port name="PL_CustInfoRetvWebSvcPort" binding="bizhub:PL_CustInfoRetvWebSvc">
+             <soap:address location="http://10.219.3.190:5000/SoapGateway"/>
+ <!--            <soap:address location="http://10.217.157.95:5000/SoapGateway"/> -->
+        </port>
+    </service>
+</definitions>

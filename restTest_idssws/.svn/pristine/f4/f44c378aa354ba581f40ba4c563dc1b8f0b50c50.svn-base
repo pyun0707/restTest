@@ -1,0 +1,13 @@
+/*
+ * IDMS(Integrated DataBase Management System) version 1.0
+ *
+ *  Copyright ⓒ 2016 kt cort. All rights reserved.
+ *
+ *  This is a proprietary software of kt corp, and you may not use this file except in
+ *  compliance with license agreement with kt corp. Any redistribution or use of this
+ *  software, with or without modification shall be strictly prohibited without prior written
+ *  approval of kt corp, and the copyright notice above does not evidence any actualor
+ *  intended publication of such software.
+*/
+@javax.xml.bind.annotation.XmlSchema(namespace = "http://bizhub.kt.com", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+package kt.idss.ktws.cdm;

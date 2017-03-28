@@ -1,0 +1,87 @@
+
+package kt.idss.ktws.gcrm;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Java class for siebdetail complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
+ * 
+ * <pre>
+ * &lt;complexType name="siebdetail">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="logfilename" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="errorstack" type="{http://www.siebel.com/ws/fault}errorstack" minOccurs="0"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "siebdetail", namespace = "http://www.siebel.com/ws/fault", propOrder = {
+    "logfilename",
+    "errorstack"
+})
+public class Siebdetail {
+
+    protected String logfilename;
+    protected Errorstack errorstack;
+
+    /**
+     * Gets the value of the logfilename property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getLogfilename() {
+        return logfilename;
+    }
+
+    /**
+     * Sets the value of the logfilename property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setLogfilename(String value) {
+        this.logfilename = value;
+    }
+
+    /**
+     * Gets the value of the errorstack property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Errorstack }
+     *     
+     */
+    public Errorstack getErrorstack() {
+        return errorstack;
+    }
+
+    /**
+     * Sets the value of the errorstack property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Errorstack }
+     *     
+     */
+    public void setErrorstack(Errorstack value) {
+        this.errorstack = value;
+    }
+
+}

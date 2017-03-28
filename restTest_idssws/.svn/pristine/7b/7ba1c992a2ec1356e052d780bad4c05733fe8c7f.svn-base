@@ -1,0 +1,42 @@
+package kt.idss.ktws.ws.com;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+import kt.idss.ktws.enums.ResponseSpec;
+import kt.idss.ktws.exception.ServiceException;
+
+@Component
+public class ExecuteContext {
+
+    private static final Logger logger = LoggerFactory.getLogger(ExecuteContext.class);
+
+    public  <T> T contextWithStrategy(ExecuteStrategy<T> strategy) throws Exception{
+
+        String message = ResponseSpec.SUCCESS.intValue();
+        int    code    = ResponseSpec.SUCCESS.intCode();
+        try{
+            strategy.logParameter();
+            logger.info("request value logging complete");
+            strategy.validation  ();
+            logger.info("request value validate complete");
+            return strategy.execute();
+        }catch(ServiceException se){
+            message = se.getMessage();
+            code    = se.getCode();
+            throw se;
+        }catch(Exception e){
+            e.printStackTrace();
+            message = ResponseSpec.INTERNAL_SERVER_ERROR.intValue();
+            code    = ResponseSpec.INTERNAL_SERVER_ERROR.intCode();
+            throw e;
+        }finally{
+            try{
+                strategy.logging(code, message);
+                logger.info("jobhist write complete[result : code - {}, message - {}]", code, message);
+            }catch(Exception e){};
+
+        }
+    }
+}

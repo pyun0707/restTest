@@ -1,0 +1,36 @@
+package kt.idss.ktws.enums;
+
+public enum InterworkServer {
+
+     MNA1         (0,""        ,"mna1")
+    ,MNA6         (1,"@db_mna6","mna6")
+    ,CRM          (2,""        ,"CRM");
+
+    private final int code;
+    private final String dbLinkName;
+    private final String systemName;
+
+    InterworkServer(int code, String dbLinkName, String systemName){
+        this.code       = code;
+        this.dbLinkName = dbLinkName;
+        this.systemName = systemName;
+    }
+    public int intCode(){
+        return this.code;
+    }
+    public String dbLinkName(){
+        return this.dbLinkName;
+    }
+    public String systemName(){
+        return this.systemName;
+    }
+    public static InterworkServer valueOf(int value){
+        switch (value) {
+        case 0: return MNA1     ;
+        case 1: return MNA6     ;
+        case 2: return CRM      ;
+        default : throw new AssertionError("Unknown value : "+value);
+        }
+    }
+
+}

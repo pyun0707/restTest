@@ -1,0 +1,62 @@
+
+package kt.idss.ktws.gcrm;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Java class for ListOfKtInfOC0745 complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
+ * 
+ * <pre>
+ * &lt;complexType name="ListOfKtInfOC0745">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="KtInfOC0745" type="{http://www.siebel.com/xml/INF-OC-0745}KtInfOC0745"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "ListOfKtInfOC0745", propOrder = {
+    "ktInfOC0745"
+})
+public class ListOfKtInfOC0745 {
+
+    @XmlElement(name = "KtInfOC0745", required = true)
+    protected KtInfOC0745 ktInfOC0745;
+
+    /**
+     * Gets the value of the ktInfOC0745 property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link KtInfOC0745 }
+     *     
+     */
+    public KtInfOC0745 getKtInfOC0745() {
+        return ktInfOC0745;
+    }
+
+    /**
+     * Sets the value of the ktInfOC0745 property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link KtInfOC0745 }
+     *     
+     */
+    public void setKtInfOC0745(KtInfOC0745 value) {
+        this.ktInfOC0745 = value;
+    }
+
+}

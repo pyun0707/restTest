@@ -1,0 +1,616 @@
+/*
+ * IDMS(Integrated DataBase Management System) version 1.0
+ *
+ *  Copyright ⓒ 2016 kt cort. All rights reserved.
+ *
+ *  This is a proprietary software of kt corp, and you may not use this file except in
+ *  compliance with license agreement with kt corp. Any redistribution or use of this
+ *  software, with or without modification shall be strictly prohibited without prior written
+ *  approval of kt corp, and the copyright notice above does not evidence any actualor
+ *  intended publication of such software.
+*/
+
+package kt.idss.ktws.cdm;
+
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.annotation.XmlElementDecl;
+import javax.xml.bind.annotation.XmlRegistry;
+import javax.xml.namespace.QName;
+
+
+/**
+ * This object contains factory methods for each
+ * Java content interface and Java element interface
+ * generated in the kt.idss.ktws.cdm package.
+ * <p>An ObjectFactory allows you to programatically
+ * construct new instances of the Java representation
+ * for XML content. The Java representation of XML
+ * content can consist of schema derived interfaces
+ * and classes representing the binding of schema
+ * type definitions, element declarations and model
+ * groups.  Factory methods for each of these are
+ * provided in this class.
+ *
+ */
+@XmlRegistry
+public class ObjectFactory {
+
+    private final static QName _ResponseCode_QNAME = new QName("http://bizhub.kt.com", "responseCode");
+    private final static QName _ResponseBasc_QNAME = new QName("http://bizhub.kt.com", "responseBasc");
+    private final static QName _LockId_QNAME = new QName("http://bizhub.kt.com", "lockId");
+    private final static QName _CurHostId_QNAME = new QName("http://bizhub.kt.com", "curHostId");
+    private final static QName _CbSvcName_QNAME = new QName("http://bizhub.kt.com", "cbSvcName");
+    private final static QName _SrcId_QNAME = new QName("http://bizhub.kt.com", "srcId");
+    private final static QName _ChnlType_QNAME = new QName("http://bizhub.kt.com", "chnlType");
+    private final static QName _SvcName_QNAME = new QName("http://bizhub.kt.com", "svcName");
+    private final static QName _TrDate_QNAME = new QName("http://bizhub.kt.com", "trDate");
+    private final static QName _CmpnCd_QNAME = new QName("http://bizhub.kt.com", "cmpnCd");
+    private final static QName _AppName_QNAME = new QName("http://bizhub.kt.com", "appName");
+    private final static QName _LockType_QNAME = new QName("http://bizhub.kt.com", "lockType");
+    private final static QName _LockTimeSt_QNAME = new QName("http://bizhub.kt.com", "lockTimeSt");
+    private final static QName _ResponseSystem_QNAME = new QName("http://bizhub.kt.com", "responseSystem");
+    private final static QName _TrTime_QNAME = new QName("http://bizhub.kt.com", "trTime");
+    private final static QName _ResponseTitle_QNAME = new QName("http://bizhub.kt.com", "responseTitle");
+    private final static QName _CbFnName_QNAME = new QName("http://bizhub.kt.com", "cbFnName");
+    private final static QName _GlobalNo_QNAME = new QName("http://bizhub.kt.com", "globalNo");
+    private final static QName _Phase_QNAME = new QName("http://bizhub.kt.com", "phase");
+    private final static QName _RetrieveCustInfoResponse_QNAME = new QName("http://bizhub.kt.com", "retrieveCustInfoResponse");
+    private final static QName _RetrieveIDMSCustIdfyNoResponse_QNAME = new QName("http://bizhub.kt.com", "retrieveIDMSCustIdfyNoResponse");
+    private final static QName _TrFlag_QNAME = new QName("http://bizhub.kt.com", "trFlag");
+    private final static QName _RetrieveCustInfoRequest_QNAME = new QName("http://bizhub.kt.com", "retrieveCustInfoRequest");
+    private final static QName _RetrieveSDPCustIdfyNoRequest_QNAME = new QName("http://bizhub.kt.com", "retrieveSDPCustIdfyNoRequest");
+    private final static QName _BusinessKey_QNAME = new QName("http://bizhub.kt.com", "businessKey");
+    private final static QName _LgDateTime_QNAME = new QName("http://bizhub.kt.com", "lgDateTime");
+    private final static QName _RetrieveIDMSCustIdfyNoRequest_QNAME = new QName("http://bizhub.kt.com", "retrieveIDMSCustIdfyNoRequest");
+    private final static QName _FnCd_QNAME = new QName("http://bizhub.kt.com", "fnCd");
+    private final static QName _LangCode_QNAME = new QName("http://bizhub.kt.com", "langCode");
+    private final static QName _ClntIp_QNAME = new QName("http://bizhub.kt.com", "clntIp");
+    private final static QName _OrgId_QNAME = new QName("http://bizhub.kt.com", "orgId");
+    private final static QName _FnName_QNAME = new QName("http://bizhub.kt.com", "fnName");
+    private final static QName _TokenId_QNAME = new QName("http://bizhub.kt.com", "tokenId");
+    private final static QName _RealUserId_QNAME = new QName("http://bizhub.kt.com", "realUserId");
+    private final static QName _CommonHeader_QNAME = new QName("http://bizhub.kt.com", "commonHeader");
+    private final static QName _ResponseType_QNAME = new QName("http://bizhub.kt.com", "responseType");
+    private final static QName _UserId_QNAME = new QName("http://bizhub.kt.com", "userId");
+    private final static QName _ResponseLogcd_QNAME = new QName("http://bizhub.kt.com", "responseLogcd");
+    private final static QName _EnvrFlag_QNAME = new QName("http://bizhub.kt.com", "envrFlag");
+    private final static QName _ResendFlag_QNAME = new QName("http://bizhub.kt.com", "resendFlag");
+    private final static QName _ArbitraryKey_QNAME = new QName("http://bizhub.kt.com", "arbitraryKey");
+    private final static QName _ResponseDtal_QNAME = new QName("http://bizhub.kt.com", "responseDtal");
+    private final static QName _Filler_QNAME = new QName("http://bizhub.kt.com", "filler");
+    private final static QName _RetrieveSDPCustIdfyNoResponse_QNAME = new QName("http://bizhub.kt.com", "retrieveSDPCustIdfyNoResponse");
+    private final static QName _OrderId_QNAME = new QName("http://bizhub.kt.com", "orderId");
+
+    /**
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: kt.idss.ktws.cdm
+     *
+     */
+    public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link RetrieveSDPCustIdfyNorequestType }
+     *
+     */
+    public RetrieveSDPCustIdfyNorequestType createRetrieveSDPCustIdfyNorequestType() {
+        return new RetrieveSDPCustIdfyNorequestType();
+    }
+
+    /**
+     * Create an instance of {@link RetrieveCustInforequestType }
+     *
+     */
+    public RetrieveCustInforequestType createRetrieveCustInforequestType() {
+        return new RetrieveCustInforequestType();
+    }
+
+    /**
+     * Create an instance of {@link RetrieveIDMSCustIdfyNorequestType }
+     *
+     */
+    public RetrieveIDMSCustIdfyNorequestType createRetrieveIDMSCustIdfyNorequestType() {
+        return new RetrieveIDMSCustIdfyNorequestType();
+    }
+
+    /**
+     * Create an instance of {@link CommonHeader }
+     *
+     */
+    public CommonHeader createCommonHeader() {
+        return new CommonHeader();
+    }
+
+    /**
+     * Create an instance of {@link RetrieveSDPCustIdfyNoresponseType }
+     *
+     */
+    public RetrieveSDPCustIdfyNoresponseType createRetrieveSDPCustIdfyNoresponseType() {
+        return new RetrieveSDPCustIdfyNoresponseType();
+    }
+
+    /**
+     * Create an instance of {@link RetrieveIDMSCustIdfyNoresponseType }
+     *
+     */
+    public RetrieveIDMSCustIdfyNoresponseType createRetrieveIDMSCustIdfyNoresponseType() {
+        return new RetrieveIDMSCustIdfyNoresponseType();
+    }
+
+    /**
+     * Create an instance of {@link RetrieveCustInforesponseType }
+     *
+     */
+    public RetrieveCustInforesponseType createRetrieveCustInforesponseType() {
+        return new RetrieveCustInforesponseType();
+    }
+
+    /**
+     * Create an instance of {@link IoCCsm1200QS }
+     *
+     */
+    public IoCCsm1200QS createIoCCsm1200QS() {
+        return new IoCCsm1200QS();
+    }
+
+    /**
+     * Create an instance of {@link BizHeader }
+     *
+     */
+    public BizHeader createBizHeader() {
+        return new BizHeader();
+    }
+
+    /**
+     * Create an instance of {@link IDMSCustBasInfoDTO }
+     *
+     */
+    public IDMSCustBasInfoDTO createIDMSCustBasInfoDTO() {
+        return new IDMSCustBasInfoDTO();
+    }
+
+    /**
+     * Create an instance of {@link IoCCsm0520TS }
+     *
+     */
+    public IoCCsm0520TS createIoCCsm0520TS() {
+        return new IoCCsm0520TS();
+    }
+
+    /**
+     * Create an instance of {@link CustIdDTO }
+     *
+     */
+    public CustIdDTO createCustIdDTO() {
+        return new CustIdDTO();
+    }
+
+    /**
+     * Create an instance of {@link IoCCsm0502TS }
+     *
+     */
+    public IoCCsm0502TS createIoCCsm0502TS() {
+        return new IoCCsm0502TS();
+    }
+
+    /**
+     * Create an instance of {@link IoCCsm0503TS }
+     *
+     */
+    public IoCCsm0503TS createIoCCsm0503TS() {
+        return new IoCCsm0503TS();
+    }
+
+    /**
+     * Create an instance of {@link CustBasInfoDTO }
+     *
+     */
+    public CustBasInfoDTO createCustBasInfoDTO() {
+        return new CustBasInfoDTO();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "responseCode")
+    public JAXBElement<String> createResponseCode(String value) {
+        return new JAXBElement<String>(_ResponseCode_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "responseBasc")
+    public JAXBElement<String> createResponseBasc(String value) {
+        return new JAXBElement<String>(_ResponseBasc_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "lockId")
+    public JAXBElement<String> createLockId(String value) {
+        return new JAXBElement<String>(_LockId_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "curHostId")
+    public JAXBElement<String> createCurHostId(String value) {
+        return new JAXBElement<String>(_CurHostId_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "cbSvcName")
+    public JAXBElement<String> createCbSvcName(String value) {
+        return new JAXBElement<String>(_CbSvcName_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "srcId")
+    public JAXBElement<String> createSrcId(String value) {
+        return new JAXBElement<String>(_SrcId_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "chnlType")
+    public JAXBElement<String> createChnlType(String value) {
+        return new JAXBElement<String>(_ChnlType_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "svcName")
+    public JAXBElement<String> createSvcName(String value) {
+        return new JAXBElement<String>(_SvcName_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "trDate")
+    public JAXBElement<String> createTrDate(String value) {
+        return new JAXBElement<String>(_TrDate_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "cmpnCd")
+    public JAXBElement<String> createCmpnCd(String value) {
+        return new JAXBElement<String>(_CmpnCd_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "appName")
+    public JAXBElement<String> createAppName(String value) {
+        return new JAXBElement<String>(_AppName_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "lockType")
+    public JAXBElement<String> createLockType(String value) {
+        return new JAXBElement<String>(_LockType_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "lockTimeSt")
+    public JAXBElement<String> createLockTimeSt(String value) {
+        return new JAXBElement<String>(_LockTimeSt_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "responseSystem")
+    public JAXBElement<String> createResponseSystem(String value) {
+        return new JAXBElement<String>(_ResponseSystem_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "trTime")
+    public JAXBElement<String> createTrTime(String value) {
+        return new JAXBElement<String>(_TrTime_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "responseTitle")
+    public JAXBElement<String> createResponseTitle(String value) {
+        return new JAXBElement<String>(_ResponseTitle_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "cbFnName")
+    public JAXBElement<String> createCbFnName(String value) {
+        return new JAXBElement<String>(_CbFnName_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "globalNo")
+    public JAXBElement<String> createGlobalNo(String value) {
+        return new JAXBElement<String>(_GlobalNo_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "phase")
+    public JAXBElement<String> createPhase(String value) {
+        return new JAXBElement<String>(_Phase_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RetrieveCustInforesponseType }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "retrieveCustInfoResponse")
+    public JAXBElement<RetrieveCustInforesponseType> createRetrieveCustInfoResponse(RetrieveCustInforesponseType value) {
+        return new JAXBElement<RetrieveCustInforesponseType>(_RetrieveCustInfoResponse_QNAME, RetrieveCustInforesponseType.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RetrieveIDMSCustIdfyNoresponseType }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "retrieveIDMSCustIdfyNoResponse")
+    public JAXBElement<RetrieveIDMSCustIdfyNoresponseType> createRetrieveIDMSCustIdfyNoResponse(RetrieveIDMSCustIdfyNoresponseType value) {
+        return new JAXBElement<RetrieveIDMSCustIdfyNoresponseType>(_RetrieveIDMSCustIdfyNoResponse_QNAME, RetrieveIDMSCustIdfyNoresponseType.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "trFlag")
+    public JAXBElement<String> createTrFlag(String value) {
+        return new JAXBElement<String>(_TrFlag_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RetrieveCustInforequestType }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "retrieveCustInfoRequest")
+    public JAXBElement<RetrieveCustInforequestType> createRetrieveCustInfoRequest(RetrieveCustInforequestType value) {
+        return new JAXBElement<RetrieveCustInforequestType>(_RetrieveCustInfoRequest_QNAME, RetrieveCustInforequestType.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RetrieveSDPCustIdfyNorequestType }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "retrieveSDPCustIdfyNoRequest")
+    public JAXBElement<RetrieveSDPCustIdfyNorequestType> createRetrieveSDPCustIdfyNoRequest(RetrieveSDPCustIdfyNorequestType value) {
+        return new JAXBElement<RetrieveSDPCustIdfyNorequestType>(_RetrieveSDPCustIdfyNoRequest_QNAME, RetrieveSDPCustIdfyNorequestType.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "businessKey")
+    public JAXBElement<String> createBusinessKey(String value) {
+        return new JAXBElement<String>(_BusinessKey_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "lgDateTime")
+    public JAXBElement<String> createLgDateTime(String value) {
+        return new JAXBElement<String>(_LgDateTime_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RetrieveIDMSCustIdfyNorequestType }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "retrieveIDMSCustIdfyNoRequest")
+    public JAXBElement<RetrieveIDMSCustIdfyNorequestType> createRetrieveIDMSCustIdfyNoRequest(RetrieveIDMSCustIdfyNorequestType value) {
+        return new JAXBElement<RetrieveIDMSCustIdfyNorequestType>(_RetrieveIDMSCustIdfyNoRequest_QNAME, RetrieveIDMSCustIdfyNorequestType.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "fnCd")
+    public JAXBElement<String> createFnCd(String value) {
+        return new JAXBElement<String>(_FnCd_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "langCode")
+    public JAXBElement<String> createLangCode(String value) {
+        return new JAXBElement<String>(_LangCode_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "clntIp")
+    public JAXBElement<String> createClntIp(String value) {
+        return new JAXBElement<String>(_ClntIp_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "orgId")
+    public JAXBElement<String> createOrgId(String value) {
+        return new JAXBElement<String>(_OrgId_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "fnName")
+    public JAXBElement<String> createFnName(String value) {
+        return new JAXBElement<String>(_FnName_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "tokenId")
+    public JAXBElement<String> createTokenId(String value) {
+        return new JAXBElement<String>(_TokenId_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "realUserId")
+    public JAXBElement<String> createRealUserId(String value) {
+        return new JAXBElement<String>(_RealUserId_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CommonHeader }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "commonHeader")
+    public JAXBElement<CommonHeader> createCommonHeader(CommonHeader value) {
+        return new JAXBElement<CommonHeader>(_CommonHeader_QNAME, CommonHeader.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "responseType")
+    public JAXBElement<String> createResponseType(String value) {
+        return new JAXBElement<String>(_ResponseType_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "userId")
+    public JAXBElement<String> createUserId(String value) {
+        return new JAXBElement<String>(_UserId_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "responseLogcd")
+    public JAXBElement<String> createResponseLogcd(String value) {
+        return new JAXBElement<String>(_ResponseLogcd_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "envrFlag")
+    public JAXBElement<String> createEnvrFlag(String value) {
+        return new JAXBElement<String>(_EnvrFlag_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "resendFlag")
+    public JAXBElement<String> createResendFlag(String value) {
+        return new JAXBElement<String>(_ResendFlag_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "arbitraryKey")
+    public JAXBElement<String> createArbitraryKey(String value) {
+        return new JAXBElement<String>(_ArbitraryKey_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "responseDtal")
+    public JAXBElement<String> createResponseDtal(String value) {
+        return new JAXBElement<String>(_ResponseDtal_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "filler")
+    public JAXBElement<String> createFiller(String value) {
+        return new JAXBElement<String>(_Filler_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RetrieveSDPCustIdfyNoresponseType }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "retrieveSDPCustIdfyNoResponse")
+    public JAXBElement<RetrieveSDPCustIdfyNoresponseType> createRetrieveSDPCustIdfyNoResponse(RetrieveSDPCustIdfyNoresponseType value) {
+        return new JAXBElement<RetrieveSDPCustIdfyNoresponseType>(_RetrieveSDPCustIdfyNoResponse_QNAME, RetrieveSDPCustIdfyNoresponseType.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://bizhub.kt.com", name = "orderId")
+    public JAXBElement<String> createOrderId(String value) {
+        return new JAXBElement<String>(_OrderId_QNAME, String.class, null, value);
+    }
+
+}

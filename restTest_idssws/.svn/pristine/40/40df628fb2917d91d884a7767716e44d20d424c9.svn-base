@@ -1,0 +1,97 @@
+package kt.idss.ktws.vo;
+
+public class ServerItem {
+
+    private String demon           ;
+    private String system          ;
+    private String pool_name       ;
+    private String skip            ;
+    private String backup          ;
+    private String web_mode        ;
+    private String db_class        ;
+    private String division        ;
+    private String db_link         ;
+    private String division_alias  ;
+    private String ip              ;
+    private String port            ;
+    private String usable_mode     ;
+    public String getDemon() {
+        return demon;
+    }
+    public void setDemon(String demon) {
+        this.demon = demon;
+    }
+    public String getSystem() {
+        return system;
+    }
+    public void setSystem(String system) {
+        this.system = system;
+    }
+    public String getPool_name() {
+        return pool_name;
+    }
+    public void setPool_name(String pool_name) {
+        this.pool_name = pool_name;
+    }
+    public String getSkip() {
+        return skip;
+    }
+    public void setSkip(String skip) {
+        this.skip = skip;
+    }
+    public String getBackup() {
+        return backup;
+    }
+    public void setBackup(String backup) {
+        this.backup = backup;
+    }
+    public String getWeb_mode() {
+        return web_mode;
+    }
+    public void setWeb_mode(String web_mode) {
+        this.web_mode = web_mode;
+    }
+    public String getDb_class() {
+        return db_class;
+    }
+    public void setDb_class(String db_class) {
+        this.db_class = db_class;
+    }
+    public String getDivision() {
+        return division;
+    }
+    public void setDivision(String division) {
+        this.division = division;
+    }
+    public String getDb_link() {
+        return db_link;
+    }
+    public void setDb_link(String db_link) {
+        this.db_link = db_link;
+    }
+    public String getDivision_alias() {
+        return division_alias;
+    }
+    public void setDivision_alias(String division_alias) {
+        this.division_alias = division_alias;
+    }
+    public String getIp() {
+        return ip;
+    }
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+    public String getPort() {
+        return port;
+    }
+    public void setPort(String port) {
+        this.port = port;
+    }
+    public String getUsable_mode() {
+        return usable_mode;
+    }
+    public void setUsable_mode(String usable_mode) {
+        this.usable_mode = usable_mode;
+    }
+}
+

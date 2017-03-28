@@ -1,0 +1,9 @@
+/**
+ *
+ */
+/**
+ * @author iloveYWS
+ *
+ */
+@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.kt.com/bit/standard/header/v1", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+package com.kt.bit.standard.header.v1;

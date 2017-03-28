@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="kt.idss.ktws.common.dao.JobhistDao">
+
+  <sql id="user_table"> tb_jobhist </sql>
+
+  <insert id="create" parameterType="jobhist">
+    insert into <include refid="user_table"/>
+    (
+        ordno , regdate , command , idisresult , cmddetail
+        , reqsystem , reqip , procstep , donetime , errcode
+        , errsystem , errmsg , loginid , password , custtype
+        , custnum , custkname , custtel , userip , authmethod
+        , secretkey , arsordno  , arstime , arscode , email
+        , usermac , emailtime , apct_reltn_name , apct_reltn_type_desc , worker_id
+        , prodclass , sa_id
+    ) values (
+        #{ordno,javaType=String,jdbcType=VARCHAR} , to_timestamp(#{regdate,javaType=String,jdbcType=VARCHAR}, 'yyyymmddhh24missff') , #{command,javaType=String,jdbcType=VARCHAR} , #{idisresult,javaType=String,jdbcType=VARCHAR} , #{cmddetail,javaType=String,jdbcType=VARCHAR}
+        , #{reqsystem,javaType=String,jdbcType=VARCHAR} , #{reqip,javaType=String,jdbcType=VARCHAR} , #{procstep,javaType=String,jdbcType=VARCHAR} , to_date(#{donetime,javaType=String,jdbcType=VARCHAR}, 'yyyymmddhh24miss') , #{errcode,javaType=String,jdbcType=VARCHAR}
+        , #{errsystem,javaType=String,jdbcType=VARCHAR} , #{errmsg,javaType=String,jdbcType=VARCHAR} , #{loginid,javaType=String,jdbcType=VARCHAR} , #{password,javaType=String,jdbcType=VARCHAR} , #{custtype ,javaType=String,jdbcType=VARCHAR}
+        , #{custnum,javaType=String,jdbcType=VARCHAR} , #{custkname,javaType=String,jdbcType=VARCHAR} , #{custtel,javaType=String,jdbcType=VARCHAR} , #{userip,javaType=String,jdbcType=VARCHAR} , #{authmethod,javaType=String,jdbcType=VARCHAR}
+        , #{secretkey,javaType=String,jdbcType=VARCHAR} , #{arsordno,javaType=String,jdbcType=VARCHAR} , TO_TIMESTAMP(#{arstime,javaType=String,jdbcType=VARCHAR}, 'YYYYMMDDHH24MISSFF9') , #{arscode,javaType=String,jdbcType=VARCHAR} , #{email,javaType=String,jdbcType=VARCHAR}
+        , #{usermac,javaType=String,jdbcType=VARCHAR} , TO_TIMESTAMP(#{emailtime,javaType=String,jdbcType=VARCHAR}, 'YYYYMMDDHH24MISSFF9') , #{apct_reltn_name,javaType=String,jdbcType=VARCHAR} , #{apct_reltn_type_desc,javaType=String,jdbcType=VARCHAR} , #{worker_id,javaType=String,jdbcType=VARCHAR}
+        , #{prodclass,javaType=String,jdbcType=VARCHAR} , #{sa_id,javaType=String,jdbcType=VARCHAR}
+    )
+  </insert>
+
+  <select id="readOrdno" resultType="String">
+  select to_char(sysdate,'yyyymmddhh24')||substr('00000'||tb_jobhist_seq.nextval,-5)  as ordno
+    from dual
+  </select>
+
+</mapper>

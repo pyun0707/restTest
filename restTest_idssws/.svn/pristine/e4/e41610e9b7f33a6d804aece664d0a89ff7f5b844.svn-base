@@ -1,0 +1,6 @@
+package kt.idss.ktws.common.dao;
+
+public interface CryptDao {
+    public String getDeCryptRealValue(String aes_method,String system, String value);
+    public String getEnCryptRealValue(String aes_method,String system, String value);
+}

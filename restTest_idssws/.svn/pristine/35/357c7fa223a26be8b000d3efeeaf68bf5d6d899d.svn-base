@@ -1,0 +1,26 @@
+package kt.idss.ktws.vo;
+
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+
+public class SqlParameters {
+    private MapSqlParameterSource namedParameters;
+    private String                sql_query;
+
+    public SqlParameters(MapSqlParameterSource namedParameters, String sql_query) {
+        super();
+        this.namedParameters = namedParameters;
+        this.sql_query = sql_query;
+    }
+    public MapSqlParameterSource getNamedParameters() {
+        return namedParameters;
+    }
+    public void setNamedParameters(MapSqlParameterSource namedParameters) {
+        this.namedParameters = namedParameters;
+    }
+    public String getSql_query() {
+        return sql_query;
+    }
+    public void setSql_query(String sql_query) {
+        this.sql_query = sql_query;
+    }
+}

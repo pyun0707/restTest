@@ -1,0 +1,45 @@
+package kt.idss.ktws.enums;
+
+public enum ResponseSpec {
+     SUCCESS               (200,"성공")
+    ,SUCCESS_EXIST         (202,"성공(기존재 회선 동일ID)")
+    ,SUCCESS_EXIST_SAME    (204,"성공(동일인,동일ID 명의변경검증시도)")
+    ,BAD_REQUEST           (400,"입력값 오류")
+    ,USED                  (402,"이미사용중인 ID")
+    ,USED_FIRE             (403,"6개월 이내 해지된 ID")
+    ,NOT_FOUND             (404,"고객 또는 회선정보 미존재")
+    ,NEED_PREPROCESS       (406,"중복체크 처리가 필요한 ID")
+    ,INTERNAL_SERVER_ERROR (500,"기타 (미정의에러)")
+    ,NOT_IMPLEMENTED       (501,"미구현")
+    ,SERVICE_LINK_ERROR    (502,"외부연동에러")
+    ,SERVICE_UNAVAILABLE   (503,"IDSS webservice unavailable")
+    ;
+
+    private final int code;
+    private final String value;
+
+    ResponseSpec(int code, String value){
+        this.code  = code;
+        this.value = value;
+
+    }
+    public int intCode(){
+        return this.code;
+    }
+    public String intValue(){
+        return this.value;
+    }
+    public static ResponseSpec valueOf(int value){
+        switch (value) {
+        case 200: return SUCCESS                 ;
+        case 202: return SUCCESS                 ;
+        case 201: return USED                    ;
+        case 400: return BAD_REQUEST             ;
+        case 404: return NOT_FOUND               ;
+        case 500: return INTERNAL_SERVER_ERROR   ;
+        case 501: return NOT_IMPLEMENTED         ;
+        case 503: return SERVICE_UNAVAILABLE     ;
+        default : throw new AssertionError("Unknown value : "+value);
+        }
+    }
+}

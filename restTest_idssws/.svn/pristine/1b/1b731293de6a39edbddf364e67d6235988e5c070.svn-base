@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema
+    elementFormDefault = "qualified"
+    attributeFormDefault = "unqualified"
+    xmlns:xsd = "http://www.w3.org/2001/XMLSchema"
+    xmlns:siebelfault = "http://www.siebel.com/ws/fault"
+    targetNamespace = "http://www.siebel.com/ws/fault">
+    <xsd:element name = "siebdetail" type = "siebelfault:siebdetail"/>
+    <xsd:complexType name = "siebdetail">
+        <xsd:sequence>
+            <xsd:element
+                name = "logfilename"
+                maxOccurs = "1"
+                minOccurs = "0"
+                type = "xsd:string"/>
+            <xsd:element
+                name = "errorstack"
+                maxOccurs = "1"
+                minOccurs = "0"
+                type = "siebelfault:errorstack"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name = "errorstack">
+        <xsd:sequence>
+            <xsd:element
+                name = "error"
+                maxOccurs = "unbounded"
+                minOccurs = "0"
+                type = "siebelfault:error"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name = "error">
+        <xsd:sequence>
+            <xsd:element
+                name = "errorcode"
+                maxOccurs = "1"
+                minOccurs = "0"
+                type = "xsd:string"/>
+            <xsd:element
+                name = "errorsymbol"
+                maxOccurs = "1"
+                minOccurs = "0"
+                type = "xsd:string"/>
+            <xsd:element
+                name = "errormsg"
+                maxOccurs = "1"
+                minOccurs = "0"
+                type = "xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

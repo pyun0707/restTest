@@ -1,0 +1,114 @@
+
+package kt.idss.ktws.gcrm;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Java class for error complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
+ * 
+ * <pre>
+ * &lt;complexType name="error">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="errorcode" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="errorsymbol" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="errormsg" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "error", namespace = "http://www.siebel.com/ws/fault", propOrder = {
+    "errorcode",
+    "errorsymbol",
+    "errormsg"
+})
+public class Error {
+
+    protected String errorcode;
+    protected String errorsymbol;
+    protected String errormsg;
+
+    /**
+     * Gets the value of the errorcode property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getErrorcode() {
+        return errorcode;
+    }
+
+    /**
+     * Sets the value of the errorcode property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setErrorcode(String value) {
+        this.errorcode = value;
+    }
+
+    /**
+     * Gets the value of the errorsymbol property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getErrorsymbol() {
+        return errorsymbol;
+    }
+
+    /**
+     * Sets the value of the errorsymbol property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setErrorsymbol(String value) {
+        this.errorsymbol = value;
+    }
+
+    /**
+     * Gets the value of the errormsg property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getErrormsg() {
+        return errormsg;
+    }
+
+    /**
+     * Sets the value of the errormsg property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setErrormsg(String value) {
+        this.errormsg = value;
+    }
+
+}

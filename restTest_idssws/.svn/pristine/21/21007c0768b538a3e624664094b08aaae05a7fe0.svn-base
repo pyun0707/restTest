@@ -1,0 +1,254 @@
+
+package kt.idss.ktws.gcrm;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Java class for anonymous complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
+ * 
+ * <pre>
+ * &lt;complexType>
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element ref="{http://www.kt.com/bit/standard/header/v1}InterfaceID"/>
+ *         &lt;element ref="{http://www.kt.com/bit/standard/header/v1}SourceSys"/>
+ *         &lt;element ref="{http://www.kt.com/bit/standard/header/v1}TargetSys"/>
+ *         &lt;element ref="{http://www.kt.com/bit/standard/header/v1}GUID"/>
+ *         &lt;element ref="{http://www.kt.com/bit/standard/header/v1}SeqNumber"/>
+ *         &lt;element ref="{http://www.kt.com/bit/standard/header/v1}ReturnCode" minOccurs="0"/>
+ *         &lt;element ref="{http://www.kt.com/bit/standard/header/v1}ReturnMSG" minOccurs="0"/>
+ *         &lt;element ref="{http://www.kt.com/bit/standard/header/v1}Arbitrary" minOccurs="0"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "", propOrder = {
+    "interfaceID",
+    "sourceSys",
+    "targetSys",
+    "guid",
+    "seqNumber",
+    "returnCode",
+    "returnMSG",
+    "arbitrary"
+})
+@XmlRootElement(name = "BITHeader", namespace = "http://www.kt.com/bit/standard/header/v1")
+public class BITHeader {
+
+    @XmlElement(name = "InterfaceID", namespace = "http://www.kt.com/bit/standard/header/v1", required = true)
+    protected String interfaceID;
+    @XmlElement(name = "SourceSys", namespace = "http://www.kt.com/bit/standard/header/v1", required = true)
+    protected String sourceSys;
+    @XmlElement(name = "TargetSys", namespace = "http://www.kt.com/bit/standard/header/v1", required = true)
+    protected String targetSys;
+    @XmlElement(name = "GUID", namespace = "http://www.kt.com/bit/standard/header/v1", required = true)
+    protected String guid;
+    @XmlElement(name = "SeqNumber", namespace = "http://www.kt.com/bit/standard/header/v1")
+    protected int seqNumber;
+    @XmlElement(name = "ReturnCode", namespace = "http://www.kt.com/bit/standard/header/v1")
+    protected String returnCode;
+    @XmlElement(name = "ReturnMSG", namespace = "http://www.kt.com/bit/standard/header/v1")
+    protected String returnMSG;
+    @XmlElement(name = "Arbitrary", namespace = "http://www.kt.com/bit/standard/header/v1")
+    @XmlSchemaType(name = "anySimpleType")
+    protected Object arbitrary;
+
+    /**
+     * Gets the value of the interfaceID property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getInterfaceID() {
+        return interfaceID;
+    }
+
+    /**
+     * Sets the value of the interfaceID property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setInterfaceID(String value) {
+        this.interfaceID = value;
+    }
+
+    /**
+     * Gets the value of the sourceSys property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getSourceSys() {
+        return sourceSys;
+    }
+
+    /**
+     * Sets the value of the sourceSys property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setSourceSys(String value) {
+        this.sourceSys = value;
+    }
+
+    /**
+     * Gets the value of the targetSys property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getTargetSys() {
+        return targetSys;
+    }
+
+    /**
+     * Sets the value of the targetSys property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setTargetSys(String value) {
+        this.targetSys = value;
+    }
+
+    /**
+     * Gets the value of the guid property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getGUID() {
+        return guid;
+    }
+
+    /**
+     * Sets the value of the guid property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setGUID(String value) {
+        this.guid = value;
+    }
+
+    /**
+     * Gets the value of the seqNumber property.
+     * 
+     */
+    public int getSeqNumber() {
+        return seqNumber;
+    }
+
+    /**
+     * Sets the value of the seqNumber property.
+     * 
+     */
+    public void setSeqNumber(int value) {
+        this.seqNumber = value;
+    }
+
+    /**
+     * Gets the value of the returnCode property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getReturnCode() {
+        return returnCode;
+    }
+
+    /**
+     * Sets the value of the returnCode property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setReturnCode(String value) {
+        this.returnCode = value;
+    }
+
+    /**
+     * Gets the value of the returnMSG property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getReturnMSG() {
+        return returnMSG;
+    }
+
+    /**
+     * Sets the value of the returnMSG property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setReturnMSG(String value) {
+        this.returnMSG = value;
+    }
+
+    /**
+     * Gets the value of the arbitrary property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Object }
+     *     
+     */
+    public Object getArbitrary() {
+        return arbitrary;
+    }
+
+    /**
+     * Sets the value of the arbitrary property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Object }
+     *     
+     */
+    public void setArbitrary(Object value) {
+        this.arbitrary = value;
+    }
+
+}

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions
+    xmlns = "http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap = "http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:xsdLocal1 = "http://www.siebel.com/xml/INF-OC-0745"
+    targetNamespace = "http://www.kt.com/bit/bss/InquireCustInfo"
+    xmlns:soapenc = "http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:xsdLocal2 = "http://www.siebel.com/xml/INF-OC-0745_response"
+    xmlns:xsd = "http://www.w3.org/2001/XMLSchema"
+    xmlns:tns = "http://www.kt.com/bit/bss/InquireCustInfo"
+    xmlns:siebelfault = "http://www.siebel.com/ws/fault"
+    xmlns:had = "http://www.kt.com/bit/standard/header/v1">
+
+    <types>
+        <xsd:schema
+            elementFormDefault = "qualified"
+            attributeFormDefault = "unqualified"
+            targetNamespace = "http://www.kt.com/bit/bss/InquireCustInfo"
+            xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace = "http://www.siebel.com/xml/INF-OC-0745_response"></xsd:import>
+            <xsd:import namespace = "http://www.siebel.com/xml/INF-OC-0745"></xsd:import>
+            <xsd:import namespace="http://www.kt.com/bit/standard/header/v1" schemaLocation="XSD_StandardMessageFormat_v1.0.xsd"/>
+      <xsd:import namespace="http://www.siebel.com/ws/fault" schemaLocation="SiebelFault.xsd"/>
+            <xsd:element name = "RunProcess_OC0745_Input">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref = "xsdLocal1:ListOfKtInfOC0745"></xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name = "RunProcess_OC0745_Output">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref = "xsdLocal2:ListOfKtInfOC0745response"></xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+        <xsd:schema
+            elementFormDefault = "qualified"
+            attributeFormDefault = "unqualified"
+            xmlns:xsdLocal1 = "http://www.siebel.com/xml/INF-OC-0745"
+            targetNamespace = "http://www.siebel.com/xml/INF-OC-0745"
+            xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
+            <xsd:annotation>
+                <xsd:documentation>Copyright (C) 2001-2004 Siebel Systems, Inc. All rights reserved. Siebel XSD Generation</xsd:documentation>
+            </xsd:annotation>
+            <xsd:element name = "ListOfKtInfOC0745" type = "xsdLocal1:ListOfKtInfOC0745"></xsd:element>
+            <xsd:complexType name = "ListOfKtInfOC0745TopElmt">
+                <xsd:sequence>
+                    <xsd:element
+                        name = "ListOfKtInfOC0745"
+                        maxOccurs = "1"
+                        minOccurs = "1"
+                        type = "xsdLocal1:ListOfKtInfOC0745">
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name = "ListOfKtInfOC0745">
+                <xsd:sequence>
+                    <xsd:element
+                        name = "KtInfOC0745"
+                        maxOccurs = "1"
+                        minOccurs = "1"
+                        type = "xsdLocal1:KtInfOC0745">
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name = "KtInfOC0745">
+                <xsd:all>
+                    <xsd:element
+                        name = "CUST_TYPE"
+                        maxOccurs = "1"
+                        minOccurs = "1"
+                        type = "xsd:string">
+                    </xsd:element>
+                    <xsd:element
+                        name = "CUST_ID"
+                        maxOccurs = "1"
+                        minOccurs = "1"
+                        type = "xsd:string">
+                    </xsd:element>
+                </xsd:all>
+            </xsd:complexType>
+        </xsd:schema>
+        <xsd:schema
+            elementFormDefault = "qualified"
+            attributeFormDefault = "unqualified"
+            targetNamespace = "http://www.siebel.com/xml/INF-OC-0745_response"
+            xmlns:xsdLocal2 = "http://www.siebel.com/xml/INF-OC-0745_response"
+            xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
+            <xsd:annotation>
+                <xsd:documentation>Copyright (C) 2001-2004 Siebel Systems, Inc. All rights reserved. Siebel XSD Generation</xsd:documentation>
+            </xsd:annotation>
+            <xsd:element name = "ListOfKtInfOC0745response" type = "xsdLocal2:ListOfKtInfOC0745response"></xsd:element>
+            <xsd:complexType name = "ListOfKtInfOC0745responseTopElmt">
+                <xsd:sequence>
+                    <xsd:element
+                        name = "ListOfKtInfOC0745response"
+                        maxOccurs = "1"
+                        minOccurs = "1"
+                        type = "xsdLocal2:ListOfKtInfOC0745response">
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name = "ListOfKtInfOC0745response">
+                <xsd:sequence>
+                    <xsd:element
+                        name = "KtInfOC0745response"
+                        maxOccurs = "1"
+                        minOccurs = "1"
+                        type = "xsdLocal2:KtInfOC0745response">
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name = "KtInfOC0745response">
+                <xsd:all>
+                    <xsd:element
+                        name = "RESULT_CD"
+                        maxOccurs = "1"
+                        minOccurs = "1"
+                        type = "xsd:string">
+                    </xsd:element>
+                    <xsd:element
+                        name = "CUST_TYPE"
+                        maxOccurs = "1"
+                        minOccurs = "1"
+                        type = "xsd:string">
+                    </xsd:element>
+                    <xsd:element
+                        name = "G_CUST_ID"
+                        maxOccurs = "1"
+                        minOccurs = "1"
+                        type = "xsd:string">
+                    </xsd:element>
+                    <xsd:element
+                        name = "ICIS_CUST_ID"
+                        maxOccurs = "1"
+                        minOccurs = "1"
+                        type = "xsd:string">
+                    </xsd:element>
+                    <xsd:element
+                        name = "NSTEP_CUST_ID"
+                        maxOccurs = "1"
+                        minOccurs = "1"
+                        type = "xsd:string">
+                    </xsd:element>
+                    <xsd:element
+                        name = "CUST_NAME"
+                        maxOccurs = "1"
+                        minOccurs = "1"
+                        type = "xsd:string">
+                    </xsd:element>
+                    <xsd:element
+                        name = "CUST_NUM_TYPE"
+                        maxOccurs = "1"
+                        minOccurs = "1"
+                        type = "xsd:string">
+                    </xsd:element>
+                    <xsd:element
+                        name = "CUST_CLASS_NO"
+                        maxOccurs = "1"
+                        minOccurs = "1"
+                        type = "xsd:string">
+                    </xsd:element>
+                    <xsd:element
+                        name = "CUST_NUM"
+                        maxOccurs = "1"
+                        minOccurs = "1"
+                        type = "xsd:string">
+                    </xsd:element>
+                    <xsd:element
+                        name = "CUST_IDFY_NAME"
+                        maxOccurs = "1"
+                        minOccurs = "1"
+                        type = "xsd:string">
+                    </xsd:element>
+                    <xsd:element
+                        name = "CUST_IDFY_NO_TYPE"
+                        maxOccurs = "1"
+                        minOccurs = "1"
+                        type = "xsd:string">
+                    </xsd:element>
+                    <xsd:element
+                        name = "CUST_IDFY_NO"
+                        maxOccurs = "1"
+                        minOccurs = "1"
+                        type = "xsd:string">
+                    </xsd:element>
+                    <xsd:element
+                        name = "REAL_NAME_CHECK_YN"
+                        maxOccurs = "1"
+                        minOccurs = "1"
+                        type = "xsd:string">
+                    </xsd:element>
+                    <xsd:element
+                        name = "REAL_NAME_CHECK_DATE"
+                        maxOccurs = "1"
+                        minOccurs = "1"
+                        type = "xsd:string">
+                    </xsd:element>
+                    <xsd:element
+                        name = "IPIN_CI"
+                        maxOccurs = "1"
+                        minOccurs = "1"
+                        type = "xsd:string">
+                    </xsd:element>
+                    <xsd:element
+                        name = "IPIN_DI"
+                        maxOccurs = "1"
+                        minOccurs = "1"
+                        type = "xsd:string">
+                    </xsd:element>
+                </xsd:all>
+            </xsd:complexType>
+        </xsd:schema>
+    </types>
+    <message name = "SiebelFault">
+        <part name = "siebdetail" element = "siebelfault:siebdetail"/>
+    </message>
+    <message name = "header">
+        <part name = "BITHeader" element = "had:BITHeader"/>
+    </message>
+    <message name = "RunProcess_OC0745_Input">
+        <part name = "BITHeader" element = "had:BITHeader"/>
+        <part name = "RunProcess_OC0745_Input" element = "tns:RunProcess_OC0745_Input"></part>
+    </message>
+    <message name = "RunProcess_OC0745_Output">
+        <part name = "BITHeader" element = "had:BITHeader"/>
+        <part name = "RunProcess_OC0745_Output" element = "tns:RunProcess_OC0745_Output"></part>
+    </message>
+    <portType name = "KT_spcEAI_spcOC0745_spcInbound_spcTrigger_spcWF">
+        <operation name = "RunProcess_OC0745">
+            <input message = "tns:RunProcess_OC0745_Input"></input>
+            <output message = "tns:RunProcess_OC0745_Output"></output>
+            <fault message = "tns:SiebelFault" name = "SiebelFault"/>
+        </operation>
+    </portType>
+    <binding name = "KT_spcEAI_spcOC0745_spcInbound_spcTrigger_spcWF" type = "tns:KT_spcEAI_spcOC0745_spcInbound_spcTrigger_spcWF">
+        <soap:binding transport = "http://schemas.xmlsoap.org/soap/http" style = "document"></soap:binding>
+        <operation name = "RunProcess_OC0745">
+            <soap:operation soapAction = "document/http://www.kt.com/bit/bss/InquireCustInfo:RunProcess_OC0745"></soap:operation>
+            <input>
+                <soap:header
+                    message = "tns:header"
+                    part = "BITHeader"
+                    use = "literal"/>
+                <soap:body use = "literal"></soap:body>
+            </input>
+            <output>
+                <soap:header
+                    message = "tns:header"
+                    part = "BITHeader"
+                    use = "literal"/>
+                <soap:body use = "literal"></soap:body>
+            </output>
+        </operation>
+    </binding>
+    <service name = "KT_spcEAI_spcOC0745_spcInqure_spcCust_spcInfo_spcWS">
+        <port binding = "tns:KT_spcEAI_spcOC0745_spcInbound_spcTrigger_spcWF" name = "KT_spcEAI_spcOC0745_spcInbound_spcTrigger_spcWF">
+            <soap:address location = "http://10.220.212.170:5001/KT_BIT_EAI_CRM_OM_01/queryForCustInfo0745"></soap:address>
+        </port>
+    </service>
+</definitions>

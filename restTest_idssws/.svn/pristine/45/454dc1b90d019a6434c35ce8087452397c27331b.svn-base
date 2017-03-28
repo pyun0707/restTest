@@ -1,0 +1,9 @@
+package kt.idss.gcrm.service;
+
+import kt.idss.gcrm.ws.spec.RetnHeaderForm;
+import kt.idss.ktws.vo.Product;
+
+public interface VerifyService {
+    public RetnHeaderForm createReservation(Product product);
+    public RetnHeaderForm createVerifyOwner(Product product);
+}

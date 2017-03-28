@@ -1,0 +1,936 @@
+/*
+ * IDMS(Integrated DataBase Management System) version 1.0
+ *
+ *  Copyright ⓒ 2016 kt cort. All rights reserved.
+ *
+ *  This is a proprietary software of kt corp, and you may not use this file except in
+ *  compliance with license agreement with kt corp. Any redistribution or use of this
+ *  software, with or without modification shall be strictly prohibited without prior written
+ *  approval of kt corp, and the copyright notice above does not evidence any actualor
+ *  intended publication of such software.
+*/
+
+package kt.idss.ktid.service;
+
+
+import kt.idss.ktid.validation.VerifyUserValidator;
+import kt.idss.ktid.ws.spec.RetnHeaderForm;
+import kt.idss.ktws.common.dao.AsyncDao;
+import kt.idss.ktws.common.dao.CrisDao;
+import kt.idss.ktws.common.dao.CryptDao;
+import kt.idss.ktws.common.dao.CustBasDao;
+import kt.idss.ktws.common.dao.DbinfoDao;
+import kt.idss.ktws.common.dao.IdChangeDao;
+import kt.idss.ktws.enums.ProductCategory;
+import kt.idss.ktws.enums.ResponseSpec;
+import kt.idss.ktws.exception.ServiceException;
+import kt.idss.ktws.gcrm.GcrmClient;
+import kt.idss.ktws.cdm.CustInfoClient;
+import kt.idss.ktws.product.dao.ProductOrderDao;
+import kt.idss.ktws.product.dao.ReservedIdDao;
+import kt.idss.ktws.util.Utility;
+import kt.idss.ktws.vo.CustBasForm;
+import kt.idss.ktws.vo.Customer;
+import kt.idss.ktws.vo.Product;
+import kt.idss.ktws.vo.ProductOrderInfo;
+import kt.idss.ktws.vo.ReservedInfo;
+import kt.idss.ktws.vo.ServerItem;
+
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.stereotype.Service;
+
+import sun.print.resources.serviceui;
+
+@Service
+public class IdChangeServiceForIdMaster implements IdChangeService{
+
+    private static final Logger logger = LoggerFactory.getLogger(IdChangeServiceForIdMaster.class);
+
+    private String tmpInfo = "";
+    private String tmpInfoName = "";
+
+    @Autowired
+    private IdChangeDao dao;
+
+    @Autowired
+    private ReservedIdDao reservedIdDao;
+
+    @Autowired
+    private CryptDao cryptDao;
+
+    @Autowired
+    private CrisDao  crisDao;
+
+    @Autowired
+    AsyncDao ayncDao;
+
+    @Autowired
+    Utility utility;
+
+    @Autowired
+    private CustBasDao custBasDao;
+
+    @Autowired
+    private DbinfoDao dbinfoDao;
+
+    @Autowired
+    @Qualifier("du")
+    private ProductOrderDao DuDaoImple         ;
+
+    @Autowired
+    @Qualifier("internet")
+    private ProductOrderDao InternetDaoImple   ;
+
+    @Autowired
+    @Qualifier("internetSub")
+    private ProductOrderDao InternetSubDaoImple;
+
+    @Autowired
+    @Qualifier("wibroBiz")
+    private ProductOrderDao WibroBizDaoImple   ;
+
+    @Autowired
+    @Qualifier("wibro")
+    private ProductOrderDao WibroDaoImple      ;
+
+    @Autowired
+    @Qualifier("wifi")
+    private ProductOrderDao WifiDaoImple       ;
+
+    @Autowired
+    @Qualifier("wifiSub")
+    private ProductOrderDao WifiSubDaoImple    ;
+
+
+
+    public IdChangeServiceForIdMaster(){}
+
+    @Autowired
+    public IdChangeServiceForIdMaster(IdChangeDao dao){
+        this.dao           = dao;
+    }
+
+    // aes-ecb(with icis key) -> cris link (by virture) -> result : ipin ci
+    private String getIpinCiByAesEcbRealNumber(String type, String aesEcbNumber){
+
+        return crisDao.readIpinCiByReal(type, getRealByAesEcbNumber(aesEcbNumber));
+    }
+
+    // aes-ecb(with icis key) -> cris link (by virture) -> result : ipin ci
+    private String getIpinCiByAesEcbVirtureNumber(String type, String aesEcbNumber){
+
+        return crisDao.readIpinCiByVirture(type, getRealByAesEcbNumber(aesEcbNumber));
+    }
+
+    // aes-ecb(with icis key) -> result : real number
+    private String getRealByAesEcbNumber(String aesEcbNumber){
+        String decrypt = null;
+        try{
+            decrypt =  cryptDao.getDeCryptRealValue("aes-ecb", "icis", aesEcbNumber);
+            if(isBlank(decrypt) == true){
+                throw new ServiceException(ResponseSpec.BAD_REQUEST.intCode (),"AES Decrypt Error");
+            }else{
+                return decrypt;
+            }
+        }catch(Exception e){
+            throw new ServiceException(ResponseSpec.BAD_REQUEST.intCode (),"AES Decrypt Error");
+        }
+
+    }
+
+    // aes-ecb(with icis key) -> real number -> result : aes-cbc (with idms key)
+    private String getAesCbcByAesEcbNumber(String aesEcbNumber){
+        return cryptDao.getEnCryptRealValue("aes-cbc", "idms", getRealByAesEcbNumber(aesEcbNumber));
+    }
+
+    private String getAesCbcByGenesis(String text){ // text(real) -> aes-cbc (genesis)
+        return cryptDao.getEnCryptRealValue("aes-cbc", "genesis", text);
+    }
+
+    // aes-cbc(with idms key) -> result : real number
+    private String getRealNumberByIdmsKey(String aesCbcNumber){
+        return cryptDao.getDeCryptRealValue("aes-cbc", "idms", aesCbcNumber);
+    }
+
+    // aes-cbc(with idms key) -> real number ->  cris link (by realnumber) -> result : virture number
+    private String getVirtureNumberByIdmsKey(String type, String aesCbcNumber){
+        String realnumber = getRealNumberByIdmsKey(aesCbcNumber);
+        try{
+            return crisDao.readVirtureByReal(type, realnumber);
+        }catch(Exception e){
+            return "";
+        }
+    }
+
+    /*
+     * 20160104 cdm 고객정보 동기화
+     */
+    @Override
+    public RetnHeaderForm createReservation(Product product){
+        logger.info("dup check start");
+        RetnHeaderForm retnHeaderForm = null;
+        Customer customer = product.getCustomer();
+        if(customer ==null){
+            throw new ServiceException( ResponseSpec.BAD_REQUEST.intCode ()
+                                       ,ResponseSpec.BAD_REQUEST.intValue()+"(cust info not received)" );
+        }
+
+        // ipin ci setting
+        //isNeedIpinCiType -> 개인 주민등록번호와 외국인 등록번호일 때만 Ipin_ci 가 필요
+        if(isNeedIpinCiType(product.getCustomer().getCust_type_cd()) == true){
+            if(customer.getIpin_ci() == null || "".equals(customer.getIpin_ci().trim())){
+                logger.info("=============== ipin_ci is null");
+
+                try{
+                    //201407_modify: 2차 식별번호 가상화
+                    //getIpinCiByAesEcbRealNumber -> getIpinCiByAesEcbVirtureNumber
+//                    product.getCustomer().setIpin_ci(getIpinCiByAesEcbVirtureNumber(product.getCustomer().getCust_type_cd()
+//                                                                               , customer.getCust_num()));
+                    /*   201501_modify: GCRM 연동
+                     *   cust_id 기준으로 GCRM 연동해서 ipin_ci setting
+                     * */
+
+                    /*
+                     * 20160104 cdm 고객정보 동기화
+                     * Cust_id 기준으로 CDM/GCRM 연동(Dbinfo read)해서 ipin_ci setting
+                     */
+
+                    String ipin_ci = getIpinCi(product.getCustomer().getCust_id());
+                    if (StringUtils.isBlank(ipin_ci)) {
+                        logger.info("======= to get ipin_ci value fail.. (ipin_ci is null) ");
+                        throw new ServiceException();
+
+                    }
+
+                    product.getCustomer().setIpin_ci(ipin_ci);
+
+                    logger.info("=============== to get ipin_ci value success ");
+                }catch(Exception e){
+                    if(e instanceof ServiceException){
+                        throw new ServiceException(ResponseSpec.BAD_REQUEST.intCode (), "조회 오류 ["+tmpInfo+" IPIN_CI 데이터 미존재] 해당가입자의 고객정보에 대하여 "+tmpInfoName+"에서 실명인증을 먼저 하셔야 합니다");
+
+                    }else {
+                        throw new ServiceException( ResponseSpec.SERVICE_LINK_ERROR.intCode ()
+                                ,ResponseSpec.SERVICE_LINK_ERROR.intValue()+" ["+tmpInfo+" 연동 실패]" );
+
+                    }
+
+                }
+            }
+        }
+
+        product.getCustomer().setCust_type_cd  (convertCustNumType(customer.getCust_type_cd()));
+        logger.info("setCust_type_cd   convert: ({} -> {}) success", customer.getCust_type_cd()  ,product.getCustomer().getCust_type_cd());
+
+        if(isBlank(customer.getCust_idfy_type()) == false){
+            product.getCustomer().setCust_idfy_type(convertCustNumType(customer.getCust_idfy_type()));
+            logger.info("setCust_idfy_type convert: ({} -> {}) success", customer.getCust_idfy_type(),product.getCustomer().getCust_idfy_type());
+        }
+
+        // decrypt(icis),cbc-ecb ->encrypt(idms),aes-cbc
+        try{
+            product.getCustomer().setCust_num(getAesCbcByAesEcbNumber(customer.getCust_num()));
+            logger.info("cust num : (aes-ecb : icis key) decrypt -> (aes-cbc : idms key) encrypt success");
+        }catch(Exception e){
+            //e.printStackTrace();
+            throw new ServiceException( ResponseSpec.BAD_REQUEST.intCode ()
+                                       ,ResponseSpec.BAD_REQUEST.intValue()+"(cust_num encrypt error)" );
+        }
+
+        if(isBlank(customer.getCust_idfy_no()) == false){
+            try{
+                product.getCustomer().setCust_idfy_no(getAesCbcByAesEcbNumber(customer.getCust_idfy_no()));
+                logger.info("cust_idfy_no : (aes-ecb : icis key) decrypt -> (aes-cbc : idms key) encrypt success");
+            }catch(Exception e){
+                //e.printStackTrace();
+                throw new ServiceException( ResponseSpec.BAD_REQUEST.intCode ()
+                                           ,ResponseSpec.BAD_REQUEST.intValue()+"(cust_num encrypt error)" );
+            }
+        }
+
+
+        // common lib call
+        String result  = null;
+        try{
+            result  =  dao.reserveId(product, false);
+            logger.info("call dupchk(idms common util) success");
+        }catch(Exception e){
+            //e.printStackTrace();
+            throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                       ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+        }
+
+        int errcode = getIntCode(getCodeSpilt(result,0));
+        logger.info("[dupchk]common library call result / errcode : [{}]/[{}] " , result,errcode);
+        if(ResponseSpec.SUCCESS.intCode() != errcode){
+            if(ResponseSpec.USED.intCode()== errcode){
+                throw new ServiceException( ResponseSpec.USED.intCode ()
+                                           ,ResponseSpec.USED.intValue()+decorateMessage(getCodeSpilt(result, 1)));
+            } else if (ResponseSpec.USED_FIRE.intCode()== errcode){
+                throw new ServiceException( ResponseSpec.USED_FIRE.intCode ()
+                        ,ResponseSpec.USED_FIRE.intValue()+decorateMessage(getCodeSpilt(result, 1)));
+
+            } else if (ResponseSpec.SUCCESS_EXIST.intCode()== errcode){
+                retnHeaderForm = new RetnHeaderForm(""+ResponseSpec.SUCCESS_EXIST.intCode()
+                                                      ,ResponseSpec.SUCCESS_EXIST.intValue());
+                logger.info("set RetnHeaderForm return code, message");
+            }else{
+                throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                           ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+            }
+        }
+        // register reserved Id
+        try{
+            reservedIdDao.createReservedId(convertInfo(product));
+            logger.info("reserved write success");
+        }catch(Exception e){
+            e.printStackTrace();
+            throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                       ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+        }
+        logger.info("dup check end");
+        return retnHeaderForm;
+    }
+
+    private String getIpinCi(String cust_id) throws java.lang.Exception {
+        logger.info("======= cust_bas select start..");
+        CustBasForm custBasInfo = null;
+
+        try {
+            custBasInfo = custBasDao.readCustInfo(cust_id);
+        } catch (Exception e) {
+            if (e instanceof EmptyResultDataAccessException) {
+            }
+        }
+
+        if (custBasInfo != null && StringUtils.isNotBlank(custBasInfo.getIpinci_val())) {
+            logger.info("======= cust_bas ipin_ci exist");
+            return custBasInfo.getIpinci_val();
+
+        } else {
+            logger.info("======= cust_bas ipin_ci not exist");
+
+            /*
+             *  20160104 cdm 고객정보 동기화
+             *
+             * DbInfo 에서 CDM/CRM 정보 read
+             * Dbinfo가 정상 조회 되면 CDM/CRM 연동 아닌경우 에러처리
+             * CDM에 Webmode가 N인 경우 CDM만 처리
+             * CDM에 Webmode가 N이아니고 CRM이 N인경우만 CRM처리
+             * 둘다 아닌경우 연동에러
+             *
+             */
+            logger.info("=============== dbinfo start ");
+            ServerItem dbInfoCdm = dbinfoDao.readDbinfo("WEBSERVICE", "CDM");
+     /*       ServerItem dbInfoCrm = dbinfoDao.readDbinfo("WEBSERVICE", "CRM");*/
+
+            String ipin_ci = null;
+            try{
+                if (dbInfoCdm != null ){
+
+                    if(dbInfoCdm.getWeb_mode().equals("N")){
+                        logger.info("======= cdm soap call ");
+
+                        tmpInfo = "CDM";
+                        tmpInfoName = " KOS(CDM)";
+                        CustInfoClient cdm_client = new CustInfoClient();
+                        ipin_ci = cdm_client.retrieveIDMSCustIdfyNo(dbInfoCdm.getIp(), "02", cust_id);
+                        return ipin_ci;
+                    }else{
+                          ServerItem dbInfoCrm = dbinfoDao.readDbinfo("WEBSERVICE", "CRM");
+                          if (dbInfoCrm != null ){
+                              if(dbInfoCrm.getWeb_mode().equals("N")){
+                                  logger.info("======= Gcrm soap call ");
+
+                                  tmpInfo = "GCRM";
+                                  tmpInfoName = "BSS-CRM";
+                                  GcrmClient gcrm_client = new GcrmClient();
+                                  ipin_ci = gcrm_client.gcrmSoapCall(cust_id, "02");
+                              }else{
+                                  tmpInfo = "";
+                                  tmpInfoName = "";
+                                  throw new Exception();
+                              }
+                          }else{
+                              tmpInfo = "";
+                              tmpInfoName = "";
+                              throw new Exception();
+                          }
+                    }
+                    return ipin_ci;
+                }else {
+                    throw new Exception();
+                }
+
+            }catch(Exception e){
+                throw e;
+            }
+
+        }
+    }
+
+    @Override
+    public void createNewId(String logname, String cust_id,
+                            String sa_id  , String p_sa_id, String prod_code) {
+
+        logger.info("change id start");
+        Product product             = null;
+        ProductOrderDao orderDao    = null;
+        ProductOrderInfo orderInfo  = new ProductOrderInfo();
+        try{
+            orderInfo.setSa_id(sa_id);
+
+            orderDao    = getOrderDao(prod_code);
+
+
+            if(orderDao == null){
+                throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                           ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+            }
+            product     = orderDao.readProductInfoBySaid(orderInfo);
+            if(product !=null){
+                product.setProd_type(prod_code);
+            }
+            logger.info("idms info read success");
+        }catch(Exception e){
+            if(e instanceof EmptyResultDataAccessException){
+                throw new ServiceException( ResponseSpec.NOT_FOUND.intCode()
+                                           ,ResponseSpec.NOT_FOUND.intValue()+"(product not opend)");
+            }
+            //e.printStackTrace();
+            throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                       ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+        }
+        if(product == null){
+            throw new ServiceException( ResponseSpec.NOT_FOUND.intCode()
+                                       ,ResponseSpec.NOT_FOUND.intValue()+"(product not opend)");
+        }
+
+        Customer customer = product.getCustomer();
+
+        if(customer == null){
+            throw new ServiceException( ResponseSpec.NOT_FOUND.intCode()
+                                       ,ResponseSpec.NOT_FOUND.intValue()+"(cust not found)");
+        }
+
+        if(!customer.getCust_id().equals(cust_id)){
+            logger.info("cust_id mismatch db: {} / in : {}",customer.getCust_id(), cust_id);
+            /*
+            throw new ServiceException( ResponseSpec.NOT_FOUND.intCode()
+                                       ,ResponseSpec.NOT_FOUND.intValue()+"(cust_id mismatch)");
+            */
+        }
+
+        // TODO : dup check
+        String result  = null;
+
+        try{
+            product.setLoginid(logname);
+            result  =  dao.reserveId(product, false);
+            logger.info("call dupchk(idms common util) success");
+        }catch(Exception e){
+            //e.printStackTrace();
+            throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                       ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+        }
+
+        // register reserved Id
+        try{
+            reservedIdDao.createReservedId(convertInfo(product));
+            logger.info("reserved write success");
+        }catch(Exception e){
+            //e.printStackTrace();
+            throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                       ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+        }
+
+        int errcode = getIntCode(getCodeSpilt(result,0));
+        logger.info("[dupchk]common library call result/errcode : [{}]/[{}] " , result,errcode);
+
+        if(ResponseSpec.SUCCESS.intCode() != errcode){
+            if(ResponseSpec.USED.intCode()== errcode){
+                throw new ServiceException( ResponseSpec.USED.intCode ()
+                                           ,ResponseSpec.USED.intValue()+decorateMessage(getCodeSpilt(result, 1)));
+
+            } else if (ResponseSpec.USED_FIRE.intCode()== errcode){
+                throw new ServiceException( ResponseSpec.USED_FIRE.intCode ()
+                        ,ResponseSpec.USED_FIRE.intValue()+decorateMessage(getCodeSpilt(result, 1)));
+
+            }else if(ResponseSpec.SUCCESS_EXIST.intCode()== errcode){
+
+            }else{
+                throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                           ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+            }
+        }
+
+        String wono         = utility.getPatternDate("yyyyMMddHHmmssSSSS").substring(7, 18);
+        String ordno        = utility.getPatternDate("yyyyMMddHHmmssSSSS").substring(3, 18);
+        String insdate      = utility.getPatternDate("yyyyMMddHHmmss");
+
+        String orderCustNum    = getOrderCustNumVirture(customer.getCust_type_cd(), customer.getCust_num());
+        String orderCustIdfyNo = getOrderCustNumVirture(customer.getCust_idfy_type(), customer.getCust_idfy_no());
+        String use_cust_num = "";
+
+        /*
+        if (ProductCategory.DIAL_UP.strValue().equals(prod_code) || ProductCategory.WIBRO_BIZ.strValue().equals(prod_code)) {
+            orderCustNum = getOrderCustNumVirture(customer.getCust_type_cd(), customer.getCust_num());
+            orderCustIdfyNo = getOrderCustNumVirture(customer.getCust_idfy_type(), customer.getCust_idfy_no());
+
+        } else {
+            orderCustNum = getOrderCustNum(customer.getCust_type_cd(), customer.getCust_num());
+            orderCustIdfyNo = getOrderCustNum(customer.getCust_idfy_type(), customer.getCust_idfy_no());
+        }
+        */
+        /*
+        if(ProductCategory.WIBRO.strValue().equals(prod_code)){
+            use_cust_num = getOrderCustNum(  product.getUse_cust_type()
+                                           , product.getUse_cust_num());
+        }
+        */
+        orderInfo.setP_sa_id       (product.getP_sa_id());
+        orderInfo.setCust_num      (orderCustNum);
+        orderInfo.setCust_idfy_no  (orderCustIdfyNo);
+        orderInfo.setLogname       (logname);
+        orderInfo.setWono          (wono);
+        orderInfo.setInsdate       (insdate);
+        orderInfo.setOrdno         (ordno);
+        orderInfo.setUse_cust_num  (use_cust_num);
+
+        try{
+            int rcvbasicCount  = orderDao.createRcvbasic  (orderInfo);
+            logger.info("rcvbasicCount {} ", rcvbasicCount);
+            int rcvCount       = orderDao.createRcv       (orderInfo);
+            logger.info("rcvCount {} ", rcvCount);
+            int rcvLognameount = orderDao.createRcvLogname(orderInfo);
+            logger.info("rcvLognameount {} ", rcvLognameount);
+
+            if(rcvbasicCount + rcvCount + rcvLognameount != 3){
+                throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                           ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue()+"(change id order create fail)");
+            }
+            logger.info("order create success");
+        }catch(Exception e){
+            //e.printStackTrace();
+            throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                       ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+        }
+        logger.info("change id end");
+    }
+
+    @Override
+    public RetnHeaderForm createVerifyOwner(Product product) {
+        logger.info("verify owner start");
+
+        /** 201504.
+         *  기존ID와 동일여부를 체크해서
+         *  동일하면 특수문자 검증 제외, 다르면 특수문자 유효성 검증이 필요.
+         */
+        Product         info        = null;
+        ProductOrderDao orderDao    = null;
+        ProductOrderInfo orderInfo  = new ProductOrderInfo();
+
+        try{
+            orderInfo.setSa_id(product.getP_sa_id());
+            orderDao    = getOrderDao(product.getProd_type());
+
+            if(orderDao == null){
+                throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                           ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+            }
+            info     = orderDao.readProductInfoBySaid(orderInfo);
+            logger.info("idms info read success");
+
+        }catch(Exception e){
+            if(e instanceof EmptyResultDataAccessException){
+//                throw new ServiceException( ResponseSpec.NOT_FOUND.intCode()
+//                                           ,ResponseSpec.NOT_FOUND.intValue()+"(product not opend)");
+            } else {
+                //e.printStackTrace();
+                throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                           ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+            }
+        }
+
+        boolean isChangeLoginid = true;
+
+        if (info != null && StringUtils.equals(product.getLoginid(), info.getLoginid())) {
+            //기존ID와 동일하게 명의변경 검증 호출시, ID 유효성 체크 제외.
+            isChangeLoginid = false;
+        }
+
+        if (isChangeLoginid) {
+            //idcheck
+            if (VerifyUserValidator.checkIdValid(product.getLoginid()) == false){
+                throw new ServiceException( ResponseSpec.BAD_REQUEST.intCode()
+                                           ,ResponseSpec.BAD_REQUEST.intValue()+" [첫글자는 영문이며 영문대소문자, 숫자0~9까지만 사용이 가능하고 ID 길이는 6~15까지 허용합니다.]");
+            }
+
+            if (VerifyUserValidator.checkEnableId(product.getLoginid()) == false){
+                throw new ServiceException( ResponseSpec.BAD_REQUEST.intCode()
+                        ,ResponseSpec.BAD_REQUEST.intValue()+" [사용할수 없는 ID 입니다.]");
+            }
+        }
+
+        RetnHeaderForm retnHeaderForm = null;
+
+        Customer customer = product.getCustomer();
+        if(customer ==null){
+            logger.info("cust not found");
+            throw new ServiceException( ResponseSpec.BAD_REQUEST.intCode ()
+                                       ,ResponseSpec.BAD_REQUEST.intValue()+"(cust info not received)" );
+        }
+
+        // ipin ci setting
+        if(isNeedIpinCiType(product.getCustomer().getCust_type_cd()) == true){
+            if(customer.getIpin_ci() == null || "".equals(customer.getIpin_ci().trim())){
+                logger.info("=============== ipin_ci is null");
+                try{
+
+                  /*201407_modify: 2차 식별번호 가상화
+                    getIpinCiByAesEcbRealNumber -> getIpinCiByAesEcbVirtureNumber
+                    product.getCustomer().setIpin_ci(getIpinCiByAesEcbVirtureNumber(product.getCustomer().getCust_type_cd()
+                                                                               , customer.getCust_num()));
+                  */
+                    /*   201501_modify: GCRM 연동
+                     *   cust_id 기준으로 GCRM 연동해서 ipin_ci setting
+                     * */
+
+                    /*
+                     * 20160104 cdm 고객정보 동기화
+                     * ust_id 기준으로 CDM/GCRM 연동(Dbinfo read)해서 ipin_ci setting
+                     */
+
+                    String ipin_ci = getIpinCi(product.getCustomer().getCust_id());
+
+                    if (StringUtils.isBlank(ipin_ci)) {
+                        logger.info("======= to get ipin_ci value fail.. (ipin_ci is null) ");
+                        throw new ServiceException();
+
+                    }
+
+                    product.getCustomer().setIpin_ci(ipin_ci);
+
+                    logger.info("=============== to get ipin_ci value success ");
+                }catch(Exception e){
+                    if(e instanceof ServiceException){
+                        throw new ServiceException(ResponseSpec.BAD_REQUEST.intCode (), "조회 오류 ["+tmpInfo+" IPIN_CI 데이터 미존재] 해당가입자의 고객정보에 대하여 "+tmpInfoName+"에서 실명인증을 먼저 하셔야 합니다");
+
+                    }else {
+                        throw new ServiceException( ResponseSpec.SERVICE_LINK_ERROR.intCode ()
+                                ,ResponseSpec.SERVICE_LINK_ERROR.intValue()+" ["+tmpInfo+" 연동 실패]" );
+
+                    }
+                }
+            }
+        }
+        product.getCustomer().setCust_type_cd  (convertCustNumType(customer.getCust_type_cd()));
+        logger.info("setCust_type_cd   convert: ({} -> {}) success", customer.getCust_type_cd()  ,product.getCustomer().getCust_type_cd());
+
+        if(isBlank(customer.getCust_idfy_type()) == false){
+            product.getCustomer().setCust_idfy_type(convertCustNumType(customer.getCust_idfy_type()));
+            logger.info("setCust_idfy_type convert: ({} -> {}) success", customer.getCust_idfy_type(),product.getCustomer().getCust_idfy_type());
+        }
+
+        // encrypt to idms-db type
+        try{
+            product.getCustomer().setCust_num(getAesCbcByAesEcbNumber(customer.getCust_num()));
+            logger.info("cust num : (aes-ecb : icis key) decrypt -> (aes-cbc : idms key) encrypt success");
+        }catch(Exception e){
+            //e.printStackTrace();
+            throw new ServiceException( ResponseSpec.BAD_REQUEST.intCode ()
+                                       ,ResponseSpec.BAD_REQUEST.intValue()+"(cust_num encrypt error)" );
+        }
+        if(isBlank(customer.getCust_idfy_no()) == false){
+            try{
+                product.getCustomer().setCust_idfy_no(getAesCbcByAesEcbNumber(customer.getCust_idfy_no()));
+                logger.info("cust_idfy_no : (aes-ecb : icis key) decrypt -> (aes-cbc : idms key) encrypt success");
+            }catch(Exception e){
+                //e.printStackTrace();
+                throw new ServiceException( ResponseSpec.BAD_REQUEST.intCode ()
+                                           ,ResponseSpec.BAD_REQUEST.intValue()+"(cust_num encrypt error)" );
+            }
+        }
+
+        String result  = null;
+        try{
+            result = dao.verifyUser(product, false);
+            logger.info("call verifyUser (idms common util) success");
+        }catch(Exception e){
+            //e.printStackTrace();
+            throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                       ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+        }
+        int errcode = getIntCode(getCodeSpilt(result,0));
+        logger.info("[verifyUser]common library call result/errcode : [{}]/[{}] " , result,errcode);
+        if(ResponseSpec.SUCCESS.intCode() != errcode){
+
+            if(ResponseSpec.NOT_FOUND.intCode()  == errcode){
+                throw new ServiceException( ResponseSpec.NOT_FOUND.intCode()
+                                           ,ResponseSpec.NOT_FOUND.intValue());
+            }else if(ResponseSpec.USED.intCode() == errcode){
+                throw new ServiceException(  ResponseSpec.USED.intCode()
+                                           , ResponseSpec.USED.intValue() + decorateMessage(getCodeSpilt(result,1)));
+
+            } else if (ResponseSpec.USED_FIRE.intCode()== errcode){
+                throw new ServiceException( ResponseSpec.USED_FIRE.intCode ()
+                        ,ResponseSpec.USED_FIRE.intValue()+decorateMessage(getCodeSpilt(result, 1)));
+
+            }else if(ResponseSpec.SUCCESS_EXIST.intCode()== errcode){
+                retnHeaderForm = new RetnHeaderForm(""+ResponseSpec.SUCCESS_EXIST.intCode()
+                                                      ,ResponseSpec.SUCCESS_EXIST.intValue());
+                logger.info("set RetnHeaderForm return code, message");
+            }else{
+                throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                           ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+            }
+        }
+
+        try{
+            reservedIdDao.createReservedId(convertInfo(product));
+            logger.info("reserved write success");
+        }catch(Exception e){
+            //e.printStackTrace();
+            throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                       ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+        }
+        logger.info("verify owner end");
+        return retnHeaderForm;
+    }
+/*
+    private String getOrderCustNum(String cust_type_cd, String cust_num){
+        String orderCustNum = "";
+        if (cust_num != null && !"".equals(cust_num)) {
+            if(isNeedVirtureType(cust_type_cd)){
+                try{
+                    orderCustNum = getVirtureNumberByIdmsKey( cust_type_cd
+                                                            , cust_num);
+
+                    if(orderCustNum == null){
+                        throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                                   ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+                    }
+                }catch(Exception e){
+                    //e.printStackTrace();
+                    throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode ()
+                                               ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue() );
+                }
+            }else{
+                try{
+                    orderCustNum = getRealNumberByIdmsKey(cust_num);
+                    if(orderCustNum == null){
+                        throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                                   ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+                    }
+//                    return orderCustNum;
+                }catch(Exception e){
+                    //e.printStackTrace();
+                    throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode ()
+                                               ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue() );
+                }
+            }
+            if (orderCustNum != null && !"".equals(orderCustNum)) {
+                return  getAesCbcByGenesis(orderCustNum);
+            }
+        }
+        return "";
+    }
+*/
+    //원부가 가상번호(1,2,5,g) 암호화 or 실번호(그외) 암호화로 구축되어있음
+    private String getOrderCustNumVirture(String cust_type_cd, String cust_num){
+        String orderCustNum = "";
+        if (cust_num != null && !"".equals(cust_num)) {
+            /*
+            if(isNeedVirtureType(cust_type_cd)){
+                try{
+                    orderCustNum = getVirtureNumberByIdmsKey( cust_type_cd
+                                                            , cust_num);
+                    if(orderCustNum == null){
+                        throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                                   ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+                    }
+                    return orderCustNum;
+
+                }catch(Exception e){
+                    //e.printStackTrace();
+                    throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode ()
+                                               ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue() );
+                }
+            } else {
+                try{
+                    orderCustNum = getRealNumberByIdmsKey(cust_num);
+                    if(orderCustNum == null){
+                        throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                                   ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+                    }
+                    return orderCustNum;
+                }catch(Exception e){
+                    //e.printStackTrace();
+                    throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode ()
+                                               ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue() );
+                }
+            }
+            */
+            try{
+                orderCustNum = getRealNumberByIdmsKey(cust_num);
+                if(orderCustNum == null){
+                    throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                               ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+                }
+                return orderCustNum;
+            }catch(Exception e){
+                //e.printStackTrace();
+                throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode ()
+                                           ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue() );
+            }
+        }
+        return "";
+    }
+
+    private ProductOrderDao getOrderDao(String prod_code){
+        if(  ProductCategory.INTERNET_WIRE.strValue().equals(prod_code)
+           ||ProductCategory.INTERNET_WIRELESS.strValue().equals(prod_code) ){
+            return InternetDaoImple;
+        }else if(  ProductCategory.INTERNET_SUB_WIRE.strValue().equals(prod_code)
+                || ProductCategory.INTERNET_SUB_WIRELESS.strValue().equals(prod_code) ){
+            return InternetSubDaoImple;
+        }else if(  ProductCategory.WIFI.strValue().equals(prod_code)){
+            return WifiDaoImple;
+        }else if(  ProductCategory.WIFI_SUB.strValue().equals(prod_code)){
+            return WifiSubDaoImple;
+        }else if(  ProductCategory.DIAL_UP.strValue().equals(prod_code)){
+            return DuDaoImple;
+        }else if(  ProductCategory.WIBRO.strValue().equals(prod_code)){
+            return WibroDaoImple;
+        }else if(  ProductCategory.WIBRO_BIZ.strValue().equals(prod_code)){
+            return WibroBizDaoImple;
+        }
+        return null;
+    }
+
+    private String decorateMessage(String prodTypeName){
+        try{
+            return "(상품명 : "+ProductCategory.strValueOf(prodTypeName).strName()+")";
+        }catch(Exception e){
+            //e.printStackTrace();
+            e.printStackTrace();
+        }
+        return "";
+    }
+    private int getIntCode(String str){
+        try{
+            return Integer.parseInt(str);
+        }catch(Exception e){
+            //e.printStackTrace();
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    private String getCodeSpilt(String str, int number){
+
+        try{
+            String[] strArray = str.split("[//^]");
+            return strArray[number];
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return "";
+    }
+    private ReservedInfo convertInfo(Product product){
+        if(product.getCustomer() == null){
+            return new ReservedInfo (   product.getLoginid()
+                                        ,""
+                                        ,""
+                                        ,""
+                                        ,""
+                                        ,""
+                                        ,""
+                                        ,""
+                                        ,""
+                                        ,""
+                                        ,""
+                                        ,product.getSa_id()
+                                        ,product.getP_sa_id()
+                                        ,product.getProd_type()
+                                        ,"R"
+                                        ,utility.getPatternDate("yyyyMMddHHmmss")
+                                        ,utility.getPatternDate("yyyyMMddHHmmss")
+                                        ,false
+                                        );
+        }else{
+            String second_cust_no   = "";
+            String second_cust_name = "";
+
+            /*
+            if("1308".equals(product.getCustomer().getCust_idfy_type())){
+                second_cust_no   = product.getCustomer().getCust_idfy_no();
+                second_cust_name = product.getCustomer().getCust_idfy_name();
+            }
+            */
+            second_cust_no   = product.getCustomer().getCust_idfy_no();
+            second_cust_name = product.getCustomer().getCust_idfy_name();
+
+
+            return new ReservedInfo (product.getLoginid()
+                                    ,product.getCustomer().getCust_name()
+                                    ,product.getCustomer().getCust_type_cd()
+                                    ,product.getCustomer().getCust_num()
+                                    ,product.getCustomer().getIpin_ci()
+                                    ,product.getCustomer().getIpin_di()
+                                    ,second_cust_name
+                                    ,product.getCustomer().getCust_idfy_type()
+                                    ,second_cust_no
+                                    ,product.getCustomer().getCust_id()
+                                    ,""
+                                    ,product.getSa_id()
+                                    ,product.getP_sa_id()
+                                    ,product.getProd_type()
+                                    ,"R"
+                                    ,utility.getPatternDate("yyyyMMddHHmmss")
+                                    ,utility.getPatternDate("yyyyMMddHHmmss")
+                                    ,false
+                    );
+        }
+    }
+    private String convertCustNumType(String custNumType){
+        if(custNumType !=null && !"".equals(custNumType)){
+            try{
+                Integer.parseInt(custNumType);
+                if(custNumType.length() == 1){
+                    return "130"+custNumType;
+                }
+            }catch(NumberFormatException e){
+                e.printStackTrace();
+            }
+        }
+        return custNumType;
+    }
+    private boolean isNeedIpinCiType(String cust_type_cd){
+        String[] virtureType = new String[]{"1301","1305","1","5"};
+        for (String type : virtureType) {
+            if(cust_type_cd.equals(type)){
+                return true;
+            }
+        }
+        return false;
+
+    }
+    private boolean isNeedVirtureType(String cust_type_cd){
+        String[] virtureType = new String[]{"1301","1302","1305","130G","1","2","5","g"};
+        for (String type : virtureType) {
+            if(cust_type_cd.equals(type)){
+                return true;
+            }
+        }
+        return false;
+
+    }
+    private static boolean isBlank(String s){
+        return StringUtils.isBlank(s);
+    }
+}

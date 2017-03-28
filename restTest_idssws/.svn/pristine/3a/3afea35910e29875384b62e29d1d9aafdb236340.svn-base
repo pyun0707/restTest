@@ -1,0 +1,62 @@
+
+package kt.idss.ktws.gcrm;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Java class for ListOfKtInfOC0745response complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
+ * 
+ * <pre>
+ * &lt;complexType name="ListOfKtInfOC0745response">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="KtInfOC0745response" type="{http://www.siebel.com/xml/INF-OC-0745_response}KtInfOC0745response"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "ListOfKtInfOC0745response", namespace = "http://www.siebel.com/xml/INF-OC-0745_response", propOrder = {
+    "ktInfOC0745Response"
+})
+public class ListOfKtInfOC0745Response {
+
+    @XmlElement(name = "KtInfOC0745response", required = true)
+    protected KtInfOC0745Response ktInfOC0745Response;
+
+    /**
+     * Gets the value of the ktInfOC0745Response property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link KtInfOC0745Response }
+     *     
+     */
+    public KtInfOC0745Response getKtInfOC0745Response() {
+        return ktInfOC0745Response;
+    }
+
+    /**
+     * Sets the value of the ktInfOC0745Response property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link KtInfOC0745Response }
+     *     
+     */
+    public void setKtInfOC0745Response(KtInfOC0745Response value) {
+        this.ktInfOC0745Response = value;
+    }
+
+}

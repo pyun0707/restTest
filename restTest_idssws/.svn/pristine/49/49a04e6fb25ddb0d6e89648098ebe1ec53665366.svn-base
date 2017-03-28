@@ -1,0 +1,467 @@
+
+package kt.idss.ktws.gcrm;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Java class for KtInfOC0745response complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
+ * 
+ * <pre>
+ * &lt;complexType name="KtInfOC0745response">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;all>
+ *         &lt;element name="RESULT_CD" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="CUST_TYPE" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="G_CUST_ID" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="ICIS_CUST_ID" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="NSTEP_CUST_ID" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="CUST_NAME" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="CUST_NUM_TYPE" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="CUST_CLASS_NO" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="CUST_NUM" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="CUST_IDFY_NAME" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="CUST_IDFY_NO_TYPE" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="CUST_IDFY_NO" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="REAL_NAME_CHECK_YN" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="REAL_NAME_CHECK_DATE" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="IPIN_CI" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="IPIN_DI" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *       &lt;/all>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "KtInfOC0745response", namespace = "http://www.siebel.com/xml/INF-OC-0745_response", propOrder = {
+
+})
+public class KtInfOC0745Response {
+
+    @XmlElement(name = "RESULT_CD", required = true)
+    protected String resultcd;
+    @XmlElement(name = "CUST_TYPE", required = true)
+    protected String custtype;
+    @XmlElement(name = "G_CUST_ID", required = true)
+    protected String gcustid;
+    @XmlElement(name = "ICIS_CUST_ID", required = true)
+    protected String iciscustid;
+    @XmlElement(name = "NSTEP_CUST_ID", required = true)
+    protected String nstepcustid;
+    @XmlElement(name = "CUST_NAME", required = true)
+    protected String custname;
+    @XmlElement(name = "CUST_NUM_TYPE", required = true)
+    protected String custnumtype;
+    @XmlElement(name = "CUST_CLASS_NO", required = true)
+    protected String custclassno;
+    @XmlElement(name = "CUST_NUM", required = true)
+    protected String custnum;
+    @XmlElement(name = "CUST_IDFY_NAME", required = true)
+    protected String custidfyname;
+    @XmlElement(name = "CUST_IDFY_NO_TYPE", required = true)
+    protected String custidfynotype;
+    @XmlElement(name = "CUST_IDFY_NO", required = true)
+    protected String custidfyno;
+    @XmlElement(name = "REAL_NAME_CHECK_YN", required = true)
+    protected String realnamecheckyn;
+    @XmlElement(name = "REAL_NAME_CHECK_DATE", required = true)
+    protected String realnamecheckdate;
+    @XmlElement(name = "IPIN_CI", required = true)
+    protected String ipinci;
+    @XmlElement(name = "IPIN_DI", required = true)
+    protected String ipindi;
+
+    /**
+     * Gets the value of the resultcd property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRESULTCD() {
+        return resultcd;
+    }
+
+    /**
+     * Sets the value of the resultcd property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRESULTCD(String value) {
+        this.resultcd = value;
+    }
+
+    /**
+     * Gets the value of the custtype property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCUSTTYPE() {
+        return custtype;
+    }
+
+    /**
+     * Sets the value of the custtype property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCUSTTYPE(String value) {
+        this.custtype = value;
+    }
+
+    /**
+     * Gets the value of the gcustid property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getGCUSTID() {
+        return gcustid;
+    }
+
+    /**
+     * Sets the value of the gcustid property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setGCUSTID(String value) {
+        this.gcustid = value;
+    }
+
+    /**
+     * Gets the value of the iciscustid property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getICISCUSTID() {
+        return iciscustid;
+    }
+
+    /**
+     * Sets the value of the iciscustid property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setICISCUSTID(String value) {
+        this.iciscustid = value;
+    }
+
+    /**
+     * Gets the value of the nstepcustid property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getNSTEPCUSTID() {
+        return nstepcustid;
+    }
+
+    /**
+     * Sets the value of the nstepcustid property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setNSTEPCUSTID(String value) {
+        this.nstepcustid = value;
+    }
+
+    /**
+     * Gets the value of the custname property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCUSTNAME() {
+        return custname;
+    }
+
+    /**
+     * Sets the value of the custname property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCUSTNAME(String value) {
+        this.custname = value;
+    }
+
+    /**
+     * Gets the value of the custnumtype property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCUSTNUMTYPE() {
+        return custnumtype;
+    }
+
+    /**
+     * Sets the value of the custnumtype property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCUSTNUMTYPE(String value) {
+        this.custnumtype = value;
+    }
+
+    /**
+     * Gets the value of the custclassno property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCUSTCLASSNO() {
+        return custclassno;
+    }
+
+    /**
+     * Sets the value of the custclassno property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCUSTCLASSNO(String value) {
+        this.custclassno = value;
+    }
+
+    /**
+     * Gets the value of the custnum property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCUSTNUM() {
+        return custnum;
+    }
+
+    /**
+     * Sets the value of the custnum property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCUSTNUM(String value) {
+        this.custnum = value;
+    }
+
+    /**
+     * Gets the value of the custidfyname property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCUSTIDFYNAME() {
+        return custidfyname;
+    }
+
+    /**
+     * Sets the value of the custidfyname property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCUSTIDFYNAME(String value) {
+        this.custidfyname = value;
+    }
+
+    /**
+     * Gets the value of the custidfynotype property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCUSTIDFYNOTYPE() {
+        return custidfynotype;
+    }
+
+    /**
+     * Sets the value of the custidfynotype property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCUSTIDFYNOTYPE(String value) {
+        this.custidfynotype = value;
+    }
+
+    /**
+     * Gets the value of the custidfyno property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCUSTIDFYNO() {
+        return custidfyno;
+    }
+
+    /**
+     * Sets the value of the custidfyno property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCUSTIDFYNO(String value) {
+        this.custidfyno = value;
+    }
+
+    /**
+     * Gets the value of the realnamecheckyn property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getREALNAMECHECKYN() {
+        return realnamecheckyn;
+    }
+
+    /**
+     * Sets the value of the realnamecheckyn property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setREALNAMECHECKYN(String value) {
+        this.realnamecheckyn = value;
+    }
+
+    /**
+     * Gets the value of the realnamecheckdate property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getREALNAMECHECKDATE() {
+        return realnamecheckdate;
+    }
+
+    /**
+     * Sets the value of the realnamecheckdate property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setREALNAMECHECKDATE(String value) {
+        this.realnamecheckdate = value;
+    }
+
+    /**
+     * Gets the value of the ipinci property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getIPINCI() {
+        return ipinci;
+    }
+
+    /**
+     * Sets the value of the ipinci property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setIPINCI(String value) {
+        this.ipinci = value;
+    }
+
+    /**
+     * Gets the value of the ipindi property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getIPINDI() {
+        return ipindi;
+    }
+
+    /**
+     * Sets the value of the ipindi property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setIPINDI(String value) {
+        this.ipindi = value;
+    }
+
+}

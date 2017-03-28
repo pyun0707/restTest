@@ -1,0 +1,393 @@
+package kt.idss.gcrm.ws.service;
+
+
+import javax.xml.ws.Holder;
+
+import kt.idss.gcrm.service.VerifyService;
+import kt.idss.gcrm.validation.InterworkError;
+import kt.idss.gcrm.validation.VerifyIdDupValidator;
+//import kt.idss.gcrm.validation.VerifyOwnerValidator;
+import kt.idss.gcrm.ws.spec.RecvVerifyIdDupForm;
+//import kt.idss.gcrm.ws.spec.RecvVerifyOwnerForm;
+import kt.idss.gcrm.ws.spec.RetnHeaderForm;
+
+import com.kt.bit.standard.header.v1.BITHeader;
+
+import kt.idss.ktws.enums.ResponseSpec;
+import kt.idss.ktws.exception.ServiceException;
+import kt.idss.ktws.service.JobhistService;
+import kt.idss.ktws.util.Utility;
+import kt.idss.ktws.vo.Customer;
+import kt.idss.ktws.vo.Jobhist;
+import kt.idss.ktws.vo.Product;
+import kt.idss.ktws.ws.com.ExecuteContext;
+import kt.idss.ktws.ws.com.ExecuteStrategy;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+public class IdVerify implements IdVerifyService {
+
+    private static final Logger logger = LoggerFactory.getLogger(IdVerify.class);
+
+    @Autowired
+    Utility utility;
+
+    @Autowired
+    ExecuteContext executeContext;
+
+    @Autowired
+    JobhistService jobhistService;
+
+    @Autowired
+    VerifyService service;
+
+    @Autowired
+    VerifyIdDupValidator idDupValidate;
+
+//    @Autowired
+//    VerifyOwnerValidator ownerValidate;
+
+    private final static String BIT_SUCCESS = "N0000";
+    private final static String BIT_FAIL = "E0000";
+
+
+    private void printRecvHeaderForm(BITHeader bitHeader){
+        if(bitHeader !=null){
+            StringBuffer logging = new StringBuffer();
+            logger.info(">>>>>>>>>>>>>>>> start >>>>>>>>>>>>>>>>>");
+            logging.append("header param(");
+            logging.append(" GUID:[{}]");
+            logging.append(",SeqNumber:[{}]");
+            logging.append(",InterfaceID:[{}]");
+            logging.append(",SourceSys:[{}]");
+            logging.append(",TargetSys:[{}]");
+            logging.append(",ReturnCode:[{}]");
+            logging.append(",ReturnMSG:[{}]");
+            logging.append(" )");
+            logger.info(logging.toString(), new Object[]{bitHeader.getGUID()
+                                                        ,bitHeader.getSeqNumber()
+                                                        ,bitHeader.getInterfaceID()
+                                                        ,bitHeader.getSourceSys()
+                                                        ,bitHeader.getTargetSys()
+                                                        ,bitHeader.getReturnCode()
+                                                        ,bitHeader.getReturnMSG()
+                                                        }
+                                                        );
+        }
+    }
+
+    public RetnHeaderForm verifyIdDup(javax.xml.ws.Holder<BITHeader>  standardHeader
+                                    , final RecvVerifyIdDupForm recv) {
+
+//        1. ordno
+        final  String ordno     = jobhistService.readOrdno();
+//        2. response
+        RetnHeaderForm response = new RetnHeaderForm( ordno
+                                                     ,""+ResponseSpec.SUCCESS.intCode()
+                                                     , ResponseSpec.SUCCESS.intValue()
+                                                    );
+//        3. BITHeader
+        final BITHeader bitHeader = ((Holder<BITHeader>)standardHeader).value;
+
+//        4. inner class : ExecuteStrategy
+        ExecuteStrategy<RetnHeaderForm> executeStrategy = new ExecuteStrategy<RetnHeaderForm>() {
+
+
+            String start     = utility.getPatternDate("yyyyMMddHHmmssSSSS");
+            String donetime  = "";
+
+            RetnHeaderForm innerRetn = new RetnHeaderForm(  ordno
+                                                           ,""+ResponseSpec.SUCCESS.intCode()
+                                                           , ResponseSpec.SUCCESS.intValue()
+                                                         );
+            @Override
+            public void logParameter() {
+                MDC.put("transaction_id", ordno);
+                InterworkError.checkBadRequest        (recv , "입력값 오류(RecvVerifyIdDupForm Info must be)");
+                printRecvHeaderForm(bitHeader);
+                StringBuffer logging = new StringBuffer();
+                /*
+                 * TODO : param logging
+                 */
+                logging.append("body param(");
+                logging.append(" LOGIN_ID:[{}]");
+                logging.append(",CUST_ID:[{}]");
+                logging.append(",ICIS_CUST_ID:[{}]");
+                logging.append(",CUST_IDFY_NM:[{}]");
+                logging.append(",CUST_IDFY_NO:[{}]");
+                logging.append(",CUST_IDFY_NO_TYPE_CD:[{}]");
+                logging.append(",NFRL_IDFY_NM:[{}]");
+                logging.append(",NFRL_IDFY_NO:[{}]");
+                logging.append(",NFRL_IDFY_NO_TYPE_CD:[{}]");
+                logging.append(",NFRL_IPIN_CI:[{}]");
+                logging.append(",PRNT_SA_ID:[{}]");
+                logging.append(",SA_ID:[{}]");
+                logging.append(",PROD_TYPE_CD:[{}]");
+                logging.append(" )");
+
+                logger.info(logging.toString() ,new Object[]   { recv.getLOGIN_ID()
+                                                               , recv.getCUST_ID()
+                                                               , recv.getICIS_CUST_ID()
+                                                               , recv.getCUST_IDFY_NM()
+                                                               , recv.getCUST_IDFY_NO()
+                                                               , recv.getCUST_IDFY_NO_TYPE_CD()
+                                                               , recv.getNFRL_IDFY_NM()
+                                                               , recv.getNFRL_IDFY_NO()
+                                                               , recv.getNFRL_IDFY_NO_TYPE_CD()
+                                                               , recv.getNFRL_IPIN_CI()
+                                                               , recv.getPRNT_SA_ID()
+                                                               , recv.getSA_ID()
+                                                               , recv.getPROD_TYPE_CD()
+                                                               , recv.getTRT_DIV_CD()
+                                                               });
+            }
+
+            @Override
+            public void validation() {
+                idDupValidate.validate    (recv,"checkVerifyIdDup");
+            }
+
+            @Override
+            public RetnHeaderForm execute() {
+                Product inProduct       = new Product();
+                inProduct.setLoginid    (recv.getLOGIN_ID());
+                inProduct.setP_sa_id    (recv.getPRNT_SA_ID());
+                inProduct.setSa_id      (recv.getSA_ID());
+                inProduct.setProd_type  (recv.getPROD_TYPE_CD());
+
+                inProduct.setCustomer(new Customer(  recv.getNFRL_IDFY_NM()
+                                                    ,recv.getNFRL_IDFY_NO_TYPE_CD()
+                                                    ,recv.getNFRL_IDFY_NO()
+                                                    ,recv.getNFRL_IPIN_CI()
+                                                    ,""
+                                                    ,recv.getCUST_IDFY_NM()
+                                                    ,recv.getCUST_IDFY_NO()
+                                                    ,recv.getCUST_IDFY_NO_TYPE_CD()
+                                                    ,recv.getCUST_ID()
+                                                    ,recv.getICIS_CUST_ID()
+                                                    )
+                                     );
+
+                RetnHeaderForm retnHeaderForm   = service.createReservation(inProduct);
+                if(retnHeaderForm !=null){
+                    innerRetn.setRESLT_CD(retnHeaderForm.getRESLT_CD());
+                    innerRetn.setRESLT_MSG(retnHeaderForm.getRESLT_MSG());
+                }
+                return innerRetn;
+            }
+
+            @Override
+            public void logging(int code, String message) {
+                Jobhist jobhist = new Jobhist();
+                jobhist.setOrdno(ordno);
+                jobhist.setCommand     ("A4");
+                jobhist.setCmddetail   ("1");
+                jobhist.setIdisresult  ("NO");
+                if(recv !=null){
+                    jobhist.setSa_id       (recv.getSA_ID());
+                    jobhist.setCustkname   (recv.getNFRL_IDFY_NM());
+                    jobhist.setCusttype    (recv.getNFRL_IDFY_NO_TYPE_CD());
+                    jobhist.setCustnum     (recv.getCUST_ID());
+                    jobhist.setCusttel     (recv.getICIS_CUST_ID());
+                    jobhist.setProdclass   (recv.getPROD_TYPE_CD());
+                    jobhist.setLoginid     (recv.getLOGIN_ID());
+                    jobhist.setSa_id       (recv.getPRNT_SA_ID());
+                    jobhist.setReqsystem   (bitHeader.getSourceSys());
+                }
+                if(code != ResponseSpec.SUCCESS.intCode()){
+                    jobhist.setErrcode     (""+code);
+                    jobhist.setErrmsg      (message);
+                }else{
+                    jobhist.setErrcode(innerRetn.getRESLT_CD());
+                    jobhist.setErrmsg (innerRetn.getRESLT_MSG());
+                }
+
+                jobhist.setRegdate     (start);
+                donetime = utility.getPatternDate("yyyyMMddHHmmss");
+                jobhist.setDonetime    (donetime);
+                jobhistService.createJobhist(jobhist);
+            }
+        };
+        try {
+            response = executeContext.contextWithStrategy(executeStrategy);
+        } catch (ServiceException e) {
+            response.setRESLT_CD(""+ e.getCode());
+            response.setRESLT_MSG(e.getMessage());
+        } catch (Exception e) {
+            //e.printStackTrace();
+            response.setRESLT_CD(""+ ResponseSpec.INTERNAL_SERVER_ERROR.intCode());
+            response.setRESLT_MSG(ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+        }
+
+            bitHeader.setReturnCode(setBITHeader(response.getRESLT_CD()));
+            bitHeader.setReturnMSG(response.getRESLT_MSG());
+
+
+        return response;
+    }
+
+/*
+    @Override
+    public RetnHeaderForm verifyOwner(javax.xml.ws.Holder<BITHeader>  standardHeader
+                                    , final RecvVerifyOwnerForm recv) {
+//      1. ordno
+      final  String ordno     = jobhistService.readOrdno();
+//      2. response
+      RetnHeaderForm response = new RetnHeaderForm( ordno
+                                                   ,""+ResponseSpec.SUCCESS.intCode()
+                                                   , ResponseSpec.SUCCESS.intValue()
+                                                  );
+
+//      3. BITHeader
+      final BITHeader bitHeader = ((Holder<BITHeader>)standardHeader).value;
+
+//      4. inner class : ExecuteStrategy
+      ExecuteStrategy<RetnHeaderForm> executeStrategy = new ExecuteStrategy<RetnHeaderForm>() {
+
+
+          String start     = utility.getPatternDate("yyyyMMddHHmmssSSSS");
+          String donetime  = "";
+
+          RetnHeaderForm innerRetn = new RetnHeaderForm(  ordno
+                                                         ,""+ResponseSpec.SUCCESS.intCode()
+                                                         , ResponseSpec.SUCCESS.intValue()
+                                                       );
+          @Override
+          public void logParameter() {
+              MDC.put("transaction_id", ordno);
+              InterworkError.checkBadRequest        (recv , "입력값 오류(RecvVerifyOwnerForm Info must be)");
+              printRecvHeaderForm(bitHeader);
+              StringBuffer logging = new StringBuffer();
+
+              logging.append("body param(");
+              logging.append(" LOGIN_ID:[{}]");
+              logging.append(",CUST_ID:[{}]");
+              logging.append(",ICIS_CUST_ID:[{}]");
+              logging.append(",CUST_IDFY_NM:[{}]");
+              logging.append(",CUST_IDFY_NO:[{}]");
+              logging.append(",CUST_IDFY_NO_TYPE_CD:[{}]");
+              logging.append(",NFRL_IDFY_NM:[{}]");
+              logging.append(",NFRL_IDFY_NO:[{}]");
+              logging.append(",NFRL_IDFY_NO_TYPE_CD:[{}]");
+              logging.append(",NFRL_IPIN_CI:[{}]");
+              logging.append(",PRNT_SA_ID:[{}]");
+              logging.append(",SA_ID:[{}]");
+              logging.append(",PROD_TYPE_CD:[{}]");
+              logging.append(" )");
+
+              logger.info(logging.toString() ,new Object[]   { recv.getLOGIN_ID()
+                                                             , recv.getCUST_ID()
+                                                             , recv.getICIS_CUST_ID()
+                                                             , recv.getCUST_IDFY_NM()
+                                                             , recv.getCUST_IDFY_NO()
+                                                             , recv.getCUST_IDFY_NO_TYPE_CD()
+                                                             , recv.getNFRL_IDFY_NM()
+                                                             , recv.getNFRL_IDFY_NO()
+                                                             , recv.getNFRL_IDFY_NO_TYPE_CD()
+                                                             , recv.getNFRL_IPIN_CI()
+                                                             , recv.getPRNT_SA_ID()
+                                                             , recv.getSA_ID()
+                                                             , recv.getPROD_TYPE_CD()
+                                                             });
+          }
+
+          @Override
+          public void validation() {
+              ownerValidate.validate    (recv,"checkVerifyOwner");
+          }
+
+          @Override
+          public RetnHeaderForm execute() {
+              Product inProduct       = new Product();
+              inProduct.setLoginid    (recv.getLOGIN_ID());
+              inProduct.setP_sa_id    (recv.getPRNT_SA_ID());
+              inProduct.setSa_id      (recv.getSA_ID());
+              inProduct.setProd_type  (recv.getPROD_TYPE_CD());
+
+              inProduct.setCustomer(new Customer(  recv.getNFRL_IDFY_NM()
+                                                  ,recv.getNFRL_IDFY_NO_TYPE_CD()
+                                                  ,recv.getNFRL_IDFY_NO()
+                                                  ,recv.getNFRL_IPIN_CI()
+                                                  ,""
+                                                  ,recv.getCUST_IDFY_NM()
+                                                  ,recv.getCUST_IDFY_NO()
+                                                  ,recv.getCUST_IDFY_NO_TYPE_CD()
+                                                  ,recv.getCUST_ID()
+                                                  ,recv.getICIS_CUST_ID()
+                                                  )
+                                   );
+
+              RetnHeaderForm retnHeaderForm   = service.createVerifyOwner(inProduct);
+              if(retnHeaderForm !=null){
+                  innerRetn.setRESLT_CD(retnHeaderForm.getRESLT_CD());
+                  innerRetn.setRESLT_MSG(retnHeaderForm.getRESLT_MSG());
+              }
+              return innerRetn;
+          }
+
+          @Override
+          public void logging(int code, String message) {
+              Jobhist jobhist = new Jobhist();
+              jobhist.setOrdno(ordno);
+              jobhist.setCommand     ("A4");
+              jobhist.setCmddetail   ("2");
+              jobhist.setIdisresult  ("NO");
+              if(recv !=null){
+                  jobhist.setSa_id       (recv.getSA_ID());
+                  jobhist.setCustkname   (recv.getNFRL_IDFY_NM());
+                  jobhist.setCusttype    (recv.getNFRL_IDFY_NO_TYPE_CD());
+                  jobhist.setCustnum     (recv.getCUST_ID());
+                  jobhist.setCusttel     (recv.getICIS_CUST_ID());
+                  jobhist.setProdclass   (recv.getPROD_TYPE_CD());
+                  jobhist.setLoginid     (recv.getLOGIN_ID());
+                  jobhist.setSa_id       (recv.getPRNT_SA_ID());
+                  jobhist.setReqsystem   (bitHeader.getSourceSys());
+              }
+              if(code != ResponseSpec.SUCCESS.intCode()){
+                  jobhist.setErrcode     (""+code);
+                  jobhist.setErrmsg      (message);
+              }else{
+                  jobhist.setErrcode(innerRetn.getRESLT_CD());
+                  jobhist.setErrmsg (innerRetn.getRESLT_MSG());
+              }
+
+              jobhist.setRegdate     (start);
+              donetime = utility.getPatternDate("yyyyMMddHHmmss");
+              jobhist.setDonetime    (donetime);
+              jobhistService.createJobhist(jobhist);
+          }
+      };
+      try {
+          response = executeContext.contextWithStrategy(executeStrategy);
+      } catch (ServiceException e) {
+          response.setRESLT_CD(""+ e.getCode());
+          response.setRESLT_MSG(e.getMessage());
+      } catch (Exception e) {
+          //e.printStackTrace();
+          response.setRESLT_CD(""+ ResponseSpec.INTERNAL_SERVER_ERROR.intCode());
+          response.setRESLT_MSG(ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+      }
+          bitHeader.setReturnCode(setBITHeader(response.getRESLT_CD()));
+          bitHeader.setReturnMSG(response.getRESLT_MSG());
+
+      return response;
+    }
+*/
+
+    private String setBITHeader(String reslt_cd){
+        int reslt_cd_int = Integer.parseInt(reslt_cd);
+        String return_cd = "";
+        if(reslt_cd_int >= 200 && reslt_cd_int < 300 ){
+            return_cd = BIT_SUCCESS;
+        }else{
+            return_cd = BIT_FAIL;
+        }
+
+        return return_cd;
+    }
+}

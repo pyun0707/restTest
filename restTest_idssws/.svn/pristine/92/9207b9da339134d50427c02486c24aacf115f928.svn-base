@@ -1,0 +1,9 @@
+package kt.idss.ktws.product.dao;
+
+import kt.idss.ktws.vo.Product;
+import kt.idss.ktws.vo.ReservedInfo;
+
+public interface ReservedIdDao {
+    public Product       readReservedId  (final String prod_code, final String  logname, final String sa_id);
+    public void          createReservedId(final ReservedInfo vo);
+}

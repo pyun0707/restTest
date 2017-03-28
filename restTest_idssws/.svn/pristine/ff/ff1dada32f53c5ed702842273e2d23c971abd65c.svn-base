@@ -1,0 +1,106 @@
+/*
+ * IDMS(Integrated DataBase Management System) version 1.0
+ *
+ *  Copyright ⓒ 2016 kt cort. All rights reserved.
+ *
+ *  This is a proprietary software of kt corp, and you may not use this file except in
+ *  compliance with license agreement with kt corp. Any redistribution or use of this
+ *  software, with or without modification shall be strictly prohibited without prior written
+ *  approval of kt corp, and the copyright notice above does not evidence any actualor
+ *  intended publication of such software.
+*/
+
+
+package kt.idss.ktws.common.dao;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import kt.idss.ktws.vo.*;
+
+@Repository
+public class CustBasDaoImple implements CustBasDao {
+
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    @Autowired
+    public void setDataSource(DataSource dataSource) {
+        this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+    }
+
+    private RowMapper<CustBasForm> mapper = new RowMapper<CustBasForm>() {
+        public CustBasForm mapRow(ResultSet rs, int rowNum) throws SQLException {
+            CustBasForm     custBas = new CustBasForm();
+            custBas.setCust_id                (rs.getString("cust_id"));
+            custBas.setCust_idfy_no           (rs.getString("cust_idfy_no"));
+            custBas.setCust_idfy_no_type_cd   (rs.getString("cust_idfy_no_type_cd"));
+            custBas.setCust_nm                (rs.getString("cust_nm"));
+            custBas.setCust_type_cd           (rs.getString("cust_type_cd"));
+            custBas.setRnm_athn_yn            (rs.getString("rnm_athn_yn"));
+            custBas.setRnm_athn_dt            (rs.getString("rnm_athn_dt"));
+            custBas.setNflr_idfy_no           (rs.getString("nflr_idfy_no"));
+            custBas.setNflr_idfy_no_type_cd   (rs.getString("nflr_idfy_no_type_cd"));
+            custBas.setNflr_nm                (rs.getString("nflr_nm"));
+            custBas.setJob_type_cd            (rs.getString("job_type_cd"));
+            custBas.setSex_cd                 (rs.getString("sex_cd"));
+            custBas.setBthday_date            (rs.getString("bthday_date"));
+            custBas.setBthday_type_cd         (rs.getString("bthday_type_cd"));
+            custBas.setMarry_yn               (rs.getString("marry_yn"));
+            custBas.setMarry_cmrtn_date       (rs.getString("marry_cmrtn_date"));
+            custBas.setNstep_cust_id          (rs.getString("nstep_cust_id"));
+            custBas.setIcis_cust_id           (rs.getString("icis_cust_id"));
+            custBas.setCitiz_cd               (rs.getString("citiz_cd"));
+            custBas.setIpinci_val             (rs.getString("ipinci_val"));
+            custBas.setCret_dt                (rs.getString("cret_dt"));
+            custBas.setAmd_dt                 (rs.getString("amd_dt"));
+            custBas.setIpin_di                (rs.getString("ipin_di"));
+            return custBas;
+         }
+    };
+
+    @Override
+    public CustBasForm readCustInfo(String cust_id) {
+
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        StringBuffer sql = new StringBuffer();
+        sql.append("\n select   *                   ");
+        sql.append("\n from   (select   cust_id                  ");
+        sql.append("\n        , cust_idfy_no             ");
+        sql.append("\n        , cust_idfy_no_type_cd     ");
+        sql.append("\n        , cust_nm                  ");
+        sql.append("\n        , cust_type_cd             ");
+        sql.append("\n        , rnm_athn_yn              ");
+        sql.append("\n        , rnm_athn_dt              ");
+        sql.append("\n        , nflr_idfy_no             ");
+        sql.append("\n        , nflr_idfy_no_type_cd     ");
+        sql.append("\n        , nflr_nm                  ");
+        sql.append("\n        , job_type_cd              ");
+        sql.append("\n        , sex_cd                   ");
+        sql.append("\n        , bthday_date              ");
+        sql.append("\n        , bthday_type_cd           ");
+        sql.append("\n        , marry_yn                 ");
+        sql.append("\n        , marry_cmrtn_date         ");
+        sql.append("\n        , nstep_cust_id            ");
+        sql.append("\n        , icis_cust_id             ");
+        sql.append("\n        , citiz_cd                 ");
+        sql.append("\n        , ipinci_val               ");
+        sql.append("\n        , cret_dt                  ");
+        sql.append("\n        , amd_dt                   ");
+        sql.append("\n        , ipin_di                  ");
+        sql.append("\n    from cust_bas                  ");
+        sql.append("\n   where icis_cust_id  = :icis_cust_id         ");
+        sql.append("\n   ORDER BY nvl(amd_dt,cret_dt) desc )          ");
+        sql.append("\n   where rownum<2                  ");
+
+        namedParameters.addValue("icis_cust_id"        , cust_id        );
+        return this.namedParameterJdbcTemplate.queryForObject(sql.toString(), namedParameters, mapper);
+    }
+}

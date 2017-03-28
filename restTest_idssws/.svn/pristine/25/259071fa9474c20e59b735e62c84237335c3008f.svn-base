@@ -1,0 +1,232 @@
+package kt.idss.ktws.vo;
+
+public class Customer {
+
+    private boolean checkOnlyCustId ;
+    private String cust_name        ;
+    private String cust_type_cd     ;
+    private String cust_num         ;
+    private String ipin_ci          ;
+    private String ipin_di          ;
+    private String cust_idfy_name   ;
+    private String cust_idfy_no     ;
+    private String cust_idfy_type   ;
+    private String cust_id          ;
+    private String l_cust_id        ;
+
+    private boolean genesis_yn       ;
+
+    public Customer(){}
+
+    public Customer(String cust_name, String cust_type_cd, String cust_num,
+            String ipin_ci, String ipin_di, String cust_idfy_name,
+            String cust_idfy_no, String cust_idfy_type, String cust_id, String l_cust_id) {
+        super();
+        this.cust_name = cust_name;
+        this.cust_type_cd = cust_type_cd;
+        this.cust_num = cust_num;
+        this.ipin_ci = ipin_ci;
+        this.ipin_di = ipin_di;
+        this.cust_idfy_name = cust_idfy_name;
+        this.cust_idfy_no = cust_idfy_no;
+        this.cust_idfy_type = cust_idfy_type;
+        this.cust_id = cust_id;
+        this.l_cust_id = l_cust_id;
+    }
+
+
+
+    public boolean isCheckOnlyCustId() {
+        return checkOnlyCustId;
+    }
+
+
+    public void setCheckOnlyCustId(boolean checkOnlyCustId) {
+        this.checkOnlyCustId = checkOnlyCustId;
+    }
+
+
+
+
+    public String getCust_name() {
+        return cust_name;
+    }
+
+    public void setCust_name(String cust_name) {
+        this.cust_name = cust_name;
+    }
+
+    public String getCust_type_cd() {
+        return cust_type_cd;
+    }
+
+    public void setCust_type_cd(String cust_type_cd) {
+        this.cust_type_cd = cust_type_cd;
+    }
+
+    public String getCust_num() {
+        return cust_num;
+    }
+
+    public void setCust_num(String cust_num) {
+        this.cust_num = cust_num;
+    }
+
+    public String getIpin_ci() {
+        return ipin_ci;
+    }
+
+    public void setIpin_ci(String ipin_ci) {
+        this.ipin_ci = ipin_ci;
+    }
+
+    public String getIpin_di() {
+        return ipin_di;
+    }
+
+    public void setIpin_di(String ipin_di) {
+        this.ipin_di = ipin_di;
+    }
+
+    public String getCust_idfy_name() {
+        return cust_idfy_name;
+    }
+
+    public void setCust_idfy_name(String cust_idfy_name) {
+        this.cust_idfy_name = cust_idfy_name;
+    }
+
+    public String getCust_idfy_no() {
+        return cust_idfy_no;
+    }
+
+    public void setCust_idfy_no(String cust_idfy_no) {
+        this.cust_idfy_no = cust_idfy_no;
+    }
+
+    public String getCust_idfy_type() {
+        return cust_idfy_type;
+    }
+
+
+
+    public void setCust_idfy_type(String cust_idfy_type) {
+        this.cust_idfy_type = cust_idfy_type;
+    }
+
+
+
+    public String getCust_id() {
+        return cust_id;
+    }
+
+    public void setCust_id(String cust_id) {
+        this.cust_id = cust_id;
+    }
+
+
+
+    public String getL_cust_id() {
+        return l_cust_id;
+    }
+
+
+
+
+    public void setL_cust_id(String l_cust_id) {
+        this.l_cust_id = l_cust_id;
+    }
+
+
+
+
+    public boolean equals(Customer inCustomer){
+
+        if(inCustomer !=null){
+            if(   isBlank(cust_id)   == false){
+                if(isBlank(cust_id)   == false && cust_id.equals(inCustomer.getCust_id())){
+                    return true;
+                }
+            }
+
+            if(isCheckOnlyCustId() == false){
+                if(   isBlank(cust_type_cd) == false
+                    && cust_type_cd.equals(inCustomer.getCust_type_cd())){
+                     if(  "1301".equals(cust_type_cd)
+                        ||"1305".equals(cust_type_cd)
+                        ||"130E".equals(cust_type_cd)){
+                         if(   isBlank(ipin_ci) == false
+                            && ipin_ci.equals(inCustomer.getIpin_ci())){
+
+                             if(compareOther(inCustomer) == true){
+                                 return true;
+                             }
+                         }
+                     }else{
+                         if(   isBlank(cust_num) == false
+                            && cust_num.equals(inCustomer.getCust_num())){
+                             if(compareOther(inCustomer) == true){
+                                 return true;
+                             }
+                         }
+                     }
+                 }else{
+                     if((   "1301".equals(cust_type_cd)
+                         || "1305".equals(cust_type_cd)) && "130E".equals(inCustomer.getCust_type_cd()) ){
+                         if(   isBlank(ipin_ci) == false
+                                 && ipin_ci.equals(inCustomer.getIpin_ci())){
+                                  if(compareOther(inCustomer) == true){
+                                      return true;
+                                  }
+                         }
+                     }else if((    "1301".equals(inCustomer.getCust_type_cd())
+                                || "1305".equals(inCustomer.getCust_type_cd()))
+                              && "130E".equals(cust_type_cd) ){
+                         if(   isBlank(ipin_ci) == false
+                                 && ipin_ci.equals(inCustomer.getIpin_ci())){
+                                  if(compareOther(inCustomer) == true){
+                                      return true;
+                                  }
+                         }
+                     }
+                 }
+            }
+        }
+        return false;
+    }
+    private boolean compareOther(Customer inCustomer){
+        if(  "1301".equals(cust_type_cd)
+           ||"1303".equals(cust_type_cd)
+           ||"1305".equals(cust_type_cd)
+           ||"1308".equals(cust_type_cd)
+           ||"130E".equals(cust_type_cd)){
+            if(   trim(cust_idfy_no).equals(trim(inCustomer.getCust_idfy_no ()))
+               && trim(cust_idfy_name).equals(trim(inCustomer.getCust_idfy_name()))
+               ){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    public boolean isGenesis_yn() {
+        return genesis_yn;
+    }
+    public void setGenesis_yn(boolean genesis_yn) {
+        this.genesis_yn = genesis_yn;
+    }
+
+
+    private static String trim(String s){
+        return s == null ? "" :s.trim();
+    }
+
+
+    private static boolean isBlank(String s){
+        return (s == null) || (s.trim().length() == 0);
+    }
+
+}

@@ -1,0 +1,46 @@
+package kt.idss.gcrm.ws.spec;
+
+import javax.xml.bind.annotation.XmlType;
+
+@XmlType(propOrder={})
+public class RetnHeaderForm {
+    private String ORD_NO;
+    private String RESLT_CD;
+    private String RESLT_MSG;
+
+    public RetnHeaderForm(){}
+
+    public RetnHeaderForm(String oRD_NO, String rESLT_CD, String rESLT_MSG) {
+        super();
+        ORD_NO = oRD_NO;
+        RESLT_CD = rESLT_CD;
+        RESLT_MSG = rESLT_MSG;
+    }
+
+    public String getORD_NO() {
+        return ORD_NO;
+    }
+
+    public void setORD_NO(String oRD_NO) {
+        ORD_NO = oRD_NO;
+    }
+
+    public String getRESLT_CD() {
+        return RESLT_CD;
+    }
+
+    public void setRESLT_CD(String rESLT_CD) {
+        RESLT_CD = rESLT_CD;
+    }
+
+    public String getRESLT_MSG() {
+        return RESLT_MSG;
+    }
+
+    public void setRESLT_MSG(String rESLT_MSG) {
+        RESLT_MSG = rESLT_MSG;
+    }
+
+
+
+}

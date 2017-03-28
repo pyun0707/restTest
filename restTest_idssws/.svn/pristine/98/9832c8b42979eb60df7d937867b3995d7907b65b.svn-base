@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://bizhub.kt.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:biz="http://bizhub.kt.com">
+
+    <xsd:complexType name="commonHeader">
+        <xsd:all>
+        <xsd:element ref="biz:appName" maxOccurs="1" minOccurs="1"></xsd:element>
+        <xsd:element ref="biz:svcName" maxOccurs="1" minOccurs="1"></xsd:element>
+        <xsd:element ref="biz:fnName" maxOccurs="1" minOccurs="1"></xsd:element>
+        <xsd:element ref="biz:fnCd" maxOccurs="1" minOccurs="0"></xsd:element>
+        <xsd:element ref="biz:globalNo" maxOccurs="1" minOccurs="1"></xsd:element>
+        <xsd:element ref="biz:chnlType" maxOccurs="1" minOccurs="1"></xsd:element>
+        <xsd:element ref="biz:envrFlag" maxOccurs="1" minOccurs="0"></xsd:element>
+        <xsd:element ref="biz:trFlag" maxOccurs="1" minOccurs="1"></xsd:element>
+        <xsd:element ref="biz:trDate" maxOccurs="1" minOccurs="1"></xsd:element>
+        <xsd:element ref="biz:trTime" maxOccurs="1" minOccurs="1"></xsd:element>
+        <xsd:element ref="biz:clntIp" maxOccurs="1" minOccurs="1"></xsd:element>
+        <xsd:element ref="biz:responseType" maxOccurs="1" minOccurs="1"></xsd:element>
+        <xsd:element ref="biz:responseCode" maxOccurs="1" minOccurs="0"></xsd:element>
+        <xsd:element ref="biz:responseLogcd" maxOccurs="1" minOccurs="0"></xsd:element>
+        <xsd:element ref="biz:responseTitle" maxOccurs="1" minOccurs="0"></xsd:element>
+        <xsd:element ref="biz:responseBasc" maxOccurs="1" minOccurs="0"></xsd:element>
+        <xsd:element ref="biz:responseDtal" maxOccurs="1" minOccurs="0"></xsd:element>
+        <xsd:element ref="biz:responseSystem" maxOccurs="1" minOccurs="0"></xsd:element>
+        <xsd:element ref="biz:userId" maxOccurs="1" minOccurs="1"></xsd:element>
+        <xsd:element ref="biz:realUserId" maxOccurs="1" minOccurs="0"></xsd:element>
+        <xsd:element ref="biz:filler" maxOccurs="1" minOccurs="1"></xsd:element>
+        <xsd:element ref="biz:langCode" maxOccurs="1" minOccurs="1"></xsd:element>
+        <xsd:element ref="biz:orgId" maxOccurs="1" minOccurs="1"></xsd:element>
+        <xsd:element ref="biz:srcId" maxOccurs="1" minOccurs="1"></xsd:element>
+        <xsd:element ref="biz:curHostId" maxOccurs="1" minOccurs="0"></xsd:element>
+        <xsd:element ref="biz:lgDateTime" maxOccurs="1" minOccurs="1"></xsd:element>
+        <xsd:element ref="biz:tokenId" maxOccurs="1" minOccurs="0"></xsd:element>
+        <xsd:element ref="biz:cmpnCd" maxOccurs="1" minOccurs="0"></xsd:element>
+        <xsd:element ref="biz:lockType" maxOccurs="1" minOccurs="0"></xsd:element>
+        <xsd:element ref="biz:lockId" maxOccurs="1" minOccurs="0"></xsd:element>
+        <xsd:element ref="biz:lockTimeSt" maxOccurs="1" minOccurs="0"></xsd:element>
+        <xsd:element ref="biz:businessKey" maxOccurs="1" minOccurs="0"></xsd:element>
+        <xsd:element ref="biz:arbitraryKey" maxOccurs="1" minOccurs="0"></xsd:element>
+        <xsd:element ref="biz:resendFlag" maxOccurs="1" minOccurs="1"></xsd:element>
+        <xsd:element ref="biz:phase" maxOccurs="1" minOccurs="0"></xsd:element>
+        </xsd:all>
+    </xsd:complexType>
+
+    <xsd:element name="appName">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="40"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="svcName">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="256"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="fnName">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="32"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="fnCd">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="2"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="globalNo">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="32"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="chnlType">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="2"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="envrFlag">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="1"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="trFlag">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="1"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="trDate">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="8"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="trTime">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="20"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="clntIp">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="31"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="responseType">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="1"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="responseCode">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="20"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="responseLogcd">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="20"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="responseTitle">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="50"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="responseBasc">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="100"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="responseDtal">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="500"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="responseSystem">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="20"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="userId">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="12"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="realUserId">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="12"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="filler">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="78"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="langCode">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="2"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="orgId">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="20"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="srcId">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="20"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="curHostId">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="20"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="lgDateTime">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="20"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="tokenId">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="128"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="cmpnCd">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="3"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="lockType">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="1"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="lockId">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="200"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="lockTimeSt">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="20"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="businessKey">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="50"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="arbitraryKey">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="200"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="resendFlag">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="1"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="phase">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="3"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+
+    <xsd:complexType name="bizHeader">
+        <xsd:all>
+        <xsd:element ref="biz:orderId" maxOccurs="1" minOccurs="0"></xsd:element>
+        <xsd:element ref="biz:cbSvcName" maxOccurs="1" minOccurs="1"></xsd:element>
+        <xsd:element ref="biz:cbFnName" maxOccurs="1" minOccurs="1"></xsd:element>
+        </xsd:all>
+    </xsd:complexType>
+
+    <xsd:element name="orderId">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="20"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="cbSvcName">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="40"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+    <xsd:element name="cbFnName">
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="32"></xsd:maxLength>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+
+</xsd:schema>

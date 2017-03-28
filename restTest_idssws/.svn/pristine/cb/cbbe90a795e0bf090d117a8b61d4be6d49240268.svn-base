@@ -1,0 +1,9 @@
+package kt.idss.ktws.service;
+
+import kt.idss.ktws.vo.Jobhist;
+
+public interface JobhistService {
+    public void createJobhist(Jobhist jobhist);
+    public String readOrdno();
+
+}

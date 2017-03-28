@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="kt.idss.ktws.common.dao.JobhistDao">
+
+  <sql id="user_table"> tb_jobhist </sql>
+
+  <insert id="create"
+          parameterType="jobhist">
+    insert into
+                <include refid="user_table"/>
+          (
+              ordno
+              <if test="regdate              != null"> , regdate             </if>
+              , command, idisresult
+              <if test="cmddetail            != null"> , cmddetail            </if> <if test="reqsystem  != null"> , reqsystem       </if> <if test="reqip           != null"> , reqip           </if>
+              <if test="procstep             != null"> , procstep             </if> <if test="donetime   != null"> , donetime        </if> <if test="errcode         != null"> , errcode         </if>
+              <if test="errsystem            != null"> , errsystem            </if> <if test="errmsg     != null"> , errmsg          </if> <if test="loginid         != null"> , loginid         </if>
+              <if test="password             != null"> , password             </if> <if test="custtype   != null"> , custtype        </if> <if test="custnum         != null"> , custnum         </if>
+              <if test="custkname            != null"> , custkname            </if> <if test="custtel    != null"> , custtel         </if> <if test="userip          != null"> , userip          </if>
+              <if test="authmethod           != null"> , authmethod           </if> <if test="secretkey  != null"> , secretkey       </if> <if test="arsordno        != null"> , arsordno        </if>
+              <if test="arstime              != null"> , arstime              </if> <if test="arscode    != null"> , arscode         </if> <if test="email           != null"> , email           </if>
+              <if test="usermac              != null"> , usermac              </if> <if test="emailtime  != null"> , emailtime       </if> <if test="apct_reltn_name != null"> , apct_reltn_name </if>
+              <if test="apct_reltn_type_desc != null"> , apct_reltn_type_desc </if> <if test="worker_id  != null"> , worker_id       </if> <if test="prodclass       != null"> , prodclass       </if>
+              <if test="sa_id                != null"> , sa_id                </if>
+          )
+         values
+          (
+
+             #{ordno,javaType=String,jdbcType=VARCHAR}
+             <if test="regdate  != null"> , to_timestamp(#{regdate,javaType=String,jdbcType=VARCHAR}, 'yyyymmddhh24missff')</if>
+             , #{command,javaType=String,jdbcType=VARCHAR}, #{idisresult,javaType=String,jdbcType=VARCHAR}
+             <if test="cmddetail != null"> , #{cmddetail,javaType=String,jdbcType=VARCHAR} </if>
+             <if test="reqsystem != null"> , #{reqsystem,javaType=String,jdbcType=VARCHAR} </if>
+             <if test="reqip     != null"> , #{reqip,javaType=String,jdbcType=VARCHAR}     </if>
+
+             <if test="procstep  != null"> , #{procstep,javaType=String,jdbcType=VARCHAR}                             </if>
+             <if test="donetime  != null"> , to_date(#{donetime,javaType=String,jdbcType=VARCHAR}, 'yyyymmddhh24miss')</if>
+             <if test="errcode   != null"> , #{errcode,javaType=String,jdbcType=VARCHAR}                              </if>
+
+             <if test="errsystem != null"> , #{errsystem,javaType=String,jdbcType=VARCHAR} </if>
+             <if test="errmsg    != null"> , #{errmsg,javaType=String,jdbcType=VARCHAR}    </if>
+             <if test="loginid   != null"> , #{loginid,javaType=String,jdbcType=VARCHAR}   </if>
+
+             <if test="password  != null"> , #{password,javaType=String,jdbcType=VARCHAR}  </if>
+             <if test="custtype  != null"> , #{custtype ,javaType=String,jdbcType=VARCHAR} </if>
+             <if test="custnum   != null"> , #{custnum,javaType=String,jdbcType=VARCHAR}   </if>
+
+             <if test="custkname != null"> , #{custkname,javaType=String,jdbcType=VARCHAR} </if>
+             <if test="custtel   != null"> , #{custtel,javaType=String,jdbcType=VARCHAR}   </if>
+             <if test="userip    != null"> , #{userip,javaType=String,jdbcType=VARCHAR}    </if>
+
+             <if test="authmethod!= null"> , #{authmethod,javaType=String,jdbcType=VARCHAR}</if>
+             <if test="secretkey != null"> , #{secretkey,javaType=String,jdbcType=VARCHAR} </if>
+             <if test="arsordno  != null"> , #{arsordno,javaType=String,jdbcType=VARCHAR}  </if>
+
+             <if test="arstime   != null"> , TO_TIMESTAMP(#{arstime,javaType=String,jdbcType=VARCHAR}, 'YYYYMMDDHH24MISSFF9')</if>
+             <if test="arscode   != null"> , #{arscode,javaType=String,jdbcType=VARCHAR}                                     </if>
+             <if test="email     != null"> , #{email,javaType=String,jdbcType=VARCHAR}                                       </if>
+
+             <if test="usermac   != null">       , #{usermac,javaType=String,jdbcType=VARCHAR}                                       </if>
+             <if test="emailtime != null">       , TO_TIMESTAMP(#{emailtime,javaType=String,jdbcType=VARCHAR}, 'YYYYMMDDHH24MISSFF9')</if>
+             <if test="apct_reltn_name != null"> , #{apct_reltn_name,javaType=String,jdbcType=VARCHAR}                               </if>
+
+             <if test="apct_reltn_type_desc != null"> , #{apct_reltn_type_desc,javaType=String,jdbcType=VARCHAR} </if>
+             <if test="worker_id            != null"> , #{worker_id,javaType=String,jdbcType=VARCHAR}            </if>
+             <if test="prodclass            != null"> , #{prodclass,javaType=String,jdbcType=VARCHAR}            </if>
+
+             <if test="sa_id                != null"> , #{sa_id,javaType=String,jdbcType=VARCHAR}            </if>
+
+         )
+
+  </insert>
+  <select id="readOrdno" resultType="String">
+  select to_char(sysdate,'yyyymmddhh24')||substr('00000'||tb_jobhist_seq.nextval,-5)  as ordno
+    from dual
+  </select>
+
+</mapper>

@@ -1,0 +1,206 @@
+package kt.idss.gcrm.validation;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import kt.idss.gcrm.ws.spec.RecvVerifyOwnerForm;
+import kt.idss.ktws.enums.ProductCategory;
+import kt.idss.ktws.enums.ResponseSpec;
+import kt.idss.ktws.exception.ServiceException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.Validator;
+
+@Component
+public class VerifyOwnerValidator implements Validator{
+    private static final Logger logger = LoggerFactory.getLogger(VerifyOwnerValidator.class);
+
+    public boolean supports(Class<?> clazz) {
+        return RecvVerifyOwnerForm.class.equals(clazz);
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        RecvVerifyOwnerForm recv = (RecvVerifyOwnerForm) target;
+        checkVerifyIdDup(recv, errors);
+
+    }
+
+    private void checkVerifyIdDup(Object target, Errors errors){
+
+        RecvVerifyOwnerForm form = (RecvVerifyOwnerForm) target;
+
+        String[] arr_prd_code = { ProductCategory.INTERNET_WIRE.strValue()
+//                                ,ProductCategory.INTERNET_SUB_WIRE.strValue()
+//                                ,ProductCategory.INTERNET_WIRELESS.strValue()
+//                                ,ProductCategory.INTERNET_SUB_WIRELESS.strValue()
+                                ,ProductCategory.WIFI.strValue()
+//                                ,ProductCategory.WIFI_SUB.strValue()
+//                                ,ProductCategory.DIAL_UP.strValue()
+                                ,ProductCategory.WIBRO.strValue()
+//                                ,ProductCategory.WIBRO_BIZ.strValue()
+//                                ,ProductCategory.WIFI_EVENT_ID.strValue()
+                               };
+
+        if(form.getLOGIN_ID() == null || form.getLOGIN_ID().isEmpty()==true){
+            errors.rejectValue("LOGIN_ID",""+ResponseSpec.BAD_REQUEST.intValue(),"LOGIN_ID must be");
+        }
+        if (isBlank(form.getLOGIN_ID()) == false && getLentgh(form.getLOGIN_ID()) > 15){
+            errors.rejectValue("LOGIN_ID",ResponseSpec.BAD_REQUEST.intValue(), "LOGIN_ID too long (max 15)");
+        }
+
+        if (checkIdValid(form.getLOGIN_ID()) == false){
+            errors.rejectValue("LOGIN_ID",ResponseSpec.BAD_REQUEST.intValue(), "첫글자는 영문이며 영문대소문자, 숫자0~9까지만 사용이 가능하고 ID 길이는 6~15까지 허용합니다.");
+        }
+        if (checkEnableId(form.getLOGIN_ID()) == false){
+            errors.rejectValue("LOGIN_ID",ResponseSpec.BAD_REQUEST.intValue(), "사용할수 없는 ID 입니다.");
+        }
+
+        if (isBlank(form.getCUST_ID()) == false && getLentgh(form.getCUST_ID()) > 11){
+            errors.rejectValue("CUST_ID",ResponseSpec.BAD_REQUEST.intValue(), "CUST_ID too long (max 11)");
+        }
+        if (isBlank(form.getICIS_CUST_ID()) == false && getLentgh(form.getICIS_CUST_ID()) > 11){
+            errors.rejectValue("ICIS_CUST_ID",ResponseSpec.BAD_REQUEST.intValue(), "ICIS_CUST_ID too long (max 11)");
+        }
+
+        if (isBlank(form.getCUST_IDFY_NM()) == false && getLentgh(form.getCUST_IDFY_NM()) > 100){
+            errors.rejectValue("CUST_IDFY_NM",ResponseSpec.BAD_REQUEST.intValue(), "CUST_IDFY_NM too long (max 100)");
+        }
+
+        if (isBlank(form.getCUST_IDFY_NO()) == false && getLentgh(form.getCUST_IDFY_NO()) > 64){
+            errors.rejectValue("CUST_IDFY_NO",ResponseSpec.BAD_REQUEST.intValue(), "CUST_IDFY_NO too long (max 64)");
+        }
+
+        if (isBlank(form.getCUST_IDFY_NO_TYPE_CD()) == false && getLentgh(form.getCUST_IDFY_NO_TYPE_CD()) > 20){
+            errors.rejectValue("CUST_IDFY_NO_TYPE_CD",ResponseSpec.BAD_REQUEST.intValue(), "CUST_IDFY_NO_TYPE_CD too long (max 20)");
+        }
+
+        if (isBlank(form.getNFRL_IDFY_NM()) == false && getLentgh(form.getNFRL_IDFY_NM()) > 100){
+            errors.rejectValue("NFRL_IDFY_NM",ResponseSpec.BAD_REQUEST.intValue(), "NFRL_IDFY_NM too long (max 100)");
+        }
+
+        if (isBlank(form.getNFRL_IDFY_NO()) == false && getLentgh(form.getNFRL_IDFY_NO()) > 64){
+            errors.rejectValue("NFRL_IDFY_NO",ResponseSpec.BAD_REQUEST.intValue(), "NFRL_IDFY_NO too long (max 64)");
+        }
+
+        if(isBlank(form.getNFRL_IDFY_NO_TYPE_CD()) == true){
+            errors.rejectValue("NFRL_IDFY_NO_TYPE_CD",""+ResponseSpec.BAD_REQUEST.intValue(),"NFRL_IDFY_NO_TYPE_CD must be");
+        }else{
+            if (isBlank(form.getNFRL_IDFY_NO_TYPE_CD()) == false && getLentgh(form.getNFRL_IDFY_NO_TYPE_CD()) > 20){
+                errors.rejectValue("NFRL_IDFY_NO_TYPE_CD",ResponseSpec.BAD_REQUEST.intValue(), "NFRL_IDFY_NO_TYPE_CD too long (max 20)");
+            }
+        }
+
+//        NFRL_IPIN_CI is null
+
+        if (isBlank(form.getPRNT_SA_ID()) == false && getLentgh(form.getPRNT_SA_ID()) > 11){
+            errors.rejectValue("PRNT_SA_ID",ResponseSpec.BAD_REQUEST.intValue(), "PRNT_SA_ID too long (max 11)");
+        }
+
+        if (isBlank(form.getSA_ID()) == false && getLentgh(form.getSA_ID()) > 11){
+            errors.rejectValue("SA_ID",ResponseSpec.BAD_REQUEST.intValue(), "SA_ID too long (max 11)");
+        }
+
+
+
+        if(isBlank(form.getPROD_TYPE_CD()) == true){
+            errors.rejectValue("PROD_TYPE_CD",""+ResponseSpec.BAD_REQUEST.intValue(),"PROD_TYPE_CD must be");
+        }else{
+
+            if (getLentgh(form.getPROD_TYPE_CD()) > 4){
+                errors.rejectValue("PROD_TYPE_CD",ResponseSpec.BAD_REQUEST.intValue(), "PROD_TYPE_CD too long (max 4)");
+            }
+            boolean isProd_type = false;
+            for (String arr : arr_prd_code) {
+                if(arr.equals(form.getPROD_TYPE_CD())){
+                    isProd_type = true;
+                }
+            }
+            if(isProd_type == false) {
+                errors.rejectValue("PROD_TYPE_CD",""+ResponseSpec.BAD_REQUEST.intValue(),"PROD_TYPE_CD undefined type");
+            }
+        }
+
+    }
+
+    public void validate(RecvVerifyOwnerForm form, String object_name){
+
+        BeanPropertyBindingResult    errors  = null;
+        try{
+            errors     = new BeanPropertyBindingResult(form, object_name);
+
+            validate(form, errors);
+            if(errors.hasErrors()){
+                logger.info("error count : {} " ,errors.getErrorCount());
+                List<ObjectError> allObjectErrors = errors.getAllErrors();
+                String firstErrMessage = null;
+                for (ObjectError objectError : allObjectErrors){
+                    if (objectError instanceof FieldError){
+                        FieldError fieldError = (FieldError)objectError;
+                        logger.info("Field name is {}", fieldError.getField());
+                    }
+                    logger.info("Codes            : {}" , Arrays.asList(objectError.getCodes()).toString());
+                    logger.info("Error Code is    : {}" , objectError.getCode());
+                    logger.info("Default message  : {}" , objectError.getDefaultMessage());
+                    if(firstErrMessage ==null){
+                        firstErrMessage = objectError.getDefaultMessage() == null ? "":objectError.getDefaultMessage() ;
+                    }
+                }
+                throw new ServiceException( ResponseSpec.BAD_REQUEST.intCode()
+                                           ,ResponseSpec.BAD_REQUEST.intValue()+"["+firstErrMessage+"]");
+            }
+        }catch(ServiceException se){
+            //se.printStackTrace();
+            throw se;
+        }catch(Exception e){
+            //e.printStackTrace();
+            throw new ServiceException(  ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                        ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+        }
+    }
+    private static boolean isBlank(String s){
+        return (s == null) || (s.trim().length() == 0);
+    }
+
+    private int getLentgh(String str){
+
+        if(str == null) return 0;
+
+        return str.getBytes().length;
+    }
+
+    public boolean checkIdValid(String value) {
+        String USER_ID_Pattern = "^[a-z][a-zA-Z0-9]{5,14}";
+        Pattern p = Pattern.compile( USER_ID_Pattern );
+        Matcher m = p.matcher(value);
+        return m.matches();
+    }
+
+    public static boolean checkEnableId(String value) {
+
+        boolean enableFlag = true;
+        String[] arrDisableId = {
+                                 "admin"
+                                ,"master"
+                                ,"webadmin"
+                                ,"webmaster"
+                                ,"helpme"
+                                };
+        for (int i = 0; i < arrDisableId.length; i++) {
+
+            if(arrDisableId[i].equalsIgnoreCase(value)){
+                enableFlag = false;
+            }
+        }
+
+        return enableFlag;
+    }
+}

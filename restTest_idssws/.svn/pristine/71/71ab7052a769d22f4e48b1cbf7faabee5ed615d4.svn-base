@@ -1,0 +1,434 @@
+package kt.idss.ktid.ws.service;
+
+import kt.idss.ktid.service.IdChangeService;
+import kt.idss.ktid.validation.ChangeIdValidator;
+import kt.idss.ktid.validation.InterworkError;
+import kt.idss.ktid.validation.HeaderValidator;
+import kt.idss.ktid.validation.CheckDupChangeIdValidator;
+import kt.idss.ktid.validation.VerifyUserValidator;
+import kt.idss.ktid.ws.spec.RecvChangeIdForm;
+import kt.idss.ktid.ws.spec.RecvCheckDupChangeIdForm;
+import kt.idss.ktid.ws.spec.RecvHeaderForm;
+import kt.idss.ktid.ws.spec.RecvVerifyUserForm;
+import kt.idss.ktid.ws.spec.RetnHeaderForm;
+import kt.idss.ktws.enums.ResponseSpec;
+import kt.idss.ktws.exception.ServiceException;
+import kt.idss.ktws.service.JobhistService;
+import kt.idss.ktws.util.Utility;
+import kt.idss.ktws.vo.Customer;
+import kt.idss.ktws.vo.Jobhist;
+import kt.idss.ktws.vo.Product;
+import kt.idss.ktws.ws.com.ExecuteContext;
+import kt.idss.ktws.ws.com.ExecuteStrategy;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service("IdChange")
+public class IdChangeForIdMaster implements IdChange {
+    private static final Logger logger = LoggerFactory.getLogger(IdChangeForIdMaster.class);
+
+    @Autowired
+    Utility utility;
+
+    @Autowired
+    ExecuteContext executeContext;
+
+    @Autowired
+    JobhistService jobhistService;
+
+    @Autowired
+    IdChangeService service;
+
+    @Autowired
+    HeaderValidator headerValidator;
+
+    @Autowired
+    ChangeIdValidator changeIdValidator;
+
+    @Autowired
+    VerifyUserValidator verifyUserValidator;
+
+    @Autowired
+    CheckDupChangeIdValidator checkDupChangeIdValidator;
+
+    private void printRecvHeaderForm(RecvHeaderForm headerForm){
+        if(headerForm !=null){
+            StringBuffer logging = new StringBuffer();
+            logger.info(">>>>>>>>>>>>>>>> start >>>>>>>>>>>>>>>>>");
+            logging.append("header param(");
+            logging.append(" system_id:[{}]");
+            logging.append(",system_ip:[{}]");
+            logging.append(",worker_id:[{}]");
+            logging.append(",user_ip:[{}]");
+            logging.append(" )");
+            logger.info(logging.toString(), new Object[]{headerForm.getSystem_id()
+                                                        ,headerForm.getSystem_ip()
+                                                        ,headerForm.getWorker_id()
+                                                        ,headerForm.getUser_ip()
+                                                        }
+                                                        );
+        }
+    }
+
+
+    public RetnHeaderForm checkDupChangeId(final RecvCheckDupChangeIdForm recv) {
+
+        RetnHeaderForm response = new RetnHeaderForm(  ""+ResponseSpec.SUCCESS.intCode()
+                                                        , ResponseSpec.SUCCESS.intValue()
+                                                    );
+        ExecuteStrategy<RetnHeaderForm> executeStrategy = new ExecuteStrategy<RetnHeaderForm>() {
+
+            String ordno     = jobhistService.readOrdno();
+            String start     = utility.getPatternDate("yyyyMMddHHmmssSSSS");
+            String donetime  = "";
+
+            RetnHeaderForm innerRetn = new RetnHeaderForm(  ""+ResponseSpec.SUCCESS.intCode()
+                                                             , ResponseSpec.SUCCESS.intValue()
+                                                         );
+            @Override
+            public void logParameter() {
+                MDC.put("transaction_id", ordno);
+                InterworkError.checkBadRequest        (recv , "입력값 오류(RecvCheckDupChangeIdForm Info must be)");
+                printRecvHeaderForm(recv.getHeader());
+                StringBuffer logging = new StringBuffer();
+                logging.append("body param(");
+                logging.append(" logname:[{}]");
+                logging.append(",cust_name:[{}]");
+                logging.append(",cust_type_cd:[{}]");
+                logging.append(",cust_num:[{}]");
+                logging.append(",ipin_ci:[{}]");
+                logging.append(",cust_idfy_name:[{}]");
+                logging.append(",cust_idfy_type:[{}]");
+                logging.append(",cust_idfy_no:[{}]");
+                logging.append(",cust_id:[{}]");
+                logging.append(",sa_id:[{}]");
+                logging.append(",p_sa_id:[{}]");
+                logging.append(",prod_code:[{}]");
+                logging.append(" )");
+                logger.info(logging.toString() ,new Object[]   { recv.getLogname         ()
+                                                               , recv.getCust_name       ()
+                                                               , recv.getCust_type_cd    ()
+                                                               , recv.getCust_num        ()
+                                                               , recv.getIpin_ci         ()
+                                                               , recv.getCust_idfy_name  ()
+                                                               , recv.getCust_idfy_type  ()
+                                                               , recv.getCust_idfy_no    ()
+                                                               , recv.getCust_id         ()
+                                                               , recv.getSa_id           ()
+                                                               , recv.getP_sa_id         ()
+                                                               , recv.getProd_code       ()});
+            }
+
+            @Override
+            public void validation() {
+
+                headerValidator.validate              (recv.getHeader(),"header");
+                checkDupChangeIdValidator.validate    (recv,"checkDupChangeId");
+            }
+
+            @Override
+            public RetnHeaderForm execute() {
+                Product inProduct       = new Product();
+                inProduct.setLoginid    (recv.getLogname());
+                inProduct.setP_sa_id    (recv.getP_sa_id());
+                inProduct.setSa_id      (recv.getSa_id());
+                inProduct.setProd_type  (recv.getProd_code());
+
+                inProduct.setCustomer(new Customer(  recv.getCust_name()
+                                                    ,recv.getCust_type_cd()
+                                                    ,recv.getCust_num()
+                                                    ,recv.getIpin_ci()
+                                                    ,""
+                                                    ,recv.getCust_idfy_name()
+                                                    ,recv.getCust_idfy_no()
+                                                    ,recv.getCust_idfy_type()
+                                                    ,recv.getCust_id()
+                                                    ,""
+                                                    )
+                                     );
+                RetnHeaderForm retnHeaderForm = service.createReservation(inProduct);
+                if(retnHeaderForm !=null){
+                    innerRetn.setRetcode(retnHeaderForm.getRetcode());
+                    innerRetn.setMessage(retnHeaderForm.getMessage());
+                }
+                return innerRetn;
+            }
+
+            @Override
+            public void logging(int code, String message) {
+                Jobhist jobhist = new Jobhist();
+                jobhist.setOrdno(ordno);
+                jobhist.setCommand     ("A0");
+                jobhist.setCmddetail   ("1");
+                jobhist.setIdisresult  ("NO");
+                if(recv !=null){
+                    jobhist.setSa_id       (recv.getSa_id());
+                    jobhist.setCustkname   (recv.getCust_name());
+                    jobhist.setCusttype    (recv.getCust_type_cd());
+                    jobhist.setCustnum     (recv.getCust_id());
+                    jobhist.setProdclass   (recv.getProd_code());
+                    jobhist.setLoginid     (recv.getLogname());
+                    jobhist.setSa_id       (recv.getP_sa_id());
+                    jobhist.setReqip       (recv.getHeader().getSystem_ip());
+                    jobhist.setUserip      (recv.getHeader().getUser_ip());
+                    jobhist.setWorker_id   (recv.getHeader().getWorker_id());
+                    jobhist.setReqsystem   (recv.getHeader().getSystem_id());
+                }
+                if(code != ResponseSpec.SUCCESS.intCode()){
+                    jobhist.setErrcode     (""+code);
+                    jobhist.setErrmsg      (message);
+                }else{
+                    jobhist.setErrcode(innerRetn.getRetcode());
+                    jobhist.setErrmsg (innerRetn.getMessage());
+                }
+
+                jobhist.setRegdate     (start);
+                donetime = utility.getPatternDate("yyyyMMddHHmmss");
+                jobhist.setDonetime    (donetime);
+                jobhistService.createJobhist(jobhist);
+            }
+        };
+        try {
+            response = executeContext.contextWithStrategy(executeStrategy);
+        } catch (ServiceException e) {
+            response.setRetcode(""+ e.getCode());
+            response.setMessage(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setRetcode(""+ ResponseSpec.INTERNAL_SERVER_ERROR.intCode());
+            response.setMessage(ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+        }
+        return response;
+    }
+
+    public RetnHeaderForm changeId(final RecvChangeIdForm recv) {
+        RetnHeaderForm response = new RetnHeaderForm(  ""+ResponseSpec.SUCCESS.intCode()
+                                                        , ResponseSpec.SUCCESS.intValue()
+                                                    );
+        ExecuteStrategy<RetnHeaderForm> executeStrategy = new ExecuteStrategy<RetnHeaderForm>() {
+
+            String ordno     = jobhistService.readOrdno();
+            String start     = utility.getPatternDate("yyyyMMddHHmmssSSSS");
+            String donetime  = "";
+
+            RetnHeaderForm innerRetn = new RetnHeaderForm(  ""+ResponseSpec.SUCCESS.intCode()
+                                                            , ResponseSpec.SUCCESS.intValue()
+                                                         );
+            @Override
+            public void logParameter() {
+                MDC.put("transaction_id", ordno);
+                InterworkError.checkBadRequest(recv , "입력값 오류(RecvChangeIdForm Info must be)");
+                printRecvHeaderForm(recv.getHeader());
+                StringBuffer logging = new StringBuffer();
+                logging.append("body param(");
+                logging.append(" logname:[{}] ");
+                logging.append(",cust_id:[{}] ");
+                logging.append(",sa_id:[{}] ");
+                logging.append(",p_sa_id:[{}] ");
+                logging.append(",prod_code:[{}] ");
+                logging.append(" )");
+
+                logger.info(logging.toString()   , new Object[]{ recv.getLogname   ()
+                                                                ,recv.getCust_id   ()
+                                                                ,recv.getSa_id     ()
+                                                                ,recv.getP_sa_id   ()
+                                                                ,recv.getProd_code ()});
+            }
+
+            @Override
+            public void validation() {
+                headerValidator.validate      (recv.getHeader(),"header");
+                changeIdValidator.validate    (recv ,"changeId");
+            }
+
+            @Override
+            public RetnHeaderForm execute() {
+                service.createNewId(  recv.getLogname()
+                                    , recv.getCust_id()
+                                    , recv.getSa_id()
+                                    , recv.getP_sa_id()
+                                    , recv.getProd_code()
+                                    );
+                return innerRetn;
+            }
+
+            @Override
+            public void logging(int code, String message) {
+                // TODO create jobhist
+                Jobhist jobhist = new Jobhist();
+                jobhist.setOrdno(ordno);
+                jobhist.setCommand     ("A0");
+                jobhist.setCmddetail   ("2");
+                jobhist.setIdisresult  ("NO");
+                if(recv !=null){
+                    jobhist.setSa_id       (recv.getSa_id());
+                    jobhist.setCustnum     (recv.getCust_id());
+                    jobhist.setProdclass   (recv.getProd_code());
+                    jobhist.setLoginid     (recv.getLogname());
+                    jobhist.setSa_id       (recv.getP_sa_id());
+                    jobhist.setReqip       (recv.getHeader().getSystem_ip());
+                    jobhist.setUserip      (recv.getHeader().getUser_ip());
+                    jobhist.setWorker_id   (recv.getHeader().getWorker_id());
+                    jobhist.setReqsystem   (recv.getHeader().getSystem_id());
+                }
+                if(code != ResponseSpec.SUCCESS.intCode()){
+                    jobhist.setErrcode     (""+code);
+                    jobhist.setErrmsg      (message);
+                }else{
+                    jobhist.setErrcode(innerRetn.getRetcode());
+                    jobhist.setErrmsg (innerRetn.getMessage());
+                }
+
+                jobhist.setRegdate     (start);
+                donetime = utility.getPatternDate("yyyyMMddHHmmss");
+                jobhist.setDonetime    (donetime);
+                jobhistService.createJobhist(jobhist);
+            }
+        };
+        try {
+            response = executeContext.contextWithStrategy(executeStrategy);
+        } catch (ServiceException e) {
+            response.setRetcode(""+ e.getCode());
+            response.setMessage(e.getMessage());
+        } catch (Exception e) {
+            //e.printStackTrace();
+            response.setRetcode(""+ ResponseSpec.INTERNAL_SERVER_ERROR);
+            response.setMessage(ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+        }
+        return response;
+    }
+
+
+    public RetnHeaderForm verifyUser(final RecvVerifyUserForm recv) {
+        RetnHeaderForm response = new RetnHeaderForm(  ""+ResponseSpec.SUCCESS.intCode()
+                                                        , ResponseSpec.SUCCESS.intValue()
+                                                    );
+        ExecuteStrategy<RetnHeaderForm> executeStrategy = new ExecuteStrategy<RetnHeaderForm>() {
+            String ordno     = jobhistService.readOrdno();
+            String start     = utility.getPatternDate("yyyyMMddHHmmssSSSS");
+            String donetime  = "";
+
+            RetnHeaderForm innerRetn = new RetnHeaderForm(  ""+ResponseSpec.SUCCESS.intCode()
+                                                            , ResponseSpec.SUCCESS.intValue()
+                                                         );
+            @Override
+            public void logParameter() {
+                MDC.put("transaction_id", ordno);
+                InterworkError.checkBadRequest  (recv , "입력값 오류(RecvVerifyUserForm Info must be)");
+                printRecvHeaderForm(recv.getHeader());
+                StringBuffer logging = new StringBuffer();
+                logging.append("body param(");
+                logging.append(" logname:[{}]");
+                logging.append(",cust_name:[{}]");
+                logging.append(",cust_type_cd:[{}]");
+                logging.append(",cust_num:[{}]");
+                logging.append(",ipin_ci:[{}]");
+                logging.append(",cust_idfy_name:[{}]");
+                logging.append(",cust_idfy_type:[{}]");
+                logging.append(",cust_idfy_no:[{}]");
+                logging.append(",cust_id:[{}]");
+                logging.append(",sa_id:[{}]");
+                logging.append(",p_sa_id:[{}]");
+                logging.append(",prod_code:[{}]");
+                logging.append(" )");
+                logger.info(logging.toString() ,new Object[]   { recv.getLogname         ()
+                                                               , recv.getCust_name       ()
+                                                               , recv.getCust_type_cd    ()
+                                                               , recv.getCust_num        ()
+                                                               , recv.getIpin_ci         ()
+                                                               , recv.getCust_idfy_name  ()
+                                                               , recv.getCust_idfy_type  ()
+                                                               , recv.getCust_idfy_no    ()
+                                                               , recv.getCust_id         ()
+                                                               , recv.getSa_id           ()
+                                                               , recv.getP_sa_id         ()
+                                                               , recv.getProd_code       ()});
+            }
+
+            @Override
+            public void validation() {
+                headerValidator.validate        (recv.getHeader(),"header");
+                verifyUserValidator.validate    (recv,"verifyUser");
+            }
+
+            @Override
+            public RetnHeaderForm execute() {
+                Product inProduct       = new Product();
+                inProduct.setLoginid    (recv.getLogname());
+                inProduct.setP_sa_id    (recv.getP_sa_id());
+                inProduct.setSa_id      (recv.getSa_id());
+                inProduct.setProd_type  (recv.getProd_code());
+
+                inProduct.setCustomer(new Customer(  recv.getCust_name()
+                                                    ,recv.getCust_type_cd()
+                                                    ,recv.getCust_num()
+                                                    ,recv.getIpin_ci()
+                                                    ,""
+                                                    ,recv.getCust_idfy_name()
+                                                    ,recv.getCust_idfy_no()
+                                                    ,recv.getCust_idfy_type()
+                                                    ,recv.getCust_id()
+                                                    ,""
+                                                    )
+                                     );
+                RetnHeaderForm retnHeaderForm = service.createVerifyOwner(inProduct);
+                if(retnHeaderForm !=null){
+                    innerRetn.setRetcode(retnHeaderForm.getRetcode());
+                    innerRetn.setMessage(retnHeaderForm.getMessage());
+                }
+                return innerRetn;
+            }
+
+            @Override
+            public void logging(int code, String message) {
+                // TODO create jobhist
+                Jobhist jobhist = new Jobhist();
+                jobhist.setOrdno(ordno);
+                jobhist.setCommand     ("A0");
+                jobhist.setCmddetail   ("3");
+                jobhist.setIdisresult  ("NO");
+                if(recv !=null){
+                    jobhist.setSa_id       (recv.getSa_id());
+                    jobhist.setCusttype    (recv.getCust_type_cd());
+                    jobhist.setCustnum     (recv.getCust_id());
+                    jobhist.setProdclass   (recv.getProd_code());
+                    jobhist.setLoginid     (recv.getLogname());
+                    jobhist.setSa_id       (recv.getP_sa_id());
+                    jobhist.setIdisresult  ("NO");
+                    jobhist.setReqip       (recv.getHeader().getSystem_ip());
+                    jobhist.setUserip      (recv.getHeader().getUser_ip());
+                    jobhist.setWorker_id   (recv.getHeader().getWorker_id());
+                    jobhist.setReqsystem   (recv.getHeader().getSystem_id());
+                }
+                if(code != ResponseSpec.SUCCESS.intCode()){
+                    jobhist.setErrcode     (""+code);
+                    jobhist.setErrmsg      (message);
+                }else{
+                    jobhist.setErrcode(innerRetn.getRetcode());
+                    jobhist.setErrmsg (innerRetn.getMessage());
+                }
+
+                jobhist.setRegdate     (start);
+
+                donetime = utility.getPatternDate("yyyyMMddHHmmss");
+                jobhist.setDonetime    (donetime);
+                jobhistService.createJobhist(jobhist);
+            }
+        };
+        try {
+            response = executeContext.contextWithStrategy(executeStrategy);
+        } catch (ServiceException e) {
+            response.setRetcode(""+ e.getCode());
+            response.setMessage(e.getMessage());
+        } catch (Exception e) {
+            //e.printStackTrace();
+            response.setRetcode(""+ ResponseSpec.INTERNAL_SERVER_ERROR);
+            response.setMessage(ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+        }
+        return response;
+    }
+}

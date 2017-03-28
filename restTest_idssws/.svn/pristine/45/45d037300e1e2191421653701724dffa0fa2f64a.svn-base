@@ -1,0 +1,100 @@
+/*
+ * IDMS(Integrated DataBase Management System) version 1.0
+ *
+ *  Copyright ⓒ 2016 kt cort. All rights reserved.
+ *
+ *  This is a proprietary software of kt corp, and you may not use this file except in
+ *  compliance with license agreement with kt corp. Any redistribution or use of this
+ *  software, with or without modification shall be strictly prohibited without prior written
+ *  approval of kt corp, and the copyright notice above does not evidence any actualor
+ *  intended publication of such software.
+*/
+
+package kt.idss.ktws.cdm;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>retrieveIDMSCustIdfyNoresponseType complex type�� ���� Java Ŭ�����Դϴ�.
+ *
+ * <p>���� ��Ű�� ������ �� Ŭ������ ���ԵǴ� �ʿ��� �������� �����մϴ�.
+ *
+ * <pre>
+ * &lt;complexType name="retrieveIDMSCustIdfyNoresponseType">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;all>
+ *         &lt;element name="bizHeader" type="{http://bizhub.kt.com}bizHeader"/>
+ *         &lt;element name="CustBasInfoDTO" type="{http://bizhub.kt.com}IDMSCustBasInfoDTO"/>
+ *       &lt;/all>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ *
+ *
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "retrieveIDMSCustIdfyNoresponseType", propOrder = {
+
+})
+public class RetrieveIDMSCustIdfyNoresponseType {
+
+    @XmlElement(required = true)
+    protected BizHeader bizHeader;
+    @XmlElement(name = "CustBasInfoDTO", required = true)
+    protected IDMSCustBasInfoDTO custBasInfoDTO;
+
+    /**
+     * bizHeader �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link BizHeader }
+     *
+     */
+    public BizHeader getBizHeader() {
+        return bizHeader;
+    }
+
+    /**
+     * bizHeader �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link BizHeader }
+     *
+     */
+    public void setBizHeader(BizHeader value) {
+        this.bizHeader = value;
+    }
+
+    /**
+     * custBasInfoDTO �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link IDMSCustBasInfoDTO }
+     *
+     */
+    public IDMSCustBasInfoDTO getCustBasInfoDTO() {
+        return custBasInfoDTO;
+    }
+
+    /**
+     * custBasInfoDTO �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link IDMSCustBasInfoDTO }
+     *
+     */
+    public void setCustBasInfoDTO(IDMSCustBasInfoDTO value) {
+        this.custBasInfoDTO = value;
+    }
+
+}

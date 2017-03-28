@@ -1,0 +1,34 @@
+package kt.idss.ktid.ws.spec;
+
+public class RecvHeaderForm {
+    private String user_ip    ;
+    private String system_id  ;
+    private String system_ip  ;
+    private String worker_id  ;
+    public String getUser_ip() {
+        return user_ip;
+    }
+    public void setUser_ip(String user_ip) {
+        this.user_ip = user_ip;
+    }
+    public String getSystem_id() {
+        return system_id;
+    }
+    public void setSystem_id(String system_id) {
+        this.system_id = system_id;
+    }
+    public String getSystem_ip() {
+        return system_ip;
+    }
+    public void setSystem_ip(String system_ip) {
+        this.system_ip = system_ip;
+    }
+    public String getWorker_id() {
+        return worker_id;
+    }
+    public void setWorker_id(String worker_id) {
+        this.worker_id = worker_id;
+    }
+
+
+}

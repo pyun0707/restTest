@@ -1,0 +1,178 @@
+package kt.idss.ktws.vo;
+
+public class ReservedInfo {
+    private String logname           ;
+    private String cust_name         ;
+    private String cust_num_type     ;
+    private String cust_num          ;
+    private String ipin_ci           ;
+    private String ipin_di           ;
+    private String cust_idfy_name    ;
+    private String cust_idfy_no_type ;
+    private String cust_idfy_no      ;
+    private String i_cust_id         ;
+    private String g_cust_id         ;
+    private String legacy_cust_id    ;
+    private String sa_id             ;
+    private String p_sa_id           ;
+    private String svc_type          ;
+    private String status            ;
+    private String ins_date          ;
+    private String chg_date          ;
+    private boolean isGenesis        ;
+
+
+    public ReservedInfo(
+            String logname
+          , String cust_name
+          , String cust_num_type
+          , String cust_num
+          , String ipin_ci
+          , String ipin_di
+          , String cust_idfy_name
+          , String cust_idfy_no_type
+          , String cust_idfy_no
+          , String i_cust_id
+          , String legacy_cust_id
+          , String sa_id
+          , String p_sa_id
+          , String svc_type
+          , String status
+          , String ins_date
+          , String chg_date
+          , boolean isGenesis) {
+        this.logname = logname;
+        this.cust_name = cust_name;
+        this.cust_num_type = cust_num_type;
+        this.cust_num = cust_num;
+        this.ipin_ci = ipin_ci;
+        this.ipin_di = ipin_di;
+        this.cust_idfy_name = cust_idfy_name;
+        this.cust_idfy_no_type = cust_idfy_no_type;
+        this.cust_idfy_no = cust_idfy_no;
+        this.i_cust_id = i_cust_id;
+        this.legacy_cust_id = legacy_cust_id;
+        this.sa_id = sa_id;
+        this.p_sa_id = p_sa_id;
+        this.svc_type = svc_type;
+        this.status = status;
+        this.ins_date = ins_date;
+        this.chg_date = chg_date;
+        this.isGenesis = isGenesis;
+    }
+    public String getLogname() {
+        return logname;
+    }
+    public void setLogname(String logname) {
+        this.logname = logname;
+    }
+    public String getCust_name() {
+        return cust_name;
+    }
+    public void setCust_name(String cust_name) {
+        this.cust_name = cust_name;
+    }
+    public String getCust_num_type() {
+        return cust_num_type;
+    }
+    public void setCust_num_type(String cust_num_type) {
+        this.cust_num_type = cust_num_type;
+    }
+    public String getCust_num() {
+        return cust_num;
+    }
+    public void setCust_num(String cust_num) {
+        this.cust_num = cust_num;
+    }
+    public String getIpin_ci() {
+        return ipin_ci;
+    }
+    public void setIpin_ci(String ipin_ci) {
+        this.ipin_ci = ipin_ci;
+    }
+    public String getIpin_di() {
+        return ipin_di;
+    }
+    public void setIpin_di(String ipin_di) {
+        this.ipin_di = ipin_di;
+    }
+    public String getCust_idfy_name() {
+        return cust_idfy_name;
+    }
+    public void setCust_idfy_name(String cust_idfy_name) {
+        this.cust_idfy_name = cust_idfy_name;
+    }
+    public String getCust_idfy_no_type() {
+        return cust_idfy_no_type;
+    }
+    public void setCust_idfy_no_type(String cust_idfy_no_type) {
+        this.cust_idfy_no_type = cust_idfy_no_type;
+    }
+    public String getCust_idfy_no() {
+        return cust_idfy_no;
+    }
+    public void setCust_idfy_no(String cust_idfy_no) {
+        this.cust_idfy_no = cust_idfy_no;
+    }
+    public String getI_cust_id() {
+        return i_cust_id;
+    }
+    public void setI_cust_id(String i_cust_id) {
+        this.i_cust_id = i_cust_id;
+    }
+    public String getG_cust_id() {
+        return g_cust_id;
+    }
+    public void setG_cust_id(String g_cust_id) {
+        this.g_cust_id = g_cust_id;
+    }
+    public String getLegacy_cust_id() {
+        return legacy_cust_id;
+    }
+    public void setLegacy_cust_id(String legacy_cust_id) {
+        this.legacy_cust_id = legacy_cust_id;
+    }
+    public String getSa_id() {
+        return sa_id;
+    }
+    public void setSa_id(String sa_id) {
+        this.sa_id = sa_id;
+    }
+    public String getP_sa_id() {
+        return p_sa_id;
+    }
+    public void setP_sa_id(String p_sa_id) {
+        this.p_sa_id = p_sa_id;
+    }
+    public String getSvc_type() {
+        return svc_type;
+    }
+    public void setSvc_type(String svc_type) {
+        this.svc_type = svc_type;
+    }
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    public String getIns_date() {
+        return ins_date;
+    }
+    public void setIns_date(String ins_date) {
+        this.ins_date = ins_date;
+    }
+    public String getChg_date() {
+        return chg_date;
+    }
+    public void setChg_date(String chg_date) {
+        this.chg_date = chg_date;
+    }
+    public boolean isGenesis() {
+        return isGenesis;
+    }
+    public void setGenesis(boolean isGenesis) {
+        this.isGenesis = isGenesis;
+    }
+
+}

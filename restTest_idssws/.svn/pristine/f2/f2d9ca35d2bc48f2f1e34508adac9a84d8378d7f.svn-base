@@ -1,0 +1,12 @@
+package kt.idss.ktid.ws.service;
+
+import kt.idss.ktid.ws.spec.RecvChangeIdForm;
+import kt.idss.ktid.ws.spec.RecvCheckDupChangeIdForm;
+import kt.idss.ktid.ws.spec.RecvVerifyUserForm;
+import kt.idss.ktid.ws.spec.RetnHeaderForm;
+
+public interface IdChange {
+    public RetnHeaderForm checkDupChangeId(RecvCheckDupChangeIdForm recv);
+    public RetnHeaderForm changeId        (RecvChangeIdForm   recv);
+    public RetnHeaderForm verifyUser      (RecvVerifyUserForm recv);
+}

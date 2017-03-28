@@ -1,0 +1,93 @@
+package kt.idss.ktws.vo;
+
+
+public class Product implements java.io.Serializable{
+
+    private static final long serialVersionUID = 1L;
+
+    private String prod_type       ;
+    private String prod_code       ;
+    private boolean isFire         ;
+    private boolean isExcessFireDay;
+    private String sa_id           ;
+    private String p_sa_id         ;
+    private String password        ;
+    private String hashpassword    ;
+    private String loginid         ;
+    private String use_cust_type   ;
+    private String use_cust_num    ;
+
+    private Customer customer      ;
+    public String getProd_type() {
+        return prod_type;
+    }
+    public void setProd_type(String prod_type) {
+        this.prod_type = prod_type;
+    }
+    public String getProd_code() {
+        return prod_code;
+    }
+    public void setProd_code(String prod_code) {
+        this.prod_code = prod_code;
+    }
+    public boolean isFire() {
+        return isFire;
+    }
+    public void setFire(boolean isFire) {
+        this.isFire = isFire;
+    }
+    public boolean isExcessFireDay() {
+        return isExcessFireDay;
+    }
+    public void setExcessFireDay(boolean isExcessFireDay) {
+        this.isExcessFireDay = isExcessFireDay;
+    }
+    public String getSa_id() {
+        return sa_id;
+    }
+    public void setSa_id(String sa_id) {
+        this.sa_id = sa_id;
+    }
+    public String getP_sa_id() {
+        return p_sa_id;
+    }
+    public void setP_sa_id(String p_sa_id) {
+        this.p_sa_id = p_sa_id;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public String getHashpassword() {
+        return hashpassword;
+    }
+    public void setHashpassword(String hashpassword) {
+        this.hashpassword = hashpassword;
+    }
+    public String getLoginid() {
+        return loginid;
+    }
+    public void setLoginid(String loginid) {
+        this.loginid = loginid;
+    }
+    public String getUse_cust_type() {
+        return use_cust_type;
+    }
+    public void setUse_cust_type(String use_cust_type) {
+        this.use_cust_type = use_cust_type;
+    }
+    public String getUse_cust_num() {
+        return use_cust_num;
+    }
+    public void setUse_cust_num(String use_cust_num) {
+        this.use_cust_num = use_cust_num;
+    }
+    public Customer getCustomer() {
+        return customer;
+    }
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+}

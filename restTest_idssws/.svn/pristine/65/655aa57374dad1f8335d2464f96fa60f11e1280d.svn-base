@@ -1,0 +1,7 @@
+package kt.idss.ktws.common.dao;
+
+import kt.idss.ktws.vo.ServerItem;
+
+public interface DbinfoDao {
+    public ServerItem readDbinfo (String demon, String system);
+}

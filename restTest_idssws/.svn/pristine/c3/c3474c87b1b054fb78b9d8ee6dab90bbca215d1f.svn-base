@@ -1,0 +1,89 @@
+
+package kt.idss.ktws.gcrm;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Java class for KtInfOC0745 complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
+ * 
+ * <pre>
+ * &lt;complexType name="KtInfOC0745">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;all>
+ *         &lt;element name="CUST_TYPE" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="CUST_ID" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *       &lt;/all>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "KtInfOC0745", propOrder = {
+
+})
+public class KtInfOC0745 {
+
+    @XmlElement(name = "CUST_TYPE", required = true)
+    protected String custtype;
+    @XmlElement(name = "CUST_ID", required = true)
+    protected String custid;
+
+    /**
+     * Gets the value of the custtype property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCUSTTYPE() {
+        return custtype;
+    }
+
+    /**
+     * Sets the value of the custtype property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCUSTTYPE(String value) {
+        this.custtype = value;
+    }
+
+    /**
+     * Gets the value of the custid property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCUSTID() {
+        return custid;
+    }
+
+    /**
+     * Sets the value of the custid property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCUSTID(String value) {
+        this.custid = value;
+    }
+
+}

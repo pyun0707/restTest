@@ -1,0 +1,20 @@
+package kt.idss.ktws.common.dao;
+
+import kt.idss.ktws.vo.Jobhist;
+
+public interface JobhistDao {
+    /**
+     * <pre>
+     * @Method Name  : create
+     * @Date         : 2013. 3. 14. 오후 4:10:26
+     * @User         : iloveYWS
+     * @Return Type  : void
+     * @Decription   : TB_JOBHIST 테이블에 연동이력을 생성한다.
+     * </pre>
+     * @param jobhist : jobhist bean object
+     */
+    public void create(Jobhist jobhist);
+
+    public String readOrdno();
+
+}

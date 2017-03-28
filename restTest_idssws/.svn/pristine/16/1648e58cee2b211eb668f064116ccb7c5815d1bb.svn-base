@@ -1,0 +1,14 @@
+package kt.idss.ktid.validation;
+
+import kt.idss.ktws.enums.ResponseSpec;
+import kt.idss.ktws.exception.ServiceException;
+
+
+public class InterworkError {
+
+    public static void checkBadRequest(Object object, String message) {
+        if (object == null) {
+            throw new ServiceException(ResponseSpec.BAD_REQUEST.intCode(), message);
+        }
+    }
+}

@@ -1,0 +1,201 @@
+/*
+ * IDMS(Integrated DataBase Management System) version 1.0
+ *
+ *  Copyright ⓒ 2016 kt cort. All rights reserved.
+ *
+ *  This is a proprietary software of kt corp, and you may not use this file except in
+ *  compliance with license agreement with kt corp. Any redistribution or use of this
+ *  software, with or without modification shall be strictly prohibited without prior written
+ *  approval of kt corp, and the copyright notice above does not evidence any actualor
+ *  intended publication of such software.
+*/
+package kt.idss.ktws.cdm;
+
+
+import java.net.InetAddress;
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class CustInfoClient {
+
+
+    private static final Logger logger = LoggerFactory.getLogger(CustInfoClient.class);
+//    public final static QName PLCustInfoRetvWebSvcPort = new QName("http://bizhub.kt.com", "PL_CustInfoRetvWebSvcPort");
+
+    public String retrieveIDMSCustIdfyNo(String address, String custDivCd, String custId) throws java.lang.Exception {
+        String ipin_ci = "";
+
+        URL wsdlURL = CustInfoRetvWebSvcService.WSDL_LOCATION;
+
+        try {
+            /** cdm 연동 URL
+            * 개발 /SIT : http://10.217.157.95:5000/SoapGateway/
+            * 운용      :  http://10.219.3.190:5000/SoapGateway/
+            *
+            */
+
+          wsdlURL = new URL("file:///user/webims/idmsd/ktws/src/kt/idss/ktws/cdm/wsdl/PL_CustInfoRetvWebSvc_20151113.wsdl"); //TODO 운용/SIT
+          //wsdlURL = new URL("file:///user/develop/idmsd/ktws/webapp/WEB-INF/classes/kt/idss/ktws/cdm/wsdl/PL_CustInfoRetvWebSvc_20151113.wsdl"); //TODO 개발
+
+
+        }catch(Exception e){
+            throw e;
+        }
+        kt.idss.ktws.cdm.CustInfoRetvWebSvcService custInfoRetvWebSvcService = new CustInfoRetvWebSvcService(wsdlURL);
+        kt.idss.ktws.cdm.PLCustInfoRetvWebSvcPort binding= custInfoRetvWebSvcService.getPLCustInfoRetvWebSvcPort();
+
+        /* trDate/trTime/lgDateTime/globaTime 세팅*/
+        SimpleDateFormat date = new SimpleDateFormat("yyyyMMddHHmmssSSSS");
+        String trDate = date.format(new Date()).substring(0, 8); //YYYYMMDD
+        String trTime = date.format(new Date()).substring(8, 17); //yyyyMMddHHmmssSSSS (년월일 제외 시간부터 뒷자리) hh(24)missttt
+        String lgDateTime = date.format(new Date()).substring(0,14); //YYYYMMDDHH(24)MISS
+        String globaTime = date.format(new Date());
+
+
+        /*clntIp No 세팅*/
+        InetAddress ip = InetAddress.getLocalHost();
+        String clntIp = ip.getHostAddress();
+        /*global No rand 세팅*/
+
+        String randglobalNo = null;
+        randglobalNo=getRandomKey(14);
+        StringBuffer globalNoBuf = new StringBuffer();
+
+        globalNoBuf.append(randglobalNo); //14자리
+        globalNoBuf.append(globaTime);    //18자리
+
+        String globalNo =globalNoBuf.toString(); //32자리
+
+         /*commonHeaderHolder set*/
+        javax.xml.ws.Holder<CommonHeader> commonHeader = new javax.xml.ws.Holder<CommonHeader>();
+        CommonHeader setHeader = new CommonHeader();
+
+
+        setHeader.setAppName("NBSS_CDM");
+        setHeader.setSvcName("/CDM/PipelineSVC/NCST/CustInfoAdm/PL_CustInfoRetvWebSvc");
+        setHeader.setFnName("retrieveIDMSCustIdfyNo");
+        setHeader.setFnCd("");
+        setHeader.setGlobalNo(globalNo);
+        setHeader.setChnlType("IM");
+        setHeader.setEnvrFlag("");
+        setHeader.setTrFlag("T");
+        setHeader.setTrDate(trDate);
+        setHeader.setTrTime(trTime);
+        setHeader.setClntIp(clntIp);
+        setHeader.setResponseType("");
+        setHeader.setResponseCode("");
+        setHeader.setResponseLogcd("");
+        setHeader.setResponseTitle("");
+        setHeader.setResponseBasc("");
+        setHeader.setResponseDtal("");
+        setHeader.setResponseSystem("");
+        setHeader.setUserId("91129295");
+        setHeader.setRealUserId("91129295");
+        setHeader.setFiller("");
+        setHeader.setLangCode("");
+        setHeader.setOrgId("SPT8050");
+        setHeader.setSrcId("IDMSWSCDMA0");
+        setHeader.setCurHostId("");
+        setHeader.setLgDateTime(lgDateTime);
+        setHeader.setTokenId("");
+        setHeader.setCmpnCd("KTF");
+        setHeader.setLockType("");
+        setHeader.setLockId("");
+        setHeader.setLockTimeSt("");
+        setHeader.setBusinessKey("");
+        setHeader.setArbitraryKey("");
+        setHeader.setResendFlag("");
+        setHeader.setPhase("PA1");
+
+        commonHeader.value = setHeader;
+
+        /** TODO Value Check ******************/
+        BizHeader reqBizHeader = new BizHeader();
+        reqBizHeader.setOrderId   ("orderid");
+        reqBizHeader.setCbSvcName ("/CDM/PipelineSVC/NCST/CustInfoAdm/PL_CustInfoRetvWebSvc");
+        reqBizHeader.setCbFnName  ("retrieveIDMSCustIdfyNo");
+        /***************************************/
+
+        CustIdDTO custIdDTO = new CustIdDTO();
+        custIdDTO.setCustDivCd(custDivCd);
+        custIdDTO.setCustId(custId);
+
+        IoCCsm1200QS ioCCsm1200QS = new IoCCsm1200QS();
+
+        ioCCsm1200QS.setCustId(custId);
+
+        RetrieveIDMSCustIdfyNorequestType request = new  RetrieveIDMSCustIdfyNorequestType();
+        request.setBizHeader(reqBizHeader);
+        request.setCustIdDTO(custIdDTO);
+
+        try {
+
+            logger.info("***** PL_CustInfoRetvWebSvc Start.......");
+
+            RetrieveIDMSCustIdfyNoresponseType IDMSresponse =null;
+
+            BizHeader      repBizHeader   = null;
+            IDMSCustBasInfoDTO custBasInfoDTO = null;
+            logger.info("***** retrieveIDMSCustIdfyNo Start.......");
+            IDMSresponse=binding.retrieveIDMSCustIdfyNo(commonHeader, request);
+
+            logger.info("***** retrieveIDMSCustIdfyNo end.......");
+                if (IDMSresponse != null) {
+                    repBizHeader   = IDMSresponse.getBizHeader();
+
+                    if (repBizHeader != null) {
+                        logger.info("\t orderId    : " + repBizHeader.getOrderId   ());
+                        logger.info("\t cbSvcName  : " + repBizHeader.getCbSvcName ());
+                        logger.info("\t cbFnName   : " + repBizHeader.getCbFnName  ());
+                    }
+
+                    custBasInfoDTO = IDMSresponse.getCustBasInfoDTO();
+
+                    logger.debug("\t confResltCd         : " + custBasInfoDTO.getConfResltCd        ());
+                    logger.debug("\t custDivCd           : " + custBasInfoDTO.getCustDivCd          ());
+                    if ("0".equals(custBasInfoDTO.getConfResltCd())) {
+                        logger.debug("\t custId              : " + custBasInfoDTO.getCustId             ());
+                        logger.debug("\t iciCustId           : " + custBasInfoDTO.getIcisCustId         ());
+                        logger.debug("\t nstepCustId         : " + custBasInfoDTO.getNstepCustId        ());
+                        logger.debug("\t custNm              : " + custBasInfoDTO.getCustNm             ());
+                        logger.debug("\t custIdfyNoDivCd     : " + custBasInfoDTO.getCustIdfyNoDivCd    ());
+                        logger.debug("\t custTypeCd          : " + custBasInfoDTO.getCustTypeCd         ());
+                        logger.debug("\t custIdfyNo          : " + custBasInfoDTO.getCustIdfyNo         ());
+                        logger.debug("\t interNm             : " + custBasInfoDTO.getInterNm            ());
+                        logger.debug("\t apdCustUdfyNoDivCd  : " + custBasInfoDTO.getApdCustIdfyNoDivCd ());
+                        logger.debug("\t apdCustUdfyNo       : " + custBasInfoDTO.getApdCustIdfyNo      ());
+                        logger.debug("\t rnmAthnYn           : " + custBasInfoDTO.getRnmAthnYn          ());
+                        logger.debug("\t rnmAthnDt           : " + custBasInfoDTO.getRnmAthnDt          ());
+                        logger.debug("\t ipinCi              : " + custBasInfoDTO.getIpinCi             ());
+                        logger.debug("\t ipinDi              : " + custBasInfoDTO.getIpinDi             ());
+                        logger.debug("\t personSexDivCd      : " + custBasInfoDTO.getPersonSexDivCd     ());
+                        logger.debug("\t bthdayDate          : " + custBasInfoDTO.getBthdayDate         ());
+                        ipin_ci=custBasInfoDTO.getIpinCi();
+                    }
+                }
+
+            logger.info("***** PL_CustInfoRetvWebSvc End.......");
+
+        } catch (Exception e) {
+            throw e;
+        }
+        return ipin_ci;
+
+    }
+
+    private static String getRandomKey(int n) {
+        String[] data = { "9","3","5","7","2","4" ,"6","8","1","0"};
+        java.util.Random ran = new java.util.Random();
+
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < n; i++) {
+            sb.append(data[ran.nextInt(data.length)]);
+        }
+        return sb.toString();
+    }
+
+}

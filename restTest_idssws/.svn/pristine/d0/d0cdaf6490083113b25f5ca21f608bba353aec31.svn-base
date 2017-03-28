@@ -1,0 +1,57 @@
+package kt.idss.ktws.exception;
+
+/**
+ * ServiceException
+ *
+ * @author iloveYWS
+ * @since 2013. 3. 14.
+ * @version 1.0
+ * @see
+ *
+ *      <pre>
+ * << Modification Information >>
+ *
+ *  Modifiers     : iloveYWS
+ *  Modified      : 2013. 3. 14.
+ * </pre>
+ */
+public class ServiceException extends RuntimeException {
+
+    private static final long serialVersionUID = 1L;
+
+    private int code;
+    private String message;
+
+    public ServiceException() {
+        super();
+    }
+
+    public ServiceException(String message) {
+        super(message);
+        this.message = message;
+
+    }
+
+    public ServiceException(int code, String message) {
+        super(message);
+        this.code = code;
+        this.message = message;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+}

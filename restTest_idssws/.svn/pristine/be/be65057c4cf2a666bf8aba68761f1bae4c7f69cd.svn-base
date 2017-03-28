@@ -1,0 +1,102 @@
+package kt.idss.gcrm.ws.spec;
+
+import javax.xml.bind.annotation.XmlType;
+
+@XmlType(propOrder={})
+public class RecvVerifyOwnerForm {
+    private String LOGIN_ID              ;
+    private String CUST_ID               ;
+    private String ICIS_CUST_ID          ;
+    private String CUST_IDFY_NM          ;
+    private String CUST_IDFY_NO          ;
+    private String CUST_IDFY_NO_TYPE_CD  ;
+    private String NFRL_IDFY_NM          ;
+    private String NFRL_IDFY_NO          ;
+    private String NFRL_IDFY_NO_TYPE_CD  ;
+    private String NFRL_IPIN_CI          ;
+    private String PRNT_SA_ID            ;
+    private String SA_ID                 ;
+    private String PROD_TYPE_CD          ;
+    public String getLOGIN_ID() {
+        return LOGIN_ID;
+    }
+    public void setLOGIN_ID(String lOGIN_ID) {
+        LOGIN_ID = lOGIN_ID;
+    }
+    public String getCUST_ID() {
+        return CUST_ID;
+    }
+    public void setCUST_ID(String cUST_ID) {
+        CUST_ID = cUST_ID;
+    }
+    public String getICIS_CUST_ID() {
+        return ICIS_CUST_ID;
+    }
+    public void setICIS_CUST_ID(String iCIS_CUST_ID) {
+        ICIS_CUST_ID = iCIS_CUST_ID;
+    }
+    public String getCUST_IDFY_NM() {
+        return CUST_IDFY_NM;
+    }
+    public void setCUST_IDFY_NM(String cUST_IDFY_NM) {
+        CUST_IDFY_NM = cUST_IDFY_NM;
+    }
+    public String getCUST_IDFY_NO() {
+        return CUST_IDFY_NO;
+    }
+    public void setCUST_IDFY_NO(String cUST_IDFY_NO) {
+        CUST_IDFY_NO = cUST_IDFY_NO;
+    }
+    public String getCUST_IDFY_NO_TYPE_CD() {
+        return CUST_IDFY_NO_TYPE_CD;
+    }
+    public void setCUST_IDFY_NO_TYPE_CD(String cUST_IDFY_NO_TYPE_CD) {
+        CUST_IDFY_NO_TYPE_CD = cUST_IDFY_NO_TYPE_CD;
+    }
+    public String getNFRL_IDFY_NM() {
+        return NFRL_IDFY_NM;
+    }
+    public void setNFRL_IDFY_NM(String nFRL_IDFY_NM) {
+        NFRL_IDFY_NM = nFRL_IDFY_NM;
+    }
+    public String getNFRL_IDFY_NO() {
+        return NFRL_IDFY_NO;
+    }
+    public void setNFRL_IDFY_NO(String nFRL_IDFY_NO) {
+        NFRL_IDFY_NO = nFRL_IDFY_NO;
+    }
+    public String getNFRL_IDFY_NO_TYPE_CD() {
+        return NFRL_IDFY_NO_TYPE_CD;
+    }
+    public void setNFRL_IDFY_NO_TYPE_CD(String nFRL_IDFY_NO_TYPE_CD) {
+        NFRL_IDFY_NO_TYPE_CD = nFRL_IDFY_NO_TYPE_CD;
+    }
+    public String getNFRL_IPIN_CI() {
+        return NFRL_IPIN_CI;
+    }
+    public void setNFRL_IPIN_CI(String nFRL_IPIN_CI) {
+        NFRL_IPIN_CI = nFRL_IPIN_CI;
+    }
+    public String getPRNT_SA_ID() {
+        return PRNT_SA_ID;
+    }
+    public void setPRNT_SA_ID(String pRNT_SA_ID) {
+        PRNT_SA_ID = pRNT_SA_ID;
+    }
+    public String getSA_ID() {
+        return SA_ID;
+    }
+    public void setSA_ID(String sA_ID) {
+        SA_ID = sA_ID;
+    }
+    public String getPROD_TYPE_CD() {
+        return PROD_TYPE_CD;
+    }
+    public void setPROD_TYPE_CD(String pROD_TYPE_CD) {
+        PROD_TYPE_CD = pROD_TYPE_CD;
+    }
+
+
+
+
+}

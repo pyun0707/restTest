@@ -1,0 +1,3 @@
+rootLevel=error
+LOG_HOME=/user/develop/idmsd/logs/ktws
+##LOG_HOME=/user/webims/manage/logs/ktws

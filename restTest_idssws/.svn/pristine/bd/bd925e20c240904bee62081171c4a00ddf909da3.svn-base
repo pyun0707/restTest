@@ -1,0 +1,453 @@
+package kt.idss.gcrm.service;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+
+
+import kt.idss.gcrm.ws.spec.RetnHeaderForm;
+import kt.idss.ktws.common.dao.CommonDao;
+import kt.idss.ktws.common.dao.CrisDao;
+import kt.idss.ktws.common.dao.CryptDao;
+import kt.idss.ktws.common.dao.IdChangeDao;
+import kt.idss.ktws.enums.ProductCategory;
+import kt.idss.ktws.enums.ResponseSpec;
+import kt.idss.ktws.exception.ServiceException;
+import kt.idss.ktws.product.dao.ProductOrderDao;
+import kt.idss.ktws.product.dao.ReservedIdDao;
+import kt.idss.ktws.util.Utility;
+import kt.idss.ktws.vo.Customer;
+import kt.idss.ktws.vo.Product;
+import kt.idss.ktws.vo.ReservedInfo;
+
+
+@Service("IdVerify")
+public class IdVerify implements VerifyService{
+
+    private static final Logger logger = LoggerFactory.getLogger(IdVerify.class);
+
+    @Autowired
+    private ReservedIdDao reservedIdDao;
+
+    @Autowired
+    private CryptDao cryptDao;
+
+    @Autowired
+    private CommonDao commonDao;
+
+    @Autowired
+    private CrisDao  crisDao;
+
+    @Autowired
+    private IdChangeDao dao;
+
+    @Autowired
+    Utility utility;
+
+    @Autowired
+    @Qualifier("du")
+    private ProductOrderDao DuDaoImple         ;
+
+    @Autowired
+    @Qualifier("internet")
+    private ProductOrderDao InternetDaoImple   ;
+
+    @Autowired
+    @Qualifier("internetSub")
+    private ProductOrderDao InternetSubDaoImple;
+
+    @Autowired
+    @Qualifier("wibroBiz")
+    private ProductOrderDao WibroBizDaoImple   ;
+
+    @Autowired
+    @Qualifier("wibro")
+    private ProductOrderDao WibroDaoImple      ;
+
+    @Autowired
+    @Qualifier("wifi")
+    private ProductOrderDao WifiDaoImple       ;
+
+    @Autowired
+    @Qualifier("wifiSub")
+    private ProductOrderDao WifiSubDaoImple    ;
+
+
+
+    public IdVerify(){}
+
+
+    private String getIpinCiByCryptNumber(String type, String cryptNumber){
+
+        return crisDao.readIpinCiByReal(type, getRealByCrypt(cryptNumber));
+    }
+
+    private String getRealByCrypt(String encryptNumber){
+        String decrypt = null;
+        try{
+//            icis >> genesis : change decrypt key
+            decrypt =  cryptDao.getDeCryptRealValue("aes-cbc", "genesis", encryptNumber);
+            if(isBlank(decrypt) == true){
+                throw new ServiceException(ResponseSpec.BAD_REQUEST.intCode (),"AES Decrypt Error");
+            }else{
+                return decrypt;
+            }
+        }catch(Exception e){
+            throw new ServiceException(ResponseSpec.BAD_REQUEST.intCode (),"AES Decrypt Error");
+        }
+
+    }
+
+    private String covertIdmsCbcValue(String encryptNumber){
+        return cryptDao.getEnCryptRealValue("aes-cbc", "idms", getRealByCrypt(encryptNumber));
+    }
+
+    @Override
+    public RetnHeaderForm createReservation(Product product){
+        logger.info("dup check start");
+        RetnHeaderForm retnHeaderForm = null;
+//        1. check customer
+        Customer customer = product.getCustomer();
+        if(customer ==null){
+            throw new ServiceException( ResponseSpec.BAD_REQUEST.intCode ()
+                                       ,ResponseSpec.BAD_REQUEST.intValue()+"(cust info not received)" );
+        }
+
+//        ipin_ci : genesis - null
+        if(isNeedIpinCiType(product.getCustomer().getCust_type_cd()) == true){
+            if(customer.getIpin_ci() == null || "".equals(customer.getIpin_ci().trim())){
+                try{
+                    product.getCustomer().setIpin_ci(getIpinCiByCryptNumber(product.getCustomer().getCust_type_cd()
+                                                                               , customer.getCust_num()));
+                    logger.info("cris link success (to get ipin_ci value)");
+                }catch(Exception e){
+                    if(e instanceof ServiceException){
+                        throw new ServiceException(ResponseSpec.BAD_REQUEST.intCode (),"입력값 오류[AES Decrypt Error]");
+                    }else{
+                        //e.printStackTrace();
+                        throw new ServiceException( ResponseSpec.SERVICE_LINK_ERROR.intCode ()
+                                                   ,ResponseSpec.SERVICE_LINK_ERROR.intValue() );
+                    }
+                }
+            }
+        }
+
+//        2. convertCustNumType : NFRL_IDFY_NO_TYPE_CD, CUST_IDFY_NO_TYPE_CD
+        product.getCustomer().setCust_type_cd  (convertCustNumType(customer.getCust_type_cd()));
+        logger.info("setCust_type_cd   convert: ({} -> {}) success", customer.getCust_type_cd()  ,product.getCustomer().getCust_type_cd());
+
+        if(isBlank(customer.getCust_idfy_type()) == false){
+            product.getCustomer().setCust_idfy_type(convertCustNumType(customer.getCust_idfy_type()));
+            logger.info("setCust_idfy_type convert: ({} -> {}) success", customer.getCust_idfy_type(),product.getCustomer().getCust_idfy_type());
+        }
+
+
+        try{
+//            3. convertIdmsCbcValue : NFRL_IDFY_NO, CUST_IDFY_NO
+            product.getCustomer().setCust_num(covertIdmsCbcValue(customer.getCust_num()));
+            logger.info("cust num : (aes-ecb : genesis key) decrypt -> (aes-cbc : idms key) encrypt success");
+        }catch(Exception e){
+            //e.printStackTrace();
+            throw new ServiceException( ResponseSpec.BAD_REQUEST.intCode ()
+                                       ,ResponseSpec.BAD_REQUEST.intValue()+"(cust_num encrypt error)" );
+        }
+
+        if(isBlank(customer.getCust_idfy_no()) == false){
+            try{
+                product.getCustomer().setCust_idfy_no(covertIdmsCbcValue(customer.getCust_idfy_no()));
+                logger.info("cust_idfy_no : (aes-ecb : genesis key) decrypt -> (aes-cbc : idms key) encrypt success");
+            }catch(Exception e){
+                //e.printStackTrace();
+                throw new ServiceException( ResponseSpec.BAD_REQUEST.intCode ()
+                                           ,ResponseSpec.BAD_REQUEST.intValue()+"(cust_num encrypt error)" );
+            }
+        }
+
+
+        // common lib call
+        String result  = null;
+        try{
+            result  =  dao.reserveId(product, true);
+            logger.info("call dupchk(idms common util) success");
+        }catch(Exception e){
+            //e.printStackTrace();
+            throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                       ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+        }
+
+        int errcode = getIntCode(getCodeSpilt(result,0));
+        logger.info("[dupchk]common library call result / errcode : [{}]/[{}] " , result,errcode);
+        if(ResponseSpec.SUCCESS.intCode() != errcode){
+            if(ResponseSpec.USED.intCode()== errcode){
+                throw new ServiceException( ResponseSpec.USED.intCode ()
+                                           ,ResponseSpec.USED.intValue()+decorateMessage(getCodeSpilt(result, 1)));
+            } else if(ResponseSpec.USED_FIRE.intCode()== errcode){
+                throw new ServiceException( ResponseSpec.USED_FIRE.intCode ()
+                        ,ResponseSpec.USED_FIRE.intValue()+decorateMessage(getCodeSpilt(result, 1)));
+            } else if(ResponseSpec.SUCCESS_EXIST.intCode()== errcode){
+                retnHeaderForm = new RetnHeaderForm(""
+                                                   ,""+ResponseSpec.SUCCESS_EXIST.intCode()
+                                                   ,ResponseSpec.SUCCESS_EXIST.intValue());
+                logger.info("set RetnHeaderForm return code, message");
+            }else{
+                throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                           ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+            }
+        }
+        // register reserved Id
+        try{
+            reservedIdDao.createReservedId(convertInfo(product));
+            logger.info("reserved write success");
+        }catch(Exception e){
+            //e.printStackTrace();
+            throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                       ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+        }
+        logger.info("dup check end");
+        return retnHeaderForm;
+    }
+
+    @Override
+    public RetnHeaderForm createVerifyOwner(Product product) {
+
+        logger.info("verify owner start");
+        RetnHeaderForm retnHeaderForm = null;
+//        1. check customer
+        Customer customer = product.getCustomer();
+        if(customer ==null){
+            throw new ServiceException( ResponseSpec.BAD_REQUEST.intCode ()
+                                       ,ResponseSpec.BAD_REQUEST.intValue()+"(cust info not received)" );
+        }
+
+//        ipin_ci : genesis - null
+        if(isNeedIpinCiType(product.getCustomer().getCust_type_cd()) == true){
+            if(customer.getIpin_ci() == null || "".equals(customer.getIpin_ci().trim())){
+                try{
+                    product.getCustomer().setIpin_ci(getIpinCiByCryptNumber(product.getCustomer().getCust_type_cd()
+                                                                               , customer.getCust_num()));
+                    logger.info("cris link success (to get ipin_ci value)");
+                }catch(Exception e){
+                    if(e instanceof ServiceException){
+                        throw new ServiceException(ResponseSpec.BAD_REQUEST.intCode (),"입력값 오류[AES Decrypt Error]");
+                    }else{
+                        //e.printStackTrace();
+                        throw new ServiceException( ResponseSpec.SERVICE_LINK_ERROR.intCode ()
+                                                   ,ResponseSpec.SERVICE_LINK_ERROR.intValue() );
+                    }
+                }
+            }
+        }
+
+//        2. convertCustNumType : NFRL_IDFY_NO_TYPE_CD, CUST_IDFY_NO_TYPE_CD
+        product.getCustomer().setCust_type_cd  (convertCustNumType(customer.getCust_type_cd()));
+        logger.info("setCust_type_cd   convert: ({} -> {}) success", customer.getCust_type_cd()  ,product.getCustomer().getCust_type_cd());
+
+        if(isBlank(customer.getCust_idfy_type()) == false){
+            product.getCustomer().setCust_idfy_type(convertCustNumType(customer.getCust_idfy_type()));
+            logger.info("setCust_idfy_type convert: ({} -> {}) success", customer.getCust_idfy_type(),product.getCustomer().getCust_idfy_type());
+        }
+
+
+        try{
+//            3. convertIdmsCbcValue : NFRL_IDFY_NO, CUST_IDFY_NO
+            product.getCustomer().setCust_num(covertIdmsCbcValue(customer.getCust_num()));
+            logger.info("cust num : (aes-ecb : genesis key) decrypt -> (aes-cbc : idms key) encrypt success");
+        }catch(Exception e){
+            //e.printStackTrace();
+            throw new ServiceException( ResponseSpec.BAD_REQUEST.intCode ()
+                                       ,ResponseSpec.BAD_REQUEST.intValue()+"(cust_num encrypt error)" );
+        }
+
+        if(isBlank(customer.getCust_idfy_no()) == false){
+            try{
+                product.getCustomer().setCust_idfy_no(covertIdmsCbcValue(customer.getCust_idfy_no()));
+                logger.info("cust_idfy_no : (aes-ecb : genesis key) decrypt -> (aes-cbc : idms key) encrypt success");
+            }catch(Exception e){
+                //e.printStackTrace();
+                throw new ServiceException( ResponseSpec.BAD_REQUEST.intCode ()
+                                           ,ResponseSpec.BAD_REQUEST.intValue()+"(cust_num encrypt error)" );
+            }
+        }
+
+
+        // common lib call
+        String result  = null;
+        try{
+            result  =  dao.verifyUser(product, true);
+            logger.info("call dupchk(idms common util) success");
+        }catch(Exception e){
+            //e.printStackTrace();
+            throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                       ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+        }
+
+        boolean isCheck = false;
+
+        int errcode = getIntCode(getCodeSpilt(result,0));
+        logger.info("[dupchk]common library call result / errcode : [{}]/[{}] " , result,errcode);
+        if(ResponseSpec.SUCCESS.intCode() != errcode){
+            if(ResponseSpec.USED.intCode()== errcode){
+                throw new ServiceException( ResponseSpec.USED.intCode ()
+                                           ,ResponseSpec.USED.intValue()+decorateMessage(getCodeSpilt(result, 1)));
+            } else if(ResponseSpec.USED_FIRE.intCode()== errcode){
+                throw new ServiceException( ResponseSpec.USED_FIRE.intCode ()
+                                            ,ResponseSpec.USED_FIRE.intValue()+decorateMessage(getCodeSpilt(result, 1)));
+
+            } else if(ResponseSpec.SUCCESS_EXIST_SAME.intCode()== errcode){
+                isCheck = true;
+                retnHeaderForm = new RetnHeaderForm(""
+                                                    ,""+ResponseSpec.SUCCESS.intCode()
+                                                    ,ResponseSpec.SUCCESS.intValue());
+            } else if(ResponseSpec.SUCCESS_EXIST.intCode()== errcode){
+                retnHeaderForm = new RetnHeaderForm(""
+                                                   ,""+ResponseSpec.SUCCESS_EXIST.intCode()
+                                                   ,ResponseSpec.SUCCESS_EXIST.intValue());
+                logger.info("set RetnHeaderForm return code, message");
+            }else{
+                throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                           ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+            }
+        }
+        // register reserved Id
+        try{
+            if (isCheck == false) {
+                reservedIdDao.createReservedId(convertInfo(product));
+                logger.info("reserved write success");
+            } else {
+                logger.info("reserved do not write...");
+            }
+        }catch(Exception e){
+            //e.printStackTrace();
+            throw new ServiceException( ResponseSpec.INTERNAL_SERVER_ERROR.intCode()
+                                       ,ResponseSpec.INTERNAL_SERVER_ERROR.intValue());
+        }
+        logger.info("verify owner end");
+
+        return retnHeaderForm;
+    }
+
+    private String decorateMessage(String prodTypeName){
+        try{
+            return "(상품명 : "+ProductCategory.strValueOf(prodTypeName).strName()+")";
+        }catch(Exception e){
+            //e.printStackTrace();
+        }
+        return "";
+    }
+    private int getIntCode(String str){
+        try{
+            return Integer.parseInt(str);
+        }catch(Exception e){
+            //e.printStackTrace();
+        }
+        return 0;
+    }
+    private String getCodeSpilt(String str, int number){
+
+        try{
+            String[] strArray = str.split("[//^]");
+            return strArray[number];
+        }catch(Exception e){
+            //e.printStackTrace();
+        }
+        return "";
+    }
+    private ReservedInfo convertInfo(Product product){
+        if(product.getCustomer() == null){
+            return new ReservedInfo (   product.getLoginid()
+                                        ,""
+                                        ,""
+                                        ,""
+                                        ,""
+                                        ,""
+                                        ,""
+                                        ,""
+                                        ,""
+                                        ,""
+                                        ,""
+                                        ,product.getSa_id()
+                                        ,product.getP_sa_id()
+                                        ,product.getProd_type()
+                                        ,"R"
+                                        ,utility.getPatternDate("yyyyMMddHHmmss")
+                                        ,utility.getPatternDate("yyyyMMddHHmmss")
+                                        ,true
+                                        );
+        }else{
+            String second_cust_no   = "";
+            String second_cust_name = "";
+
+            /*
+            if("1308".equals(product.getCustomer().getCust_idfy_type())){
+                second_cust_no   = product.getCustomer().getCust_idfy_no();
+                second_cust_name = product.getCustomer().getCust_idfy_name();
+            }
+            */
+            second_cust_no   = product.getCustomer().getCust_idfy_no();
+            second_cust_name = product.getCustomer().getCust_idfy_name();
+
+
+            return new ReservedInfo (product.getLoginid()
+                                    ,product.getCustomer().getCust_name()
+                                    ,product.getCustomer().getCust_type_cd()
+                                    ,product.getCustomer().getCust_num()
+                                    ,product.getCustomer().getIpin_ci()
+                                    ,product.getCustomer().getIpin_di()
+                                    ,second_cust_name
+                                    ,product.getCustomer().getCust_idfy_type()
+                                    ,second_cust_no
+                                    ,product.getCustomer().getCust_id()
+                                    ,product.getCustomer().getL_cust_id()
+                                    ,product.getSa_id()
+                                    ,product.getP_sa_id()
+                                    ,product.getProd_type()
+                                    ,"R"
+                                    ,utility.getPatternDate("yyyyMMddHHmmss")
+                                    ,utility.getPatternDate("yyyyMMddHHmmss")
+                                    ,true
+                    );
+        }
+    }
+    private String convertCustNumType(String custNumType){
+        /*
+        if(custNumType !=null && !"".equals(custNumType)){
+            try{
+                Integer.parseInt(custNumType);
+                if(custNumType.length() == 1){
+                    return "130"+custNumType;
+                }
+            }catch(NumberFormatException e){}
+        }
+        return custNumType;
+        */
+
+        String value = null;
+        try {
+            value = commonDao.convertCustNumType(custNumType);
+            if (isBlank(value) == true) {
+                return custNumType;
+            } else {
+                return value;
+            }
+        } catch (Exception e) {
+            throw new ServiceException(ResponseSpec.BAD_REQUEST.intCode (), ResponseSpec.BAD_REQUEST.toString());
+        }
+    }
+
+    private boolean isNeedIpinCiType(String cust_type_cd){
+        String[] virtureType = new String[]{"1301","1305","1","5"};
+        for (String type : virtureType) {
+            if(cust_type_cd.equals(type)){
+                return true;
+            }
+        }
+        return false;
+
+    }
+    private static boolean isBlank(String s){
+        return (s == null) || (s.trim().length() == 0);
+    }
+}

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+  xmlns:jaxws="http://cxf.apache.org/jaxws"
+  xmlns:simple="http://cxf.apache.org/simple"
+  xmlns:cxf="http://cxf.apache.org/core"
+  xsi:schemaLocation="http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+            http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+            http://cxf.apache.org/ws/addressing http://cxf.apache.org/schemas/ws/addressing.xsd
+            http://cxf.apache.org/simple http://cxf.apache.org/schemas/simple.xsd">
+
+
+ <import resource="classpath:META-INF/cxf/cxf.xml" />
+ <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+ <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+  <!-- soap in/out bound message -->
+  <bean id="logInbound" class="org.apache.cxf.interceptor.LoggingInInterceptor">
+    <property name="prettyLogging" value="true"></property>
+  </bean>
+
+  <bean id="logOutbound" class="org.apache.cxf.interceptor.LoggingOutInterceptor">
+    <property name="prettyLogging" value="true"></property>
+  </bean>
+
+  <bean id="cxf" class="org.apache.cxf.bus.spring.SpringBus">
+    <property name="inInterceptors">
+      <list>
+          <ref bean="logInbound"/>
+      </list>
+    </property>
+    <property name="outInterceptors">
+      <list>
+          <ref bean="logOutbound"/>
+      </list>
+    </property>
+    <property name="outFaultInterceptors">
+      <list>
+          <ref bean="logOutbound"/>
+      </list>
+    </property>
+    <property name="inFaultInterceptors">
+      <list>
+          <ref bean="logInbound"/>
+      </list>
+    </property>
+  </bean>
+
+
+  <!-- web service setting -->
+
+  <simple:server id="IdChangeService"
+                 serviceClass="kt.idss.ktid.ws.service.IdChange"
+                 serviceBean="#IdChange"
+                 address="/IdChangeService"
+                 serviceName="t:IdChangeService"
+                 xmlns:t="http://service.idss.kt"
+                 start="true"
+                 >
+    <simple:dataBinding>
+      <bean class="org.apache.cxf.aegis.databinding.AegisDatabinding" />
+    </simple:dataBinding>
+  </simple:server>
+  <!--
+    <jaxws:endpoint id="IdVerifyService"
+        implementor="kt.idss.gcrm.ws.service.IdVerify"
+        address="/IdVerifyService"
+        publish="true">
+    </jaxws:endpoint>
+   -->
+</beans>

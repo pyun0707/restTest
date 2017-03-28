@@ -1,0 +1,33 @@
+/**
+ * package-info.java
+ *
+ * @author iloveYWS
+ * @since  2013. 3. 14.
+ * @version 1.0
+ * @see
+ *
+ * <pre>
+ * << Modification Information >>
+ *
+ *  Modifiers     : iloveYWS
+ *  Modified      : 2013. 3. 14.
+ *
+ * </pre>
+ */
+/**
+ * package-info
+ *
+ * @author iloveYWS
+ * @since  2013. 3. 14.
+ * @version 1.0
+ * @see
+ *
+ * <pre>
+ * << Modification Information >>
+ *
+ *  Modifiers     : iloveYWS
+ *  Modified      : 2013. 3. 14.
+ *  </pre>
+ */
+@javax.xml.bind.annotation.XmlSchema(namespace = "http://service.idss.kt")
+package kt.idss.ktid.ws.spec;

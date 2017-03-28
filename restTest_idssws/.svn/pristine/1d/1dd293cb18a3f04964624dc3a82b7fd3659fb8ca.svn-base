@@ -1,0 +1,109 @@
+package kt.idss.ktws.common.dao;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import javax.sql.DataSource;
+
+import kt.idss.ktws.vo.TmpOrder;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterUtils;
+import org.springframework.jdbc.core.namedparam.ParsedSql;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class AsyncDaoImple implements AsyncDao{
+
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    @Autowired
+    public void setDataSource(DataSource dataSource) {
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+    }
+
+    @Override
+    public int create(TmpOrder  vo, MapSqlParameterSource namedParam) {
+
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        StringBuffer sql = new StringBuffer();
+        sql.append("\n insert into              ");
+        sql.append("\n        tb_tmporder       ");
+        sql.append("\n    (                     ");
+        sql.append("\n         division   , startdate, enddate, sa_id  , wo_no    ");
+        sql.append("\n        ,ins_date   , intf_code, cust_id, command, bind_data");
+        sql.append("\n        ,bind_method, errcode  , errmsg , logname, errdate  ");
+        sql.append("\n      )                   ");
+        sql.append("\n    values                ");
+        sql.append("\n    (                     ");
+        sql.append("\n       :division                            ,to_char(:startdate,'yyyymmddhh24miss')||substr(tb_tmporder_seq.nextval,'-4') ,to_date(:enddate,'yyyymmddhh24miss'),:sa_id   ,:wo_no           ");
+        sql.append("\n      ,to_date(:ins_date,'yyyymmddhh24miss'),:intf_code ,:cust_id                            ,:command ,:bind_data       ");
+        sql.append("\n      ,:bind_method                         ,:errcode   ,:errmsg                             ,:logname ,:errdate         ");
+        sql.append("\n    )                      ");
+
+        namedParameters.addValue("division"    , vo.getDivision    ().systemName());
+        namedParameters.addValue("startdate"   , vo.getStartdate   ());
+        namedParameters.addValue("enddate"     , vo.getEnddate     ());
+        namedParameters.addValue("sa_id"       , vo.getSa_id       ());
+        namedParameters.addValue("wo_no"       , vo.getWo_no       ());
+        namedParameters.addValue("ins_date"    , vo.getIns_date    ());
+        namedParameters.addValue("intf_code"   , vo.getIntf_code   ());
+        namedParameters.addValue("cust_id"     , vo.getCust_id     ());
+        namedParameters.addValue("command"     , realQueryStatement(vo.getCommand(),namedParam));
+        namedParameters.addValue("bind_data"   , vo.getBind_data   ());
+        namedParameters.addValue("bind_method" , vo.getBind_method ());
+        namedParameters.addValue("errcode"     , vo.getErrcode     ());
+        namedParameters.addValue("errmsg"      , vo.getErrmsg      ());
+        namedParameters.addValue("logname"     , vo.getLogname     ());
+        namedParameters.addValue("errdate"     , vo.getErrdate     ());
+
+        return namedParameterJdbcTemplate.update( sql.toString(),namedParameters);
+    }
+
+    private String realQueryStatement(String namedParamSql, MapSqlParameterSource namedParam){
+        ParsedSql parseSql   = NamedParameterUtils.parseSqlStatement        (namedParamSql);
+        String    paramSql   = NamedParameterUtils.substituteNamedParameters(namedParamSql, namedParam);
+        Object[]  arryObj    = NamedParameterUtils.buildValueArray          (parseSql, namedParam, null);
+        List<?>   parameters = arryObj != null ? Arrays.asList(arryObj) : Collections.emptyList();
+        return getDumpedSql(paramSql, parameters);
+
+    }
+    private String getDumpedSql(String sql, List<?> argTraceArray){
+        StringBuffer dumpSql = new StringBuffer();
+        int lastPos = 0;
+        int Qpos    = sql.indexOf('?', lastPos);  // find position of first question mark
+        int argIdx  = 0;
+        String arg;
+        while (Qpos != -1){
+            // get stored argument
+            try{
+                if(argTraceArray.get(argIdx) instanceof java.lang.String){
+                    arg = "'"+argTraceArray.get(argIdx)+"'";
+                }else{
+                    arg = String.valueOf(argTraceArray.get(argIdx));
+                }
+            }
+            catch (IndexOutOfBoundsException e){
+                arg = "?";
+            }
+            if (arg == null){
+                arg = "?";
+            }
+            argIdx++;
+               dumpSql.append(sql.substring(lastPos, Qpos));  // dump segment of sql up to question mark.
+            lastPos = Qpos + 1;
+            Qpos = sql.indexOf('?', lastPos);
+            dumpSql.append(arg);
+        }
+        if (lastPos < sql.length()){
+          dumpSql.append(sql.substring(lastPos, sql.length()));  // dump last segment
+        }
+        return dumpSql.toString();
+    }
+
+
+}

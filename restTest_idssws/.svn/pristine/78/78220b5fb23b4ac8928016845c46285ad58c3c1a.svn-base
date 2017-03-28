@@ -1,0 +1,126 @@
+/*
+ * IDMS(Integrated DataBase Management System) version 1.0
+ *
+ *  Copyright ⓒ 2016 kt cort. All rights reserved.
+ *
+ *  This is a proprietary software of kt corp, and you may not use this file except in
+ *  compliance with license agreement with kt corp. Any redistribution or use of this
+ *  software, with or without modification shall be strictly prohibited without prior written
+ *  approval of kt corp, and the copyright notice above does not evidence any actualor
+ *  intended publication of such software.
+*/
+
+package kt.idss.ktws.cdm;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>bizHeader complex type�� ���� Java Ŭ�����Դϴ�.
+ *
+ * <p>���� ��Ű�� ������ �� Ŭ������ ���ԵǴ� �ʿ��� �������� �����մϴ�.
+ *
+ * <pre>
+ * &lt;complexType name="bizHeader">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;all>
+ *         &lt;element ref="{http://bizhub.kt.com}orderId" minOccurs="0"/>
+ *         &lt;element ref="{http://bizhub.kt.com}cbSvcName"/>
+ *         &lt;element ref="{http://bizhub.kt.com}cbFnName"/>
+ *       &lt;/all>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ *
+ *
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "bizHeader", propOrder = {
+
+})
+public class BizHeader {
+
+    protected String orderId;
+    @XmlElement(required = true)
+    protected String cbSvcName;
+    @XmlElement(required = true)
+    protected String cbFnName;
+
+    /**
+     * orderId �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getOrderId() {
+        return orderId;
+    }
+
+    /**
+     * orderId �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setOrderId(String value) {
+        this.orderId = value;
+    }
+
+    /**
+     * cbSvcName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCbSvcName() {
+        return cbSvcName;
+    }
+
+    /**
+     * cbSvcName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCbSvcName(String value) {
+        this.cbSvcName = value;
+    }
+
+    /**
+     * cbFnName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getCbFnName() {
+        return cbFnName;
+    }
+
+    /**
+     * cbFnName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setCbFnName(String value) {
+        this.cbFnName = value;
+    }
+
+}

@@ -1,0 +1,241 @@
+
+package kt.idss.ktws.gcrm;
+
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.annotation.XmlElementDecl;
+import javax.xml.bind.annotation.XmlRegistry;
+import javax.xml.namespace.QName;
+
+
+/**
+ * This object contains factory methods for each 
+ * Java content interface and Java element interface 
+ * generated in the kt.idss.ktws.gcrm package. 
+ * <p>An ObjectFactory allows you to programatically 
+ * construct new instances of the Java representation 
+ * for XML content. The Java representation of XML 
+ * content can consist of schema derived interfaces 
+ * and classes representing the binding of schema 
+ * type definitions, element declarations and model 
+ * groups.  Factory methods for each of these are 
+ * provided in this class.
+ * 
+ */
+@XmlRegistry
+public class ObjectFactory {
+
+    private final static QName _Arbitrary_QNAME = new QName("http://www.kt.com/bit/standard/header/v1", "Arbitrary");
+    private final static QName _SeqNumber_QNAME = new QName("http://www.kt.com/bit/standard/header/v1", "SeqNumber");
+    private final static QName _SourceSys_QNAME = new QName("http://www.kt.com/bit/standard/header/v1", "SourceSys");
+    private final static QName _ListOfKtInfOC0745Response_QNAME = new QName("http://www.siebel.com/xml/INF-OC-0745_response", "ListOfKtInfOC0745response");
+    private final static QName _ReturnMSG_QNAME = new QName("http://www.kt.com/bit/standard/header/v1", "ReturnMSG");
+    private final static QName _ReturnCode_QNAME = new QName("http://www.kt.com/bit/standard/header/v1", "ReturnCode");
+    private final static QName _GUID_QNAME = new QName("http://www.kt.com/bit/standard/header/v1", "GUID");
+    private final static QName _InterfaceID_QNAME = new QName("http://www.kt.com/bit/standard/header/v1", "InterfaceID");
+    private final static QName _Siebdetail_QNAME = new QName("http://www.siebel.com/ws/fault", "siebdetail");
+    private final static QName _ListOfKtInfOC0745_QNAME = new QName("http://www.siebel.com/xml/INF-OC-0745", "ListOfKtInfOC0745");
+    private final static QName _TargetSys_QNAME = new QName("http://www.kt.com/bit/standard/header/v1", "TargetSys");
+
+    /**
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: kt.idss.ktws.gcrm
+     * 
+     */
+    public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link ListOfKtInfOC0745 }
+     * 
+     */
+    public ListOfKtInfOC0745 createListOfKtInfOC0745() {
+        return new ListOfKtInfOC0745();
+    }
+
+    /**
+     * Create an instance of {@link Errorstack }
+     * 
+     */
+    public Errorstack createErrorstack() {
+        return new Errorstack();
+    }
+
+    /**
+     * Create an instance of {@link RunProcessOC0745Output }
+     * 
+     */
+    public RunProcessOC0745Output createRunProcessOC0745Output() {
+        return new RunProcessOC0745Output();
+    }
+
+    /**
+     * Create an instance of {@link Error }
+     * 
+     */
+    public Error createError() {
+        return new Error();
+    }
+
+    /**
+     * Create an instance of {@link Siebdetail }
+     * 
+     */
+    public Siebdetail createSiebdetail() {
+        return new Siebdetail();
+    }
+
+    /**
+     * Create an instance of {@link ListOfKtInfOC0745ResponseTopElmt }
+     * 
+     */
+    public ListOfKtInfOC0745ResponseTopElmt createListOfKtInfOC0745ResponseTopElmt() {
+        return new ListOfKtInfOC0745ResponseTopElmt();
+    }
+
+    /**
+     * Create an instance of {@link KtInfOC0745Response }
+     * 
+     */
+    public KtInfOC0745Response createKtInfOC0745Response() {
+        return new KtInfOC0745Response();
+    }
+
+    /**
+     * Create an instance of {@link KtInfOC0745 }
+     * 
+     */
+    public KtInfOC0745 createKtInfOC0745() {
+        return new KtInfOC0745();
+    }
+
+    /**
+     * Create an instance of {@link BITHeader }
+     * 
+     */
+    public BITHeader createBITHeader() {
+        return new BITHeader();
+    }
+
+    /**
+     * Create an instance of {@link RunProcessOC0745Input }
+     * 
+     */
+    public RunProcessOC0745Input createRunProcessOC0745Input() {
+        return new RunProcessOC0745Input();
+    }
+
+    /**
+     * Create an instance of {@link ListOfKtInfOC0745TopElmt }
+     * 
+     */
+    public ListOfKtInfOC0745TopElmt createListOfKtInfOC0745TopElmt() {
+        return new ListOfKtInfOC0745TopElmt();
+    }
+
+    /**
+     * Create an instance of {@link ListOfKtInfOC0745Response }
+     * 
+     */
+    public ListOfKtInfOC0745Response createListOfKtInfOC0745Response() {
+        return new ListOfKtInfOC0745Response();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Object }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.kt.com/bit/standard/header/v1", name = "Arbitrary")
+    public JAXBElement<Object> createArbitrary(Object value) {
+        return new JAXBElement<Object>(_Arbitrary_QNAME, Object.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Integer }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.kt.com/bit/standard/header/v1", name = "SeqNumber")
+    public JAXBElement<Integer> createSeqNumber(Integer value) {
+        return new JAXBElement<Integer>(_SeqNumber_QNAME, Integer.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.kt.com/bit/standard/header/v1", name = "SourceSys")
+    public JAXBElement<String> createSourceSys(String value) {
+        return new JAXBElement<String>(_SourceSys_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListOfKtInfOC0745Response }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.siebel.com/xml/INF-OC-0745_response", name = "ListOfKtInfOC0745response")
+    public JAXBElement<ListOfKtInfOC0745Response> createListOfKtInfOC0745Response(ListOfKtInfOC0745Response value) {
+        return new JAXBElement<ListOfKtInfOC0745Response>(_ListOfKtInfOC0745Response_QNAME, ListOfKtInfOC0745Response.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.kt.com/bit/standard/header/v1", name = "ReturnMSG")
+    public JAXBElement<String> createReturnMSG(String value) {
+        return new JAXBElement<String>(_ReturnMSG_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.kt.com/bit/standard/header/v1", name = "ReturnCode")
+    public JAXBElement<String> createReturnCode(String value) {
+        return new JAXBElement<String>(_ReturnCode_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.kt.com/bit/standard/header/v1", name = "GUID")
+    public JAXBElement<String> createGUID(String value) {
+        return new JAXBElement<String>(_GUID_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.kt.com/bit/standard/header/v1", name = "InterfaceID")
+    public JAXBElement<String> createInterfaceID(String value) {
+        return new JAXBElement<String>(_InterfaceID_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Siebdetail }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.siebel.com/ws/fault", name = "siebdetail")
+    public JAXBElement<Siebdetail> createSiebdetail(Siebdetail value) {
+        return new JAXBElement<Siebdetail>(_Siebdetail_QNAME, Siebdetail.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListOfKtInfOC0745 }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.siebel.com/xml/INF-OC-0745", name = "ListOfKtInfOC0745")
+    public JAXBElement<ListOfKtInfOC0745> createListOfKtInfOC0745(ListOfKtInfOC0745 value) {
+        return new JAXBElement<ListOfKtInfOC0745>(_ListOfKtInfOC0745_QNAME, ListOfKtInfOC0745 .class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.kt.com/bit/standard/header/v1", name = "TargetSys")
+    public JAXBElement<String> createTargetSys(String value) {
+        return new JAXBElement<String>(_TargetSys_QNAME, String.class, null, value);
+    }
+
+}

@@ -1,0 +1,1070 @@
+/*
+ * IDMS(Integrated DataBase Management System) version 1.0
+ *
+ *  Copyright ⓒ 2016 kt cort. All rights reserved.
+ *
+ *  This is a proprietary software of kt corp, and you may not use this file except in
+ *  compliance with license agreement with kt corp. Any redistribution or use of this
+ *  software, with or without modification shall be strictly prohibited without prior written
+ *  approval of kt corp, and the copyright notice above does not evidence any actualor
+ *  intended publication of such software.
+*/
+
+package kt.idss.ktws.cdm;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>IoCCsm0520TS complex type�� ���� Java Ŭ�����Դϴ�.
+ *
+ * <p>���� ��Ű�� ������ �� Ŭ������ ���ԵǴ� �ʿ��� �������� �����մϴ�.
+ *
+ * <pre>
+ * &lt;complexType name="IoCCsm0520TS">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="pFlag" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pCustId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pCplceTypeCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pAvlBeginDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pAvlEndDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pArnoId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pCplceText" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pExtNo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pCplceErrtyCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pFavorCplceYn" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pFavorMediaCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pProhibitMediaCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pCustName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pAddrTypeCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pDongCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pAddrBldgId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pAddrBldtpCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pAddrBldngNo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pAddrBldgName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pAddrBldgNo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pAddrBldgHoNo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pAddrBjtyCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pAddrBjNo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pAddrHoNo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pZipNo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pAddrText" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pAddrInTypeCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pAddrTrnsCfmTypeCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pRbldgId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pRbldgNameId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pRaddrBldgTypeCd" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pRaddrBldgName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pRaddrBldgNo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pRaddrBldgRoomNo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pRaddrDetlText" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pRaddrText" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pAddrTextMask" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pRaddrTextMask" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ *
+ *
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "IoCCsm0520TS", propOrder = {
+    "pFlag",
+    "pCustId",
+    "pCplceTypeCd",
+    "pAvlBeginDate",
+    "pAvlEndDate",
+    "pArnoId",
+    "pCplceText",
+    "pExtNo",
+    "pCplceErrtyCd",
+    "pFavorCplceYn",
+    "pFavorMediaCd",
+    "pProhibitMediaCd",
+    "pCustName",
+    "pAddrTypeCd",
+    "pDongCd",
+    "pAddrBldgId",
+    "pAddrBldtpCd",
+    "pAddrBldngNo",
+    "pAddrBldgName",
+    "pAddrBldgNo",
+    "pAddrBldgHoNo",
+    "pAddrBjtyCd",
+    "pAddrBjNo",
+    "pAddrHoNo",
+    "pZipNo",
+    "pAddrText",
+    "pAddrInTypeCd",
+    "pAddrTrnsCfmTypeCd",
+    "pRbldgId",
+    "pRbldgNameId",
+    "pRaddrBldgTypeCd",
+    "pRaddrBldgName",
+    "pRaddrBldgNo",
+    "pRaddrBldgRoomNo",
+    "pRaddrDetlText",
+    "pRaddrText",
+    "pAddrTextMask",
+    "pRaddrTextMask"
+})
+public class IoCCsm0520TS {
+
+    protected String pFlag;
+    protected String pCustId;
+    protected String pCplceTypeCd;
+    protected String pAvlBeginDate;
+    protected String pAvlEndDate;
+    protected String pArnoId;
+    protected String pCplceText;
+    protected String pExtNo;
+    protected String pCplceErrtyCd;
+    protected String pFavorCplceYn;
+    protected String pFavorMediaCd;
+    protected String pProhibitMediaCd;
+    protected String pCustName;
+    protected String pAddrTypeCd;
+    protected String pDongCd;
+    protected String pAddrBldgId;
+    protected String pAddrBldtpCd;
+    protected String pAddrBldngNo;
+    protected String pAddrBldgName;
+    protected String pAddrBldgNo;
+    protected String pAddrBldgHoNo;
+    protected String pAddrBjtyCd;
+    protected String pAddrBjNo;
+    protected String pAddrHoNo;
+    protected String pZipNo;
+    protected String pAddrText;
+    protected String pAddrInTypeCd;
+    protected String pAddrTrnsCfmTypeCd;
+    protected String pRbldgId;
+    protected String pRbldgNameId;
+    protected String pRaddrBldgTypeCd;
+    protected String pRaddrBldgName;
+    protected String pRaddrBldgNo;
+    protected String pRaddrBldgRoomNo;
+    protected String pRaddrDetlText;
+    protected String pRaddrText;
+    protected String pAddrTextMask;
+    protected String pRaddrTextMask;
+
+    /**
+     * pFlag �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPFlag() {
+        return pFlag;
+    }
+
+    /**
+     * pFlag �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPFlag(String value) {
+        this.pFlag = value;
+    }
+
+    /**
+     * pCustId �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPCustId() {
+        return pCustId;
+    }
+
+    /**
+     * pCustId �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPCustId(String value) {
+        this.pCustId = value;
+    }
+
+    /**
+     * pCplceTypeCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPCplceTypeCd() {
+        return pCplceTypeCd;
+    }
+
+    /**
+     * pCplceTypeCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPCplceTypeCd(String value) {
+        this.pCplceTypeCd = value;
+    }
+
+    /**
+     * pAvlBeginDate �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPAvlBeginDate() {
+        return pAvlBeginDate;
+    }
+
+    /**
+     * pAvlBeginDate �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPAvlBeginDate(String value) {
+        this.pAvlBeginDate = value;
+    }
+
+    /**
+     * pAvlEndDate �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPAvlEndDate() {
+        return pAvlEndDate;
+    }
+
+    /**
+     * pAvlEndDate �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPAvlEndDate(String value) {
+        this.pAvlEndDate = value;
+    }
+
+    /**
+     * pArnoId �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPArnoId() {
+        return pArnoId;
+    }
+
+    /**
+     * pArnoId �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPArnoId(String value) {
+        this.pArnoId = value;
+    }
+
+    /**
+     * pCplceText �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPCplceText() {
+        return pCplceText;
+    }
+
+    /**
+     * pCplceText �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPCplceText(String value) {
+        this.pCplceText = value;
+    }
+
+    /**
+     * pExtNo �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPExtNo() {
+        return pExtNo;
+    }
+
+    /**
+     * pExtNo �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPExtNo(String value) {
+        this.pExtNo = value;
+    }
+
+    /**
+     * pCplceErrtyCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPCplceErrtyCd() {
+        return pCplceErrtyCd;
+    }
+
+    /**
+     * pCplceErrtyCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPCplceErrtyCd(String value) {
+        this.pCplceErrtyCd = value;
+    }
+
+    /**
+     * pFavorCplceYn �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPFavorCplceYn() {
+        return pFavorCplceYn;
+    }
+
+    /**
+     * pFavorCplceYn �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPFavorCplceYn(String value) {
+        this.pFavorCplceYn = value;
+    }
+
+    /**
+     * pFavorMediaCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPFavorMediaCd() {
+        return pFavorMediaCd;
+    }
+
+    /**
+     * pFavorMediaCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPFavorMediaCd(String value) {
+        this.pFavorMediaCd = value;
+    }
+
+    /**
+     * pProhibitMediaCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPProhibitMediaCd() {
+        return pProhibitMediaCd;
+    }
+
+    /**
+     * pProhibitMediaCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPProhibitMediaCd(String value) {
+        this.pProhibitMediaCd = value;
+    }
+
+    /**
+     * pCustName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPCustName() {
+        return pCustName;
+    }
+
+    /**
+     * pCustName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPCustName(String value) {
+        this.pCustName = value;
+    }
+
+    /**
+     * pAddrTypeCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPAddrTypeCd() {
+        return pAddrTypeCd;
+    }
+
+    /**
+     * pAddrTypeCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPAddrTypeCd(String value) {
+        this.pAddrTypeCd = value;
+    }
+
+    /**
+     * pDongCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPDongCd() {
+        return pDongCd;
+    }
+
+    /**
+     * pDongCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPDongCd(String value) {
+        this.pDongCd = value;
+    }
+
+    /**
+     * pAddrBldgId �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPAddrBldgId() {
+        return pAddrBldgId;
+    }
+
+    /**
+     * pAddrBldgId �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPAddrBldgId(String value) {
+        this.pAddrBldgId = value;
+    }
+
+    /**
+     * pAddrBldtpCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPAddrBldtpCd() {
+        return pAddrBldtpCd;
+    }
+
+    /**
+     * pAddrBldtpCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPAddrBldtpCd(String value) {
+        this.pAddrBldtpCd = value;
+    }
+
+    /**
+     * pAddrBldngNo �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPAddrBldngNo() {
+        return pAddrBldngNo;
+    }
+
+    /**
+     * pAddrBldngNo �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPAddrBldngNo(String value) {
+        this.pAddrBldngNo = value;
+    }
+
+    /**
+     * pAddrBldgName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPAddrBldgName() {
+        return pAddrBldgName;
+    }
+
+    /**
+     * pAddrBldgName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPAddrBldgName(String value) {
+        this.pAddrBldgName = value;
+    }
+
+    /**
+     * pAddrBldgNo �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPAddrBldgNo() {
+        return pAddrBldgNo;
+    }
+
+    /**
+     * pAddrBldgNo �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPAddrBldgNo(String value) {
+        this.pAddrBldgNo = value;
+    }
+
+    /**
+     * pAddrBldgHoNo �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPAddrBldgHoNo() {
+        return pAddrBldgHoNo;
+    }
+
+    /**
+     * pAddrBldgHoNo �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPAddrBldgHoNo(String value) {
+        this.pAddrBldgHoNo = value;
+    }
+
+    /**
+     * pAddrBjtyCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPAddrBjtyCd() {
+        return pAddrBjtyCd;
+    }
+
+    /**
+     * pAddrBjtyCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPAddrBjtyCd(String value) {
+        this.pAddrBjtyCd = value;
+    }
+
+    /**
+     * pAddrBjNo �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPAddrBjNo() {
+        return pAddrBjNo;
+    }
+
+    /**
+     * pAddrBjNo �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPAddrBjNo(String value) {
+        this.pAddrBjNo = value;
+    }
+
+    /**
+     * pAddrHoNo �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPAddrHoNo() {
+        return pAddrHoNo;
+    }
+
+    /**
+     * pAddrHoNo �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPAddrHoNo(String value) {
+        this.pAddrHoNo = value;
+    }
+
+    /**
+     * pZipNo �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPZipNo() {
+        return pZipNo;
+    }
+
+    /**
+     * pZipNo �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPZipNo(String value) {
+        this.pZipNo = value;
+    }
+
+    /**
+     * pAddrText �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPAddrText() {
+        return pAddrText;
+    }
+
+    /**
+     * pAddrText �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPAddrText(String value) {
+        this.pAddrText = value;
+    }
+
+    /**
+     * pAddrInTypeCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPAddrInTypeCd() {
+        return pAddrInTypeCd;
+    }
+
+    /**
+     * pAddrInTypeCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPAddrInTypeCd(String value) {
+        this.pAddrInTypeCd = value;
+    }
+
+    /**
+     * pAddrTrnsCfmTypeCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPAddrTrnsCfmTypeCd() {
+        return pAddrTrnsCfmTypeCd;
+    }
+
+    /**
+     * pAddrTrnsCfmTypeCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPAddrTrnsCfmTypeCd(String value) {
+        this.pAddrTrnsCfmTypeCd = value;
+    }
+
+    /**
+     * pRbldgId �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPRbldgId() {
+        return pRbldgId;
+    }
+
+    /**
+     * pRbldgId �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPRbldgId(String value) {
+        this.pRbldgId = value;
+    }
+
+    /**
+     * pRbldgNameId �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPRbldgNameId() {
+        return pRbldgNameId;
+    }
+
+    /**
+     * pRbldgNameId �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPRbldgNameId(String value) {
+        this.pRbldgNameId = value;
+    }
+
+    /**
+     * pRaddrBldgTypeCd �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPRaddrBldgTypeCd() {
+        return pRaddrBldgTypeCd;
+    }
+
+    /**
+     * pRaddrBldgTypeCd �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPRaddrBldgTypeCd(String value) {
+        this.pRaddrBldgTypeCd = value;
+    }
+
+    /**
+     * pRaddrBldgName �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPRaddrBldgName() {
+        return pRaddrBldgName;
+    }
+
+    /**
+     * pRaddrBldgName �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPRaddrBldgName(String value) {
+        this.pRaddrBldgName = value;
+    }
+
+    /**
+     * pRaddrBldgNo �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPRaddrBldgNo() {
+        return pRaddrBldgNo;
+    }
+
+    /**
+     * pRaddrBldgNo �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPRaddrBldgNo(String value) {
+        this.pRaddrBldgNo = value;
+    }
+
+    /**
+     * pRaddrBldgRoomNo �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPRaddrBldgRoomNo() {
+        return pRaddrBldgRoomNo;
+    }
+
+    /**
+     * pRaddrBldgRoomNo �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPRaddrBldgRoomNo(String value) {
+        this.pRaddrBldgRoomNo = value;
+    }
+
+    /**
+     * pRaddrDetlText �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPRaddrDetlText() {
+        return pRaddrDetlText;
+    }
+
+    /**
+     * pRaddrDetlText �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPRaddrDetlText(String value) {
+        this.pRaddrDetlText = value;
+    }
+
+    /**
+     * pRaddrText �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPRaddrText() {
+        return pRaddrText;
+    }
+
+    /**
+     * pRaddrText �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPRaddrText(String value) {
+        this.pRaddrText = value;
+    }
+
+    /**
+     * pAddrTextMask �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPAddrTextMask() {
+        return pAddrTextMask;
+    }
+
+    /**
+     * pAddrTextMask �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPAddrTextMask(String value) {
+        this.pAddrTextMask = value;
+    }
+
+    /**
+     * pRaddrTextMask �Ӽ��� ���� �����ɴϴ�.
+     *
+     * @return
+     *     possible object is
+     *     {@link String }
+     *
+     */
+    public String getPRaddrTextMask() {
+        return pRaddrTextMask;
+    }
+
+    /**
+     * pRaddrTextMask �Ӽ��� ���� �����մϴ�.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *
+     */
+    public void setPRaddrTextMask(String value) {
+        this.pRaddrTextMask = value;
+    }
+
+}

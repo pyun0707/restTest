@@ -1,0 +1,27 @@
+package kt.idss.ktws.service;
+
+import kt.idss.ktws.common.dao.JobhistDao;
+import kt.idss.ktws.vo.Jobhist;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
+
+@Service("JobhistService")
+public class JobhistServiceImple implements JobhistService{
+
+    @Autowired
+    JobhistDao jobhistDao;
+
+    @Override
+    public void createJobhist(Jobhist jobhist) {
+        Assert.notNull(jobhist, "Jobhist must be not null");
+        jobhistDao.create(jobhist);
+    }
+
+    @Override
+    public String readOrdno() {
+        return jobhistDao.readOrdno();
+    }
+
+}

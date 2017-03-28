@@ -1,0 +1,176 @@
+package kt.idss.ktws.product.dao;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import kt.idss.ktws.enums.ProductCategory;
+import kt.idss.ktws.vo.Customer;
+import kt.idss.ktws.vo.Product;
+import kt.idss.ktws.vo.ProductOrderInfo;
+
+@Repository("wibro")
+public class WibroDaoImple implements ProductOrderDao {
+
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    @Autowired
+    public void setDataSource(DataSource dataSource) {
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+    }
+
+    private RowMapper<Product> mapper = new RowMapper<Product>() {
+        public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Product product     = new Product();
+            Customer customer   = new Customer();
+            product.setCustomer(customer);
+
+            // set product
+            product.setProd_type       (rs.getString("prod_type"));
+            product.setSa_id           (rs.getString("sa_id"));
+            product.setP_sa_id         (rs.getString("p_sa_id"));
+            product.setProd_code       (rs.getString("prod_code"));
+            product.setLoginid         (rs.getString("logname"));
+            product.setUse_cust_type   (rs.getString("use_cust_type"));
+            product.setUse_cust_num    (rs.getString("use_cust_num"));
+            // set customer
+            customer.setCust_type_cd   (rs.getString("cust_type_cd"));
+            customer.setCust_num       (rs.getString("cust_num"));
+            customer.setIpin_ci        (rs.getString("ipin_ci"));
+            customer.setCust_idfy_type (rs.getString("cust_idfy_no_type"));
+            customer.setCust_idfy_name (rs.getString("cust_idfy_name"));
+            customer.setCust_idfy_no   (rs.getString("cust_idfy_no"));
+            customer.setCust_id        (rs.getString("cust_id"));
+            return product;
+         }
+    };
+    @Override
+    public int createRcvbasic(ProductOrderInfo vo) {
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        StringBuffer sql        = new StringBuffer();
+        sql.append("\n insert into tb_rcvbasic                                                                                                        ");
+        sql.append("\n     (                                                                                                                          ");
+        sql.append("\n          sa_id      , intf_code   , wo_no        , ins_date     , prod_code                                                    ");
+        sql.append("\n        , chg_code   , cust_id     , cust_kname   , cust_ename   , cust_type                                                    ");
+        sql.append("\n        , cust_num   , usertype    , addr_dong    , addr_type    , addr_bungi                                                   ");
+        sql.append("\n        , addr_ho    , addr_desc   , tel_ddd      , tel_office   , tel_num                                                      ");
+        sql.append("\n        , flag       , post_num    , sequence     ,cust_idfy_no_type  , cust_idfy_no  , cust_idfy_name                          ");
+        sql.append("\n     )                                                                                                                          ");
+        sql.append("\n     select wibro.sa_id   , '4202'                 , :wo_no         , to_date(:ins_date, 'yyyymmddhh24miss')  , wibro.prod_code ");
+        sql.append("\n          , '01'          , cust.cust_id           , cust_kname     , cust_ename                      , wa.icis_id as cust_type ");
+        sql.append("\n          , :cust_num     , wb.icis_id as usetype  , addr_dong      , wc.icis_id  as addr_type        , addr_bungi              ");
+        sql.append("\n          , addr_ho       , addr_desc              , cust.tel_ddd   , cust.tel_office                 , cust.tel_num            ");
+        sql.append("\n          , 'KORNET'        , post_num               , '1'            ,  wd.icis_id     , :cust_idfy_no  , cust_idfy_name      ");
+        sql.append("\n       from tb_custbasic cust                                                                                                   ");
+        sql.append("\n          , tb_wibrocust wibro                                                                                                  ");
+        sql.append("\n          , tb_wibrocode wa                                                                                                     ");
+        sql.append("\n          , tb_wibrocode wb                                                                                                     ");
+        sql.append("\n          , tb_wibrocode wc                                                                                                     ");
+        sql.append("\n          , tb_wibrocode wd                                                                                                     ");
+        sql.append("\n      where wibro.sa_id    = :sa_id                                                                                             ");
+        sql.append("\n        and cust.cust_id   = wibro.cust_id                                                                                      ");
+        sql.append("\n        and cust.cust_type = wa.code_id(+) and wa.group_id(+) = '9000' and wa.product_id(+) = '9100' and wa.work_id(+) = '1300' ");
+        sql.append("\n        and wibro.usetype  = wb.code_id(+) and wb.group_id(+) = '9000' and wb.product_id(+) = '9100' and wb.work_id(+) = '4500' ");
+        sql.append("\n        and cust.addr_type = wc.code_id(+) and wc.group_id(+) = '9000' and wc.product_id(+) = '9100' and wc.work_id(+) = '1700' ");
+        sql.append("\n        and cust.cust_idfy_no_type = wd.code_id(+) and wd.group_id(+) = '9000' and wd.product_id(+) = '9100' and wd.work_id(+) = '1300' ");
+
+        namedParameters.addValue("wo_no"    , vo.getWono());
+        namedParameters.addValue("ins_date" , vo.getInsdate());
+        namedParameters.addValue("cust_num" , vo.getCust_num());
+        namedParameters.addValue("cust_idfy_no"   , vo.getCust_idfy_no());
+        namedParameters.addValue("sa_id"    , vo.getSa_id());
+
+        return namedParameterJdbcTemplate.update( sql.toString(),namedParameters);
+    }
+
+    @Override
+    public int createRcv(ProductOrderInfo vo) {
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        StringBuffer sql        = new StringBuffer();
+        sql.append("\n insert into tb_rcvwibro ");
+        sql.append("\n     ( ");
+        sql.append("\n          sa_id            , wo_no           , ord_no              , ins_date               , sequence                                ");
+        sql.append("\n        , reqt_date        , mega_sa_id      , cust_id             , smstype                , sms_telno                               ");
+        sql.append("\n        , email            , tel_num_1       , tel_num_2           , use_cust_id            , use_cust_type                           ");
+        sql.append("\n        , use_cust_num     , use_cust_name   , use_cust_ename      , use_tel_ddd            , use_tel_office                          ");
+        sql.append("\n        , use_tel_num      , use_zipcode     , use_addr_dong       , use_addr_type          , use_addr_bungi                          ");
+        sql.append("\n        , use_addr_ho      , use_addr_desc   , use_addr_bldg_type  , use_addr_bldg_name     , office                                  ");
+        sql.append("\n        , logname          , password        , public_id           , cdma_tel_no            , svc_detail                              ");
+        sql.append("\n        , area_dc          , time_dc         , special_dc          , lbs_agree_yn           , lbs_stop_cause                          ");
+        sql.append("\n        , lbs_loc_method   , sc_flag         , sc_kind             , sc_time                , fixed_id                                ");
+        sql.append("\n        , lock_flag        , uicc_iccid      , uicc_sa_id          , uicc_model_cd          , uicc_class_seq                          ");
+        sql.append("\n        , uicc_vendor_name , master_sa_id    , sms_mms_yn          , private_id             , genesisyn                               ");
+        sql.append("\n     )                                                                                                                                ");
+        sql.append("\n     select wb.sa_id                        , :wo_no             , :ord_no             , to_date(:ins_date, 'yyyymmddhh24miss') , '1' ");
+        sql.append("\n          , to_char(sysdate,'yyyymmddhh24') , wb.mega_sa_id , wb.cust_id    , wb.smstype            , wb.sms_telno                    ");
+        sql.append("\n          , wb.email            , wb.tel_num_1      , wb.tel_num_2          , wb.use_cust_id        , cd1.icis_id                     ");
+        sql.append("\n          ,''                   , wb.use_cust_name  , wb.use_cust_ename     , wb.use_tel_ddd        , wb.use_tel_office               ");
+        sql.append("\n          , wb.use_tel_num      , wb.use_zipcode    , wb.use_addr_dong      , cd2.icis_id           , wb.use_addr_bungi               ");
+        sql.append("\n          , wb.use_addr_ho      , wb.use_addr_desc  , wb.use_addr_bldg_type , wb.use_addr_bldg_name , wb.office                       ");
+        sql.append("\n          , :logname            , ''                , wb.public_id          , wb.cdma_tel_no        , wb.svc_detail                   ");
+        sql.append("\n          , wb.area_dc          , wb.time_dc        , wb.special_dc         , wb.lbs_agree_yn       , wb.lbs_stop_cause               ");
+        sql.append("\n          , wb.lbs_loc_method   , wb.sc_flag        , wb.sc_kind            , wb.sc_time            , wb.fixed_id                     ");
+        sql.append("\n          , wb.lock_flag        , wb.uicc_iccid     , wb.uicc_sa_id         , wb.uicc_model_cd      , wb.uicc_class_seq               ");
+        sql.append("\n          , wb.uicc_vendor_name , wb.master_sa_id   , wb.sms_mms_yn         , wb.private_id         , wb.genesis_yn                   ");
+        sql.append("\n       from tb_wibrocust wb                                                                                                           ");
+        sql.append("\n          , tb_wibrocode cd1                                                                                                          ");
+        sql.append("\n          , tb_wibrocode cd2                                                                                                          ");
+        sql.append("\n      where wb.sa_id = :sa_id                                                                                                         ");
+        sql.append("\n        and wb.use_cust_type = cd1.code_id(+) and cd1.group_id(+) = '9000' and cd1.product_id(+) = '9100' and cd1.work_id(+) = '1300' ");
+        sql.append("\n        and wb.use_addr_type = cd2.code_id(+) and cd2.group_id(+) = '9000' and cd2.product_id(+) = '9100' and cd2.work_id(+) = '1700' ");
+
+        namedParameters.addValue("wo_no"        , vo.getWono());
+        namedParameters.addValue("ord_no"       , vo.getOrdno());
+        namedParameters.addValue("ins_date"     , vo.getInsdate());
+//        namedParameters.addValue("use_cust_num" , vo.getUse_cust_num()); //use_cust_num ''로 변경 (use_XXX 컬럼 null은 언제?)
+        namedParameters.addValue("logname"      , vo.getLogname());
+        namedParameters.addValue("sa_id"        , vo.getSa_id());
+
+        return namedParameterJdbcTemplate.update( sql.toString(),namedParameters);
+    }
+
+    public Product readProductInfoBySaid(ProductOrderInfo vo) {
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        StringBuffer sql = new StringBuffer();
+        sql.append("\n select '"+ProductCategory.WIBRO.strValue()+"'       as prod_type    ");
+        sql.append("\n      ,a.sa_id     as sa_id                               ");
+        sql.append("\n      ,a.sa_id     as p_sa_id                             ");
+        sql.append("\n      ,a.prod_code as prod_code                           ");
+        sql.append("\n      ,a.logname   as logname                             ");
+        sql.append("\n      ,a.use_cust_type   as use_cust_type                 ");
+        sql.append("\n      ,a.use_cust_num    as use_cust_num                  ");
+        sql.append("\n      ,b.cust_type as cust_type_cd                        ");
+        sql.append("\n      ,b.cust_num  as cust_num                            ");
+        sql.append("\n      ,b.ipin_ci   as ipin_ci                             ");
+        sql.append("\n      ,b.cust_idfy_no_type  as cust_idfy_no_type          ");
+        sql.append("\n      ,b.cust_idfy_name  as cust_idfy_name                ");
+        sql.append("\n      ,b.cust_idfy_no    as cust_idfy_no                  ");
+        sql.append("\n      ,b.cust_id         as cust_id                       ");
+        sql.append("\n      ,''                as g_cust_id                     ");
+        sql.append("\n from  tb_wibrocust a                                     ");
+        sql.append("\n      ,tb_custbasic b                                     ");
+        sql.append("\n where a.sa_id   = :sa_id                                 ");
+        sql.append("\n   and (a.genesis_yn <> 'Y' or a.genesis_yn is null)      ");
+        sql.append("\n   and a.cust_id = b.cust_id                              ");
+
+        namedParameters.addValue("sa_id"          , vo.getSa_id());
+
+        return this.namedParameterJdbcTemplate.queryForObject( sql.toString(), namedParameters ,mapper);
+
+    }
+
+
+    @Override
+    public int createRcvLogname(ProductOrderInfo vo) {
+        return 1;
+
+    }
+
+}

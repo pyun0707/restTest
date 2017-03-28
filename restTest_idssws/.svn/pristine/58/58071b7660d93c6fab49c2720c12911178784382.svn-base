@@ -1,0 +1,31 @@
+package kt.idss.gcrm.ws.service;
+
+import javax.jws.WebParam;
+import javax.jws.WebResult;
+import javax.jws.WebService;
+import javax.jws.WebParam.Mode;
+import javax.jws.soap.SOAPBinding;
+import javax.xml.bind.annotation.XmlSeeAlso;
+
+import kt.idss.gcrm.ws.spec.RecvVerifyIdDupForm;
+//import kt.idss.gcrm.ws.spec.RecvVerifyOwnerForm;
+import kt.idss.gcrm.ws.spec.RetnHeaderForm;
+
+import com.kt.bit.standard.header.v1.BITHeader;
+
+@SOAPBinding (parameterStyle = SOAPBinding.ParameterStyle.BARE)
+@WebService
+public interface IdVerifyService { //not use  폐기 (2014.06.24 확정)
+/*
+    @WebResult(partName = "body")
+    public RetnHeaderForm verifyIdDup(  @WebParam(mode=Mode.INOUT, header = true, partName = "standardHeader", name = "BITHeader"
+                                      , targetNamespace = "http://www.kt.com/bit/standard/header/v1") javax.xml.ws.Holder<BITHeader>  standardHeader
+                                      , @WebParam(partName = "body") RecvVerifyIdDupForm recvVerifyIdDupForm);
+
+
+    @WebResult(partName = "body")
+    public RetnHeaderForm verifyOwner(  @WebParam(mode=Mode.INOUT, header = true, partName = "standardHeader", name = "BITHeader"
+                                      , targetNamespace = "http://www.kt.com/bit/standard/header/v1") javax.xml.ws.Holder<BITHeader>  standardHeader
+                                      , @WebParam(partName = "body") RecvVerifyOwnerForm recvVerifyOwnerForm);
+*/
+}

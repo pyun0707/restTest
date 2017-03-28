@@ -1,0 +1,121 @@
+package kt.idss.ktws.product.dao;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import kt.idss.ktws.vo.Customer;
+import kt.idss.ktws.vo.Product;
+import kt.idss.ktws.vo.ReservedInfo;
+
+@Repository
+public class ReservedDaoForIdMaster implements ReservedIdDao {
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    @Autowired
+    public void setDataSource(DataSource dataSource) {
+        this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+    }
+
+    private RowMapper<Product> mapper = new RowMapper<Product>() {
+        public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Product product     = new Product();
+            Customer customer   = new Customer();
+            product.setCustomer(customer);
+
+            // set product
+            product.setProd_type       (rs.getString("prod_type"));
+            product.setSa_id           (rs.getString("sa_id"));
+            product.setP_sa_id         (rs.getString("p_sa_id"));
+            product.setLoginid         (rs.getString("logname"));
+
+            // set customer
+            customer.setCust_type_cd   (rs.getString("cust_type_cd"));
+            customer.setCust_num       (rs.getString("cust_num"));
+            customer.setIpin_ci        (rs.getString("ipin_ci"));
+            customer.setCust_idfy_name (rs.getString("cust_idfy_name"));
+            customer.setCust_idfy_no   (rs.getString("cust_idfy_no"));
+            customer.setCust_id        (rs.getString("cust_id"));
+            customer.setL_cust_id      (rs.getString("legacy_cust_id"));
+            customer.setGenesis_yn     (rs.getBoolean("genesis_yn"));
+
+            return product;
+         }
+    };
+    @Override
+    public Product readReservedId  (final String prod_code
+                                   ,final String logname
+                                   ,final String sa_id){
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        StringBuffer sql = new StringBuffer();
+        sql.append("\n select svc_type as prod_type                 ");
+        sql.append("\n       ,sa_id                                 ");
+        sql.append("\n       ,p_sa_id                               ");
+        sql.append("\n       ,logname                               ");
+        sql.append("\n       ,cust_num_type as cust_type_cd         ");
+        sql.append("\n       ,cust_num                              ");
+        sql.append("\n       ,ipin_ci                               ");
+        sql.append("\n       ,cust_idfy_name                        ");
+        sql.append("\n       ,cust_idfy_no                          ");
+        sql.append("\n       ,cust_id                               ");
+        sql.append("\n       ,legacy_cust_id                        ");
+//        sql.append("\n   from tb_reserved_id_genesis                ");
+        sql.append("\n   from tb_reserved_id                        ");
+        sql.append("\n  where logname  = :logname                   ");
+        sql.append("\n    and svc_type = :prod_code                 ");
+        sql.append("\n    and sa_id    = :sa_id                     ");
+        namedParameters.addValue("logname"         , logname   );
+        namedParameters.addValue("prod_code"       , prod_code );
+        namedParameters.addValue("sa_id"           , sa_id     );
+        return this.namedParameterJdbcTemplate.queryForObject( sql.toString(), namedParameters ,mapper);
+    }
+
+    @Override
+    public void createReservedId(final ReservedInfo vo){
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        StringBuffer sql = new StringBuffer();
+        sql.append("\n insert into                ");
+//        sql.append("\n        tb_reserved_id_genesis      ");
+        sql.append("\n        tb_reserved_id      ");
+        sql.append("\n (                          ");
+        sql.append("\n  logname   , cust_name      , cust_num_type     , cust_num     , ipin_ci          ");
+        sql.append("\n, ipin_di   , cust_idfy_name , cust_idfy_no_type , cust_idfy_no , cust_id          ");
+        sql.append("\n, legacy_cust_id , sa_id          , p_sa_id           , svc_type     , status      ");
+        sql.append("\n, ins_date  , chg_date, genesis_yn                                                 ");
+        sql.append("\n )                                                                        ");
+        sql.append("\n        values                                                            ");
+        sql.append("\n  (                                                                       ");
+        sql.append("\n  :logname   , :cust_name      , :cust_num_type     , :cust_num     , :ipin_ci        ");
+        sql.append("\n, :ipin_di   , :cust_idfy_name , :cust_idfy_no_type , :cust_idfy_no , :cust_id        ");
+        sql.append("\n, :l_cust_id , :sa_id          , :p_sa_id           , :svc_type     , :status         ");
+        sql.append("\n, :ins_date  , :chg_date, :genesis_yn                                                 ");
+        sql.append("\n  )     ");
+        namedParameters.addValue("logname"          , vo.getLogname());
+        namedParameters.addValue("cust_name"        , vo.getCust_name());
+        namedParameters.addValue("cust_num_type"    , vo.getCust_num_type());
+        namedParameters.addValue("cust_num"         , vo.getCust_num());
+        namedParameters.addValue("ipin_ci"          , vo.getIpin_ci());
+        namedParameters.addValue("ipin_di"          , vo.getIpin_di());
+        namedParameters.addValue("cust_idfy_name"   , vo.getCust_idfy_name());
+        namedParameters.addValue("cust_idfy_no_type", vo.getCust_idfy_no_type());
+        namedParameters.addValue("cust_idfy_no"     , vo.getCust_idfy_no());
+        namedParameters.addValue("cust_id"          , vo.getI_cust_id());
+        namedParameters.addValue("l_cust_id"        , vo.getLegacy_cust_id());
+        namedParameters.addValue("sa_id"            , vo.getSa_id());
+        namedParameters.addValue("p_sa_id"          , vo.getP_sa_id());
+        namedParameters.addValue("svc_type"         , vo.getSvc_type());
+        namedParameters.addValue("status"           , vo.getStatus());
+        namedParameters.addValue("ins_date"         , vo.getIns_date());
+        namedParameters.addValue("chg_date"         , vo.getChg_date());
+        namedParameters.addValue("genesis_yn"       , vo.isGenesis() == true ? "Y" : "N");
+        namedParameterJdbcTemplate.update( sql.toString(),namedParameters);
+    }
+
+}

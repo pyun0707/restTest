@@ -1,0 +1,44 @@
+package kt.idss.ktws.common.dao;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class CryptDaoImple implements CryptDao {
+
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    @Autowired
+    @Qualifier("idmsmst_ktws_mds")
+    public void setDataSource(DataSource dataSource) {
+        this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+    }
+
+    @Override
+    public String getDeCryptRealValue(String aes_method,String system, String value) {
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        StringBuffer sql = new StringBuffer();
+        sql.append("\n select idms_util.decrypt('','',:aes_method,:system,:value) as realValue ");
+        sql.append("\n   from dual                                                     ");
+        namedParameters.addValue("aes_method"    , aes_method       );
+        namedParameters.addValue("system"        , system       );
+        namedParameters.addValue("value"         , value       );
+        return this.namedParameterJdbcTemplate.queryForObject(sql.toString(), namedParameters ,String.class);
+    }
+    @Override
+    public String getEnCryptRealValue(String aes_method,String system, String value) {
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        StringBuffer sql = new StringBuffer();
+        sql.append("\n select idms_util.encrypt('etc',:aes_method,:system,:value) as realValue ");
+        sql.append("\n   from dual                                                     ");
+        namedParameters.addValue("aes_method"    , aes_method       );
+        namedParameters.addValue("system"        , system       );
+        namedParameters.addValue("value"         , value       );
+        return this.namedParameterJdbcTemplate.queryForObject(sql.toString(), namedParameters ,String.class);
+    }
+}

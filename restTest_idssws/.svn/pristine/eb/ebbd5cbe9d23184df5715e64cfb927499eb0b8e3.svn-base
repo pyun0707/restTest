@@ -1,0 +1,29 @@
+package kt.idss.ktws.util;
+
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Utility {
+
+    public boolean doesColumnExist(final String columnName, final ResultSet resultSet) throws SQLException{
+        boolean isExist = false;
+        final ResultSetMetaData meta = resultSet.getMetaData();
+        final int numCol = meta.getColumnCount();
+        for (int i = 1; i <= numCol; i++) {
+            if(meta.getColumnName(i).equalsIgnoreCase(columnName)) {
+                isExist = true;
+                break;
+            }
+        }
+        return isExist;
+    }
+    public String getPatternDate(String pattern) {
+        java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat (pattern, java.util.Locale.KOREA);
+        return formatter.format(new java.util.Date());
+    }
+}

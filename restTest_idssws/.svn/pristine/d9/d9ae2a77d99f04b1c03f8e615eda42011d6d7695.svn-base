@@ -1,0 +1,77 @@
+package kt.idss.ktws.vo;
+
+public class ProductOrderInfo {
+    private String p_sa_id;
+    private String sa_id;
+    private String wono;
+    private String ordno;
+    private String insdate;
+    private String cust_num;
+    private String use_cust_num;
+    private String cust_idfy_no;
+    private String cust_idfy_name;
+    private String logname;
+
+    public String getCust_idfy_no() {
+        return cust_idfy_no;
+    }
+    public void setCust_idfy_no(String cust_idfy_no) {
+        this.cust_idfy_no = cust_idfy_no;
+    }
+    public String getCust_idfy_name() {
+        return cust_idfy_name;
+    }
+    public void setCust_idfy_name(String cust_idfy_name) {
+        this.cust_idfy_name = cust_idfy_name;
+    }
+    public String getP_sa_id() {
+        return p_sa_id;
+    }
+    public void setP_sa_id(String p_sa_id) {
+        this.p_sa_id = p_sa_id;
+    }
+    public String getSa_id() {
+        return sa_id;
+    }
+    public void setSa_id(String sa_id) {
+        this.sa_id = sa_id;
+    }
+    public String getWono() {
+        return wono;
+    }
+    public void setWono(String wono) {
+        this.wono = wono;
+    }
+    public String getOrdno() {
+        return ordno;
+    }
+    public void setOrdno(String ordno) {
+        this.ordno = ordno;
+    }
+    public String getInsdate() {
+        return insdate;
+    }
+    public void setInsdate(String insdate) {
+        this.insdate = insdate;
+    }
+    public String getCust_num() {
+        return cust_num;
+    }
+    public void setCust_num(String cust_num) {
+        this.cust_num = cust_num;
+    }
+    public String getUse_cust_num() {
+        return use_cust_num;
+    }
+    public void setUse_cust_num(String use_cust_num) {
+        this.use_cust_num = use_cust_num;
+    }
+    public String getLogname() {
+        return logname;
+    }
+    public void setLogname(String logname) {
+        this.logname = logname;
+    }
+
+
+}

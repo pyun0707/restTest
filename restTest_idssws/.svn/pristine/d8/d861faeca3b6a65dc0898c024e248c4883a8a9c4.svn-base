@@ -1,0 +1,104 @@
+package kt.idss.ktws.common.dao;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import kt.idss.ktws.vo.Product;
+
+@Repository
+public class IdChangeDaoForIdMaster implements IdChangeDao{
+
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    @Autowired
+    public void setDataSource(DataSource dataSource) {
+        this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+    }
+
+    @Override
+    public String reserveId(Product product, boolean isGenesis) {
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        StringBuffer sql = new StringBuffer();
+        sql.append("\n select idms_util.verifyIdForIdDup( :req_id         ");
+        sql.append("\n                              ,:logname        ");
+        sql.append("\n                              ,:cust_type_cd   ");
+        sql.append("\n                              ,:cust_num       ");
+        sql.append("\n                              ,:ipin_ci        ");
+        sql.append("\n                              ,:other_cust_num_type ");
+        sql.append("\n                              ,:other_cust_num ");
+        sql.append("\n                              ,:other_cust_name");
+        sql.append("\n                              ,:cust_id        ");
+        sql.append("\n                              ,:l_cust_id      ");
+        sql.append("\n                              ,:sa_id          ");
+        sql.append("\n                              ,:p_sa_id        ");
+        sql.append("\n                              ,:prod_type      ");
+        sql.append("\n                              ,:convert_genesis_yn     ");
+        sql.append("\n                              ,:genesis_yn     ");
+        sql.append("\n                             ) as dup_result   ");
+        sql.append("\n   from dual ");
+        namedParameters.addValue("req_id"         , "idssws"       );
+        namedParameters.addValue("logname"        , product.getLoginid()        );
+        namedParameters.addValue("cust_type_cd"   , product.getCustomer().getCust_type_cd()    );
+        namedParameters.addValue("cust_num"       , product.getCustomer().getCust_num()        );
+        namedParameters.addValue("ipin_ci"        , product.getCustomer().getIpin_ci()         );
+        namedParameters.addValue("other_cust_num_type" , product.getCustomer().getCust_idfy_type()    );
+        namedParameters.addValue("other_cust_num" , product.getCustomer().getCust_idfy_no()    );
+        namedParameters.addValue("other_cust_name", product.getCustomer().getCust_idfy_name()  );
+        namedParameters.addValue("cust_id"        , product.getCustomer().getCust_id        () );
+        namedParameters.addValue("l_cust_id"      , product.getCustomer().getL_cust_id()       );
+        namedParameters.addValue("sa_id"          , product.getSa_id   ()                      );
+        namedParameters.addValue("p_sa_id"        , product.getP_sa_id ()                      );
+        namedParameters.addValue("prod_type"      , product.getProd_type()                     );
+        namedParameters.addValue("convert_genesis_yn" , "N");
+        namedParameters.addValue("genesis_yn"         , isGenesis == true ? "Y":"N");
+
+        return this.namedParameterJdbcTemplate.queryForObject(sql.toString(), namedParameters ,String.class);
+    }
+
+    @Override
+    public String verifyUser(Product product, boolean isGenesis) {
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        StringBuffer sql = new StringBuffer();
+        sql.append("\n select idms_util.verifyIdForOwner( :req_id         ");
+        sql.append("\n                                   ,:logname        ");
+        sql.append("\n                                   ,:cust_type_cd   ");
+        sql.append("\n                                   ,:cust_num       ");
+        sql.append("\n                                   ,:ipin_ci        ");
+        sql.append("\n                                   ,:other_cust_num_type        ");
+        sql.append("\n                                   ,:other_cust_num ");
+        sql.append("\n                                   ,:other_cust_name");
+        sql.append("\n                                   ,:cust_id        ");
+        sql.append("\n                                   ,:l_cust_id      ");
+        sql.append("\n                                   ,:sa_id          ");
+        sql.append("\n                                   ,:p_sa_id        ");
+        sql.append("\n                                   ,:prod_type      ");
+        sql.append("\n                                   ,:convert_genesis_yn     ");
+        sql.append("\n                                   ,:genesis_yn     ");
+        sql.append("\n                             ) as owner_result ");
+        sql.append("\n   from dual ");
+        namedParameters.addValue("req_id"         , "idssws"       );
+        namedParameters.addValue("logname"        , product.getLoginid()        );
+        namedParameters.addValue("cust_type_cd"   , product.getCustomer().getCust_type_cd()  );
+        namedParameters.addValue("cust_num"       , product.getCustomer().getCust_num()      );
+        namedParameters.addValue("ipin_ci"        , product.getCustomer().getIpin_ci()       );
+        namedParameters.addValue("other_cust_num_type" , product.getCustomer().getCust_idfy_type()  );
+        namedParameters.addValue("other_cust_num" , product.getCustomer().getCust_idfy_no()  );
+        namedParameters.addValue("other_cust_name", product.getCustomer().getCust_idfy_name());
+        namedParameters.addValue("cust_id"        , product.getCustomer().getCust_id       ());
+        namedParameters.addValue("l_cust_id"      , product.getCustomer().getL_cust_id()       );
+        namedParameters.addValue("sa_id"          , product.getSa_id   ());
+        namedParameters.addValue("p_sa_id"        , product.getP_sa_id ());
+        namedParameters.addValue("prod_type"      , product.getProd_type());
+        namedParameters.addValue("convert_genesis_yn" , "N");
+        namedParameters.addValue("genesis_yn"     , isGenesis == true ? "Y":"N");
+        return this.namedParameterJdbcTemplate.queryForObject(   sql.toString(), namedParameters ,String.class);
+
+    }
+
+
+
+}

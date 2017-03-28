@@ -1,0 +1,137 @@
+package kt.idss.ktws.vo;
+
+import kt.idss.ktws.enums.InterworkServer;
+
+
+public class TmpOrder {
+
+    private InterworkServer division    ;
+    private String startdate   ;
+    private String enddate     ;
+    private String sa_id       ;
+    private String wo_no       ;
+    private String ins_date    ;
+    private String intf_code   ;
+    private String cust_id     ;
+    private String command     ;
+    private String bind_data   ;
+    private String bind_method ;
+    private String errcode     ;
+    private String errmsg      ;
+    private String logname     ;
+    private String errdate     ;
+
+
+    public TmpOrder(InterworkServer division, String startdate, String enddate,
+            String sa_id, String wo_no, String ins_date, String intf_code,
+            String cust_id, String command, String bind_data,
+            String bind_method, String errcode, String errmsg, String logname,
+            String errdate) {
+        super();
+        this.division = division;
+        this.startdate = startdate;
+        this.enddate = enddate;
+        this.sa_id = sa_id;
+        this.wo_no = wo_no;
+        this.ins_date = ins_date;
+        this.intf_code = intf_code;
+        this.cust_id = cust_id;
+        this.command = command;
+        this.bind_data = bind_data;
+        this.bind_method = bind_method;
+        this.errcode = errcode;
+        this.errmsg = errmsg;
+        this.logname = logname;
+        this.errdate = errdate;
+    }
+    public InterworkServer getDivision() {
+        return division;
+    }
+    public void setDivision(InterworkServer division) {
+        this.division = division;
+    }
+    public String getStartdate() {
+        return startdate;
+    }
+    public void setStartdate(String startdate) {
+        this.startdate = startdate;
+    }
+    public String getEnddate() {
+        return enddate;
+    }
+    public void setEnddate(String enddate) {
+        this.enddate = enddate;
+    }
+    public String getSa_id() {
+        return sa_id;
+    }
+    public void setSa_id(String sa_id) {
+        this.sa_id = sa_id;
+    }
+    public String getWo_no() {
+        return wo_no;
+    }
+    public void setWo_no(String wo_no) {
+        this.wo_no = wo_no;
+    }
+    public String getIns_date() {
+        return ins_date;
+    }
+    public void setIns_date(String ins_date) {
+        this.ins_date = ins_date;
+    }
+    public String getIntf_code() {
+        return intf_code;
+    }
+    public void setIntf_code(String intf_code) {
+        this.intf_code = intf_code;
+    }
+    public String getCust_id() {
+        return cust_id;
+    }
+    public void setCust_id(String cust_id) {
+        this.cust_id = cust_id;
+    }
+    public String getCommand() {
+        return command;
+    }
+    public void setCommand(String command) {
+        this.command = command;
+    }
+    public String getBind_data() {
+        return bind_data;
+    }
+    public void setBind_data(String bind_data) {
+        this.bind_data = bind_data;
+    }
+    public String getBind_method() {
+        return bind_method;
+    }
+    public void setBind_method(String bind_method) {
+        this.bind_method = bind_method;
+    }
+    public String getErrcode() {
+        return errcode;
+    }
+    public void setErrcode(String errcode) {
+        this.errcode = errcode;
+    }
+    public String getErrmsg() {
+        return errmsg;
+    }
+    public void setErrmsg(String errmsg) {
+        this.errmsg = errmsg;
+    }
+    public String getLogname() {
+        return logname;
+    }
+    public void setLogname(String logname) {
+        this.logname = logname;
+    }
+    public String getErrdate() {
+        return errdate;
+    }
+    public void setErrdate(String errdate) {
+        this.errdate = errdate;
+    }
+}

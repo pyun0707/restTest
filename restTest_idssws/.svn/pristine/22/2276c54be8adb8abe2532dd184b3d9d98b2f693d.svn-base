@@ -1,0 +1,88 @@
+package kt.idss.ktws.common.dao;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import kt.idss.ktws.vo.*;
+
+@Repository
+public class DbinfoDaoImple implements DbinfoDao {
+
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    @Autowired
+    public void setDataSource(DataSource dataSource) {
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+    }
+
+    private RowMapper<ServerItem> mapper = new RowMapper<ServerItem>() {
+        public ServerItem mapRow(ResultSet rs, int rowNum) throws SQLException {
+            ServerItem     dbInfo = new ServerItem();
+            dbInfo.setDemon          (rs.getString("demon"));
+            dbInfo.setSystem         (rs.getString("system"));
+            dbInfo.setPool_name      (rs.getString("pool_name"));
+            dbInfo.setSkip           (rs.getString("skip"));
+            dbInfo.setBackup         (rs.getString("backup"));
+            dbInfo.setWeb_mode       (rs.getString("web_mode"));
+            dbInfo.setDb_class       (rs.getString("db_class"));
+            dbInfo.setDivision       (rs.getString("division"));
+            dbInfo.setDb_link        (rs.getString("db_link"));
+            dbInfo.setDivision_alias (rs.getString("division_alias"));
+            dbInfo.setIp             (rs.getString("ip"));
+            dbInfo.setPort           (rs.getString("port"));
+            dbInfo.setUsable_mode    (rs.getString("usable_mode"));
+            return dbInfo;
+         }
+    };
+
+    public ServerItem readDbinfo(String demon, String system) {
+
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+
+        StringBuffer sql = new StringBuffer();
+        sql.append("\n select  demon                                                                  ");
+        sql.append("\n        ,system                                                                 ");
+        sql.append("\n        ,alias as pool_name                                                     ");
+        sql.append("\n        ,case web_mode  when 'S' then 'true' else 'false' end as skip           ");
+        sql.append("\n        ,case web_mode  when 'Y' then 'true' else 'false' end as backup         ");
+        sql.append("\n        ,web_mode                                                               ");
+        sql.append("\n        ,db_class                                                               ");
+        sql.append("\n        ,division                                                               ");
+        sql.append("\n        ,case db_class when 'ORACLE' then '@'||division else '' end as db_link  ");
+        sql.append("\n        ,division_alias                                                         ");
+        sql.append("\n        ,ip                                                                     ");
+        sql.append("\n        ,port                                                                   ");
+        sql.append("\n        ,usable_mode                                                            ");
+        sql.append("\n   from                                                                         ");
+        sql.append("\n (                                                                              ");
+        sql.append("\n     select  demon                                                              ");
+        sql.append("\n         ,system                                                                ");
+        sql.append("\n         ,division                                                              ");
+        sql.append("\n         ,alias                                                                 ");
+        sql.append("\n         ,web_mode                                                              ");
+        sql.append("\n         ,db_class                                                              ");
+        sql.append("\n         ,priority                                                              ");
+        sql.append("\n         ,division_alias                                                        ");
+        sql.append("\n         ,ip                                                                    ");
+        sql.append("\n         ,port                                                                  ");
+        sql.append("\n         ,usable_mode                                                           ");
+        sql.append("\n    from tb_dbinfo                                                              ");
+        sql.append("\n   where demon     = :demon                                                     ");
+        sql.append("\n     and system    = :system                                                    ");
+        sql.append("\n )                                                                              ");
+        sql.append("\n order by system, db_class                                                      ");
+
+        namedParameters.addValue("demon"        , demon       );
+        namedParameters.addValue("system"       , system      );
+
+        return this.namedParameterJdbcTemplate.queryForObject(sql.toString(), namedParameters, mapper);
+    }
+}

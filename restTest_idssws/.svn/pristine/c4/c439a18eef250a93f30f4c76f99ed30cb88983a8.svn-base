@@ -1,0 +1,252 @@
+
+package com.kt.bit.standard.header.v1;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>anonymous complex type에 대한 Java 클래스입니다.
+ * 
+ * <p>다음 스키마 단편이 이 클래스에 포함되는 필요한 콘텐츠를 지정합니다.
+ * 
+ * <pre>
+ * &lt;complexType>
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element ref="{http://www.kt.com/bit/standard/header/v1}InterfaceID"/>
+ *         &lt;element ref="{http://www.kt.com/bit/standard/header/v1}SourceSys"/>
+ *         &lt;element ref="{http://www.kt.com/bit/standard/header/v1}TargetSys"/>
+ *         &lt;element ref="{http://www.kt.com/bit/standard/header/v1}GUID"/>
+ *         &lt;element ref="{http://www.kt.com/bit/standard/header/v1}SeqNumber"/>
+ *         &lt;element ref="{http://www.kt.com/bit/standard/header/v1}ReturnCode" minOccurs="0"/>
+ *         &lt;element ref="{http://www.kt.com/bit/standard/header/v1}ReturnMSG" minOccurs="0"/>
+ *         &lt;element ref="{http://www.kt.com/bit/standard/header/v1}Arbitrary" minOccurs="0"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "", propOrder = {
+    "interfaceID",
+    "sourceSys",
+    "targetSys",
+    "guid",
+    "seqNumber",
+    "returnCode",
+    "returnMSG",
+    "arbitrary"
+})
+@XmlRootElement(name = "BITHeader")
+public class BITHeader {
+
+    @XmlElement(name = "InterfaceID", required = true)
+    protected String interfaceID;
+    @XmlElement(name = "SourceSys", required = true)
+    protected String sourceSys;
+    @XmlElement(name = "TargetSys", required = true)
+    protected String targetSys;
+    @XmlElement(name = "GUID", required = true)
+    protected String guid;
+    @XmlElement(name = "SeqNumber")
+    protected int seqNumber;
+    @XmlElement(name = "ReturnCode")
+    protected String returnCode;
+    @XmlElement(name = "ReturnMSG")
+    protected String returnMSG;
+    @XmlElement(name = "Arbitrary")
+    protected Arbitrary arbitrary;
+
+    /**
+     * interfaceID 속성의 값을 가져옵니다.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getInterfaceID() {
+        return interfaceID;
+    }
+
+    /**
+     * interfaceID 속성의 값을 설정합니다.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setInterfaceID(String value) {
+        this.interfaceID = value;
+    }
+
+    /**
+     * sourceSys 속성의 값을 가져옵니다.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getSourceSys() {
+        return sourceSys;
+    }
+
+    /**
+     * sourceSys 속성의 값을 설정합니다.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setSourceSys(String value) {
+        this.sourceSys = value;
+    }
+
+    /**
+     * targetSys 속성의 값을 가져옵니다.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getTargetSys() {
+        return targetSys;
+    }
+
+    /**
+     * targetSys 속성의 값을 설정합니다.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setTargetSys(String value) {
+        this.targetSys = value;
+    }
+
+    /**
+     * guid 속성의 값을 가져옵니다.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getGUID() {
+        return guid;
+    }
+
+    /**
+     * guid 속성의 값을 설정합니다.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setGUID(String value) {
+        this.guid = value;
+    }
+
+    /**
+     * seqNumber 속성의 값을 가져옵니다.
+     * 
+     */
+    public int getSeqNumber() {
+        return seqNumber;
+    }
+
+    /**
+     * seqNumber 속성의 값을 설정합니다.
+     * 
+     */
+    public void setSeqNumber(int value) {
+        this.seqNumber = value;
+    }
+
+    /**
+     * returnCode 속성의 값을 가져옵니다.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getReturnCode() {
+        return returnCode;
+    }
+
+    /**
+     * returnCode 속성의 값을 설정합니다.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setReturnCode(String value) {
+        this.returnCode = value;
+    }
+
+    /**
+     * returnMSG 속성의 값을 가져옵니다.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getReturnMSG() {
+        return returnMSG;
+    }
+
+    /**
+     * returnMSG 속성의 값을 설정합니다.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setReturnMSG(String value) {
+        this.returnMSG = value;
+    }
+
+    /**
+     * arbitrary 속성의 값을 가져옵니다.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Arbitrary }
+     *     
+     */
+    public Arbitrary getArbitrary() {
+        return arbitrary;
+    }
+
+    /**
+     * arbitrary 속성의 값을 설정합니다.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Arbitrary }
+     *     
+     */
+    public void setArbitrary(Arbitrary value) {
+        this.arbitrary = value;
+    }
+
+}

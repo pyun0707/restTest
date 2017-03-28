@@ -1,0 +1,379 @@
+package kt.idss.ktws.vo;
+
+
+public class Jobhist {
+    private String ordno                ;
+    private String regdate              ;
+    private String command              ;
+    private String cmddetail            ;
+    private String reqsystem            ;
+    private String reqip                ;
+    private String procstep             ;
+    private String donetime             ;
+    private String errcode              ;
+    private String errsystem            ;
+    private String errmsg               ;
+    private String loginid              ;
+    private String password             ;
+    private String custtype             ;
+    private String custnum              ;
+    private String custkname            ;
+    private String custtel              ;
+    private String userip               ;
+    private String authmethod           ;
+    private String secretkey            ;
+    private String arsordno             ;
+    private String arstime              ;
+    private String arscode              ;
+    private String idisresult           ;
+    private String email                ;
+    private String usermac              ;
+    private String emailtime            ;
+    private String prodclass            ;
+    private String new_loginid          ;
+    private String sa_id                ;
+    private String sms_responsekey      ;
+    private String apct_reltn_name      ;
+    private String apct_reltn_type_desc ;
+    private String worker_id            ;
+
+    public String getOrdno(){
+
+        return ordno;
+    }
+
+    public void setOrdno(String ordno){
+
+        this.ordno = ordno;
+    }
+
+    public String getRegdate(){
+
+        return regdate;
+    }
+
+    public void setRegdate(String regdate){
+
+        this.regdate = regdate;
+    }
+
+    public String getCommand(){
+
+        return command;
+    }
+
+    public void setCommand(String command){
+
+        this.command = command;
+    }
+
+    public String getCmddetail(){
+
+        return cmddetail;
+    }
+
+    public void setCmddetail(String cmddetail){
+
+        this.cmddetail = cmddetail;
+    }
+
+    public String getReqsystem(){
+
+        return reqsystem;
+    }
+
+    public void setReqsystem(String reqsystem){
+
+        this.reqsystem = reqsystem;
+    }
+
+    public String getReqip(){
+
+        return reqip;
+    }
+
+    public void setReqip(String reqip){
+
+        this.reqip = reqip;
+    }
+
+    public String getProcstep(){
+
+        return procstep;
+    }
+
+    public void setProcstep(String procstep){
+
+        this.procstep = procstep;
+    }
+
+    public String getDonetime(){
+
+        return donetime;
+    }
+
+    public void setDonetime(String donetime){
+
+        this.donetime = donetime;
+    }
+
+    public String getErrcode(){
+
+        return errcode;
+    }
+
+    public void setErrcode(String errcode){
+
+        this.errcode = errcode;
+    }
+
+    public String getErrsystem(){
+
+        return errsystem;
+    }
+
+    public void setErrsystem(String errsystem){
+
+        this.errsystem = errsystem;
+    }
+
+    public String getErrmsg(){
+
+        return errmsg;
+    }
+
+    public void setErrmsg(String errmsg){
+
+        this.errmsg = errmsg;
+    }
+
+    public String getLoginid(){
+
+        return loginid;
+    }
+
+    public void setLoginid(String loginid){
+
+        this.loginid = loginid;
+    }
+
+    public String getPassword(){
+
+        return password;
+    }
+
+    public void setPassword(String password){
+
+        this.password = password;
+    }
+
+    public String getCusttype(){
+
+        return custtype;
+    }
+
+    public void setCusttype(String custtype){
+
+        this.custtype = custtype;
+    }
+
+    public String getCustnum(){
+
+        return custnum;
+    }
+
+    public void setCustnum(String custnum){
+
+        this.custnum = custnum;
+    }
+
+    public String getCustkname(){
+
+        return custkname;
+    }
+
+    public void setCustkname(String custkname){
+
+        this.custkname = custkname;
+    }
+
+    public String getCusttel(){
+
+        return custtel;
+    }
+
+    public void setCusttel(String custtel){
+
+        this.custtel = custtel;
+    }
+
+    public String getUserip(){
+
+        return userip;
+    }
+
+    public void setUserip(String userip){
+
+        this.userip = userip;
+    }
+
+    public String getAuthmethod(){
+
+        return authmethod;
+    }
+
+    public void setAuthmethod(String authmethod){
+
+        this.authmethod = authmethod;
+    }
+
+    public String getSecretkey(){
+
+        return secretkey;
+    }
+
+    public void setSecretkey(String secretkey){
+
+        this.secretkey = secretkey;
+    }
+
+    public String getArsordno(){
+
+        return arsordno;
+    }
+
+    public void setArsordno(String arsordno){
+
+        this.arsordno = arsordno;
+    }
+
+    public String getArstime(){
+
+        return arstime;
+    }
+
+    public void setArstime(String arstime){
+
+        this.arstime = arstime;
+    }
+
+    public String getArscode(){
+
+        return arscode;
+    }
+
+    public void setArscode(String arscode){
+
+        this.arscode = arscode;
+    }
+
+    public String getIdisresult(){
+
+        return idisresult;
+    }
+
+    public void setIdisresult(String idisresult){
+
+        this.idisresult = idisresult;
+    }
+
+    public String getEmail(){
+
+        return email;
+    }
+
+    public void setEmail(String email){
+
+        this.email = email;
+    }
+
+    public String getUsermac(){
+
+        return usermac;
+    }
+
+    public void setUsermac(String usermac){
+
+        this.usermac = usermac;
+    }
+
+    public String getEmailtime(){
+
+        return emailtime;
+    }
+
+    public void setEmailtime(String emailtime){
+
+        this.emailtime = emailtime;
+    }
+
+    public String getProdclass(){
+
+        return prodclass;
+    }
+
+    public void setProdclass(String prodclass){
+
+        this.prodclass = prodclass;
+    }
+
+    public String getNew_loginid(){
+
+        return new_loginid;
+    }
+
+    public void setNew_loginid(String new_loginid){
+
+        this.new_loginid = new_loginid;
+    }
+
+    public String getSa_id(){
+
+        return sa_id;
+    }
+
+    public void setSa_id(String sa_id){
+
+        this.sa_id = sa_id;
+    }
+
+    public String getSms_responsekey(){
+
+        return sms_responsekey;
+    }
+
+    public void setSms_responsekey(String sms_responsekey){
+
+        this.sms_responsekey = sms_responsekey;
+    }
+
+    public String getApct_reltn_name(){
+
+        return apct_reltn_name;
+    }
+
+    public void setApct_reltn_name(String apct_reltn_name){
+
+        this.apct_reltn_name = apct_reltn_name;
+    }
+
+    public String getApct_reltn_type_desc(){
+
+        return apct_reltn_type_desc;
+    }
+
+    public void setApct_reltn_type_desc(String apct_reltn_type_desc){
+
+        this.apct_reltn_type_desc = apct_reltn_type_desc;
+    }
+
+    public String getWorker_id(){
+
+        return worker_id;
+    }
+
+    public void setWorker_id(String worker_id){
+
+        this.worker_id = worker_id;
+    }
+}

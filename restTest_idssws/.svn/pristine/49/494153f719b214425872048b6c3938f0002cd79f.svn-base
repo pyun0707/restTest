@@ -1,0 +1,10 @@
+package kt.idss.ktws.common.dao;
+
+public interface CrisDao {
+
+    public String readRealByVirtrue  (String type, String value);
+    public String readVirtureByReal  (String type, String value);
+    public String readIpinCiByVirture(String type, String value);
+    public String readIpinCiByReal   (String type, String value);
+
+}

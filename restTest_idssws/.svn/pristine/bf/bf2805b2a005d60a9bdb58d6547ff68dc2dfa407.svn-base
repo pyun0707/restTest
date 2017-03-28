@@ -1,0 +1,8 @@
+package kt.idss.ktws.common.dao;
+
+import kt.idss.ktws.vo.Product;
+
+public interface IdChangeDao {
+    public String reserveId(Product product, boolean isGenesis);
+    public String verifyUser      (Product product, boolean isGenesis);
+}
