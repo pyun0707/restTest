@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+  <property resource="logback.properties" />
+  <contextName>id_master</contextName>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <Pattern>[%level] %msg%n</Pattern>
+    </encoder>
+  </appender>
+  
+  <appender name="resttest" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_HOME}/rest.log</file>
+    <append>true</append>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      rollover daily
+      <fileNamePattern>${LOG_HOME}/rest.log_%d{yyyy-MM-dd}.%i</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>50MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+     <pattern>[%d{HH:mm:ss.SSS}][%level][%X{transaction_id}]-%msg%n</pattern>
+    </encoder>
+  </appender>
+  
+  
+  <logger name="kt.idss.service" additivity="false">
+   <level value="info" />
+   <appender-ref ref="resttest" />
+  </logger>
+  
+
+<!--   <appender name="query" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_HOME}/query.log</file>
+    <append>true</append>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      rollover daily
+      <fileNamePattern>${LOG_HOME}/query.log_%d{yyyy-MM-dd}.%i</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>50MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+     <pattern>[%d{HH:mm:ss.SSS}][%level][%X{transaction_id}]-%msg%n</pattern>
+    </encoder>
+  </appender> -->
+  
+<!--   <appender name="soap" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_HOME}/soap.log</file>
+    <append>true</append>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      rollover daily
+      <fileNamePattern>${LOG_HOME}/soap.log_%d{yyyy-MM-dd}.%i</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>50MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+     <pattern>[%d{HH:mm:ss.SSS}][%level][%X{transaction_id}]-%msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="query" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_HOME}/query.log</file>
+    <append>true</append>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      rollover daily
+      <fileNamePattern>${LOG_HOME}/query.log_%d{yyyy-MM-dd}.%i</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>50MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+     <pattern>[%d{HH:mm:ss.SSS}][%level][%X{transaction_id}]-%msg%n</pattern>
+    </encoder>
+  </appender> -->
+<!-- 
+  <appender name="icis-ktws" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_HOME}/icis-ktws.log</file>
+    <append>true</append>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      rollover daily
+      <fileNamePattern>${LOG_HOME}/ktws.log_%d{yyyy-MM-dd}.%i</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>50MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+     <pattern>[%d{HH:mm:ss.SSS}][%level][%X{transaction_id}]-%msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="genesis-ktws" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_HOME}/genesis-ktws.log</file>
+    <append>true</append>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      rollover daily
+      <fileNamePattern>${LOG_HOME}/ktws.log_%d{yyyy-MM-dd}.%i</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>50MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+     <pattern>[%d{HH:mm:ss.SSS}][%level][%X{transaction_id}]-%msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <logger name="kt.idss.ktid" additivity="false">
+   <level value="info" />
+   <appender-ref ref="icis-ktws" />
+  </logger>
+
+  <logger name="kt.idss.gcrm" additivity="false">
+   <level value="info" />
+   <appender-ref ref="genesis-ktws" />
+  </logger>
+
+  <logger name="org.apache.cxf" additivity="false">
+   <level value="info" />
+   <appender-ref ref="soap" />
+  </logger>
+ -->
+<!--
+  <logger name="jdbc.sqltiming" additivity="false">
+   <level value="info" />
+   <appender-ref ref="query" />
+  </logger>
+
+  <logger name="jdbc.resultsettable" additivity="false">
+    <level value="info" />
+    <appender-ref ref="query" />
+  </logger>
+-->
+
+  <logger name="jdbc.sqlonly" additivity="false">
+    <level value="info" />
+    <appender-ref ref="query" />
+  </logger>
+
+  <root level="${rootLevel}">
+    <appender-ref ref="STDOUT" />
+  </root>
+
+</configuration>
