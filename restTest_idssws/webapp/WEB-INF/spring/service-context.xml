@@ -16,6 +16,12 @@
  <import resource="classpath:META-INF/cxf/cxf.xml" />
  <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
  <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+ 
+<!--     Define workerInfoServiceProvider Endpoint -->
+            
+             
+<!--   <jaxws:endpoint id="orderProcess" implementor="kt.idss.service.neoss.OrderProcessImpl" address="/OrderProcess" />
+  <jaxws:endpoint id="testProcess" implementor="kt.idss.service.neoss.TestProcessImpl" address="/TestProcess" /> -->
   <!-- soap in/out bound message -->
   <bean id="logInbound" class="org.apache.cxf.interceptor.LoggingInInterceptor">
     <property name="prettyLogging" value="true"></property>
@@ -50,9 +56,38 @@
 
 
   <!-- web service setting -->
+  
+   <simple:server id="GetOrderInfo"
+                 serviceClass="kt.idss.service.neoss.GetOrderInfoService"
+                 serviceBean="#GetOrderInfoService"
+                 address="/GetOrderInfo"
+                 serviceName="t:GetOrderInfoService"
+                 xmlns:t="http://service.idss.kt"
+                 start="true"
+                 >
+    <simple:dataBinding>
+      <bean class="org.apache.cxf.aegis.databinding.AegisDatabinding" />
+    </simple:dataBinding>
+  </simple:server> 
+
 
     <bean id="jsonProvider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"/>
 
+
+    <jaxrs:server id="GetStateInfoService" address="/GetStateInfoService">
+        <jaxrs:serviceBeans>
+            <ref bean="neossImpl" />
+        </jaxrs:serviceBeans>
+        <jaxrs:providers>
+            <ref bean="jsonProvider" />
+        </jaxrs:providers>
+        <jaxrs:extensionMappings>.
+            <entry key="json" value="application/json"/>
+        </jaxrs:extensionMappings>
+    </jaxrs:server>
+    <bean id="neossImpl" class="kt.idss.service.main.GetStateInfoService" /> 
+    
+    
     <jaxrs:server id="rest" address="/rest">
         <jaxrs:serviceBeans>
             <ref bean="restTestImpl" />
